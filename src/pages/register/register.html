@@ -1,0 +1,45 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col> 
+        <ion-img width="180" height="120" src="assets/imgs/windows.jpg"></ion-img>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="register-box">
+   
+        <ion-row>
+            <ion-col>
+              <ion-item>
+                  <ion-input [(ngModel)]="username" type="text" placeholder="Username" clearInput  ></ion-input>
+                  
+              </ion-item>
+              
+            
+              <ion-item>
+                  <ion-input [(ngModel)]="password" type="password" placeholder="Password" clearInput ></ion-input>
+                </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="signup"> 
+                <button ion-button class="submit-btn" block clear type="submit" (click) = "custom(1)" >สมัครสมาชิกแบบลูกค้า</button>
+                <button ion-button class="register-btn"  block clear  color="danger" type="submit" (click) = "technician(2)"  >สมัครสมาชิกแบบช่าง</button>
+            </ion-col>
+          </ion-row>
+  </div>
+</ion-content>

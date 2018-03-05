@@ -1,0 +1,34 @@
+<ion-header>  
+</ion-header>
+
+<ion-content padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col> 
+        <ion-img width="180" height="120" src="assets/imgs/windows.jpg"></ion-img>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+    
+        <ion-row>
+            <ion-col>
+              <ion-item>
+                  <ion-input [(ngModel)]="username" type="text" placeholder="Username" clearInput></ion-input>
+                </ion-item>
+       
+            
+              <ion-item>
+                  <ion-input [(ngModel)]="password" type="password" placeholder="Password" clearInput></ion-input>
+                </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="sigeup"> 
+                <button ion-button class="submit-btn" full type="submit" (click)="login()">เข้าสู่ระบบ</button>
+          <button ion-button class="register-btn" block clear color="danger" (click)="alert(item)" >สมัครสมาชิก</button>
+            </ion-col>
+          </ion-row>
+
+  </div>
+   
+</ion-content>

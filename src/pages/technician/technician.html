@@ -1,0 +1,55 @@
+<!--
+  Generated template for the TechnicianPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-title>technician</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="Icons">
+    <!-- build room -->
+    <ion-grid>
+
+      <ion-row>
+    <ion-col class="menu" (click)="bulid_room()">
+      <img  src="assets/imgs/repairing.png">
+      <div>สร้างร้านค้า</div>
+    </ion-col> 
+      </ion-row>
+
+      <ion-row class="Icons">
+          <ion-col class="menu"  (click)="chart_room()">
+            <img  src="assets/imgs/diagram.png">
+            <div>ระบบสถิติ</div>
+          </ion-col> 
+            </ion-row>
+
+      <ion-row class="Icons">
+          <ion-col class="menu"  (click)="logout()">
+              <img  src="assets/imgs/exit.png">
+                <div>ออกจากระบบ</div>
+        </ion-col> 
+      </ion-row>
+
+      </ion-grid>
+    <!-- <button button ion-button icon-start block clear round (click)="bulid_room()">
+        <ion-icon name="build" >
+        </ion-icon>สร้างร้านค้า</button> -->
+      <!-- chart --> 
+      <!-- <button button ion-button icon-start block clear round (click)="chart_room()">
+        <ion-icon name="build" >
+        </ion-icon>ระบบสถิติ</button> -->
+    <!-- Logout -->
+    <!-- <button button ion-button icon-start block clear round (click)="logout()">
+      <ion-icon name="log-out" >
+      </ion-icon>ออกจากระบบ</button> -->
+  </div>
+</ion-content>
