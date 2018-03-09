@@ -15,6 +15,13 @@ import {CustomerPage} from'../pages/customer/customer';
 import {TechnicianPage} from'../pages/technician/technician';
 import {BulidRoomPage} from '../pages/technician/bulid-room/bulid-room';
 import {ChartRoomPage} from '../pages/technician/chart-room/chart-room';
+import {AdminDetailPage} from '../pages/technician/admin-detail/admin-detail';
+import {RentPage} from '../pages/technician/rent/rent';
+import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-content-customer/chart-content-customer';
+import{EquipmentMountPage} from'../pages/technician/chart-room/equipment-mount/equipment-mount'
+import {CustomerAmountPage} from '../pages/technician/chart-room/customer-amount/customer-amount';
+
+
 //send internet
 import { GetDataProvider } from '../providers/get-data/get-data';
 
@@ -23,6 +30,7 @@ import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
+import { Calendar } from '@ionic-native/calendar';
 
 @NgModule({
   declarations: [
@@ -32,7 +40,12 @@ import { FilePath } from '@ionic-native/file-path';
     CustomerPage,
     TechnicianPage,
     BulidRoomPage,
-    ChartRoomPage
+    ChartRoomPage,
+    AdminDetailPage,
+    RentPage,
+    ChartContentCustomerPage,
+    EquipmentMountPage,
+    CustomerAmountPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +60,12 @@ import { FilePath } from '@ionic-native/file-path';
     CustomerPage,
     TechnicianPage,
     BulidRoomPage,
-    ChartRoomPage
+    ChartRoomPage,
+    AdminDetailPage,
+    RentPage,
+    ChartContentCustomerPage,
+    EquipmentMountPage,
+    CustomerAmountPage
 
   ],
   providers: [
@@ -60,7 +78,7 @@ import { FilePath } from '@ionic-native/file-path';
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GetDataProvider,
-   
+    Calendar
   ]
 })
 export class AppModule {}

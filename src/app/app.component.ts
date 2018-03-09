@@ -8,6 +8,7 @@ import { Dialogs } from '@ionic-native/dialogs';
 import { HomePage } from '../pages/home/home';
 import {CustomerPage} from'../pages/customer/customer';
 import {TechnicianPage} from'../pages/technician/technician';
+import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-content-customer/chart-content-customer';
 @Component({
   templateUrl: 'app.html'
 })

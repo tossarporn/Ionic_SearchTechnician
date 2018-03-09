@@ -2,22 +2,24 @@
 </ion-header>
 
 <ion-content padding>
+    
   <ion-row class="logo-row">
     <ion-col></ion-col> 
         <ion-img width="180" height="120" src="assets/imgs/windows.jpg"></ion-img>
     <ion-col></ion-col>
   </ion-row>
-  <div class="login-box">
+
+  <!-- <div class="login-box">
     
         <ion-row>
             <ion-col>
               <ion-item>
-                  <ion-input [(ngModel)]="username" type="text" placeholder="Username" clearInput></ion-input>
+                  <ion-input [(ngModel)]="username" type="text" placeholder="Username" clearInput ></ion-input>
                 </ion-item>
        
             
               <ion-item>
-                  <ion-input [(ngModel)]="password" type="password" placeholder="Password" clearInput></ion-input>
+                  <ion-input [(ngModel)]="password" type="password" placeholder="Password" clearInput ></ion-input>
                 </ion-item>
             </ion-col>
           </ion-row>
@@ -28,7 +30,20 @@
           <button ion-button class="register-btn" block clear color="danger" (click)="alert(item)" >สมัครสมาชิก</button>
             </ion-col>
           </ion-row>
-
-  </div>
-   
+        
+  </div> -->
+  <form [formGroup]="todo" (ngSubmit)="logForm()">
+      <ion-item>
+        <ion-label>Todo</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Description</ion-label>
+        <ion-textarea formControlName="description"></ion-textarea>
+      </ion-item>
+      <button ion-button type="submit" [disabled]="!todo.valid">Submit</button>
+    
+    </form>
+    <pre>{{todo.value|json}}</pre>
 </ion-content>

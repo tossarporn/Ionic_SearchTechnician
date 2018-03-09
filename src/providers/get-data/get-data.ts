@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://192.168.1.42/Final_Project/service/";   
+  host: string = "http://10.5.20.155/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php"; 
   get_area:string ="Get_Area.php" 
@@ -95,9 +95,9 @@ creat_store(name_store,equipment,tel,time_start,time_end,cost_begin,num_house,st
       {
         headers:this.headers
     }).subscribe(result=>{
-      reslov(result),alert(JSON.stringify(result))},
+      reslov(result)},
       err=>{
-        reject(err),alert(JSON.stringify(err))
+        reject(err)
       })
   })
 }//creat_store

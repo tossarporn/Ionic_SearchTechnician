@@ -2,11 +2,16 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ActionSheetController } from 'ionic-angular';
 import {Camera,CameraOptions, PictureSourceType} from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
+import {Validators, FormBuilder, FormGroup ,AbstractControl,FormControl }from '@angular/forms';
 
 import {GetDataProvider } from '../../../providers/get-data/get-data';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { Alert } from 'ionic-angular/components/alert/alert';
 import { stringify } from '@angular/compiler/src/util';
+import { TechnicianPage } from '../technician';
+
+
+
 
 /**
  * Generated class for the BulidRoomPage page.
@@ -21,22 +26,28 @@ import { stringify } from '@angular/compiler/src/util';
   templateUrl: 'bulid-room.html',
 })
 export class BulidRoomPage {
+
 // latlng:any;
-public lat : number = 0;
-public lng : number = 0;
-name_store : string="";
-tel:string="";
-time_start:string="";
-time_end:string="";
-cost_begin:string="";
-num_house:string="";
-street:string="";
-images: any;
+public lat : number= 0;
+public lng : number= 0;
+name_store:string='' ;
+tel: string='';
+time_start:string='' ;
+time_end: string='';
+cost_begin: string='';
+num_house: string='';
+street: string='';
+images: any="";
 area : any="";
-account:string="";
-distric : any="";
+area_for : any="";
+account:string='';
+distric : string='';
 type_equipment:any="";
-equipment:any;
+equipment:any='';
+
+data_inputjson:any;
+private myform : FormGroup;//new  
+
 // id:string="";
 // name_area:string="";
   constructor(public navCtrl: NavController, 
@@ -46,15 +57,30 @@ equipment:any;
               private camera: Camera, 
               public alertCtrl:AlertController,
               public actionSheetCtrl: ActionSheetController, 
+              private formBuilder: FormBuilder//new
               ) 
 {
-this.images = 'assets/imgs/windows.jpg'; 
+  this.myform = this.formBuilder.group({
+    name_stroe: ['', Validators.required],
+    account: ['',Validators.required],
+    equipment:['',Validators.required],
+    tel:['',Validators.required],
+    time_start:['',Validators.required],
+    time_end:['',Validators.required],
+    cost_beging:['',Validators.required],
+    num_house:['',Validators.required],
+    street:['',Validators.required],
+    distric:['',Validators.required],
+    area:['',Validators.required],
+    lat:['',Validators.required],
+    lng:['',Validators.required],
+  });
+this.images = 'assets/imgs/photo-camera.png'; 
 }
-
   ionViewCanEnter(){
     this.getdataProvider.show_area()
     .then((data)=>{
-      this.area = data;
+      this.area_for = data;
       let tech_area = this.area.area_name;
       let tech_id = this.area.id;
       //alert(JSON.stringify(data));
@@ -81,6 +107,7 @@ this.images = 'assets/imgs/windows.jpg';
     console.log('ionViewDidLoad BulidRoomPage');
 
   }
+
   image(){
     let alert = this.actionSheetCtrl.create({
       title: 'กรุณาเลือกรูปภาพ',
@@ -89,7 +116,7 @@ this.images = 'assets/imgs/windows.jpg';
           text: 'เลือกรูปภาพ',
           handler: () => {
             const options: CameraOptions = {
-              quality: 100,
+              quality: 50,
               destinationType: this.camera.DestinationType.DATA_URL,
               encodingType: this.camera.EncodingType.JPEG,
               mediaType: this.camera.MediaType.PICTURE,
@@ -152,14 +179,28 @@ this.images = 'assets/imgs/windows.jpg';
     // alert(this.area);
     // alert(this.equipment);
     // alert(this.image_base64);
+
     this.getdataProvider.creat_store(this.name_store,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
     this.num_house,this.street,this.distric,this.area,this.account,this.lat,this.lng,this.images
     ).then((res)=>{
-        alert(JSON.stringify(res))
-        console.log(res);
+      this.data_inputjson = res;
+      let data_text = this.data_inputjson.message;
+      let data_status = this.data_inputjson.status;
+        if(data_status == true){
+            alert(data_text);
+            this.navCtrl.push(TechnicianPage);
+        }
+        else if(data_status == false){
+          alert(data_text);
+        }
+        else{
+          alert(JSON.stringify(res))
+        }
+        // alert(JSON.stringify(res))
+        // console.log(res);
       })
       .catch((err)=>{ 
-        alert(JSON.stringify(err))
+        alert("กรุณากรอกข้อมูลให้ครบด้วยครับ");
         console.log(err); 
       })
       //upload_imges

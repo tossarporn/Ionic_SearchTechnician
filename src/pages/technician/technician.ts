@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import {BulidRoomPage} from '../technician/bulid-room/bulid-room';
 import { HomePage } from '../home/home';
 import {ChartRoomPage} from '../technician/chart-room/chart-room';
+import {AdminDetailPage} from '../technician/admin-detail/admin-detail';
+import {RentPage} from '../technician/rent/rent';
 /**
  * Generated class for the TechnicianPage page.
  *
@@ -29,6 +31,12 @@ export class TechnicianPage {
   chart_room(){
     this.navCtrl.push(ChartRoomPage);
     // alert("55555");
+  }
+  detail_admin(){
+  this.navCtrl.push(AdminDetailPage);
+  }
+  for_rent(){
+    this.navCtrl.push(RentPage);
   }
   logout(){
     this.navCtrl.setRoot(HomePage);

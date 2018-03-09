@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 //page
 import { RegisterPage } from '../register/register';
 import {CustomerPage} from'../customer/customer';
@@ -13,8 +15,11 @@ import {GetDataProvider } from '../../providers/get-data/get-data';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
+  
 }) 
 export class HomePage {
+  private todo : FormGroup;//new
+
   username:string="";
   password:string="";
   res :any;
@@ -22,8 +27,17 @@ export class HomePage {
     public navCtrl:NavController,
     public navParam:NavParams,
     public getprovi:GetDataProvider,
-    ){
 
+    private formBuilder: FormBuilder//new
+    
+    ){
+      this.todo = this.formBuilder.group({
+        title: ['', Validators.required],
+        description: ['',Validators.required],
+      });
+    }
+    logForm(){
+      console.log(this.todo.value)  
     }
   alert(_item) {
       this.navCtrl.push(RegisterPage,{item:_item});

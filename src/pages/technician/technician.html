@@ -23,6 +23,10 @@
       <img  src="assets/imgs/repairing.png">
       <div>สร้างร้านค้า</div>
     </ion-col> 
+    <ion-col (click)="for_rent()">
+      <img src="assets/imgs/maps-and-flags.png">
+      <div>ข้อมูลการจอง</div>
+    </ion-col>
       </ion-row>
 
       <ion-row class="Icons">
@@ -30,7 +34,11 @@
             <img  src="assets/imgs/diagram.png">
             <div>ระบบสถิติ</div>
           </ion-col> 
-            </ion-row>
+          <ion-col class="menu"  (click)="detail_admin()">
+            <img  src="assets/imgs/manager.png">
+            <div>ข้อมูลผู้ดูแลระบบ</div>
+          </ion-col> 
+        </ion-row>
 
       <ion-row class="Icons">
           <ion-col class="menu"  (click)="logout()">
