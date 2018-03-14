@@ -14,6 +14,28 @@
 
 
 <ion-content padding>
-    
+    <ion-grid >
+      <ion-row class="Icons">
+          <ion-col (click)="searchPromt()">
+              <img src="assets/imgs/placeholder.png" >
+              <div class="text">ค้นหา</div>
+          </ion-col>
+          
+      </ion-row>
+
+      <ion-row class="Icons">
+        <ion-col (click)="DataForRent()">
+        <img src="assets/imgs/research.png">
+        <div class="text">ข้อมูลการจอง</div>
+      </ion-col>
+      </ion-row>
+
+      <ion-row class="Icons">
+        <ion-col (click)="logout()"> 
+          <img src="assets/imgs/exit.png">
+          <div>ออกจากระบบ</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
 </ion-content>

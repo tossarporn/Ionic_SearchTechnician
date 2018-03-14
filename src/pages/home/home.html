@@ -9,7 +9,7 @@
     <ion-col></ion-col>
   </ion-row>
 
-  <!-- <div class="login-box">
+  <div class="login-box">
     
         <ion-row>
             <ion-col>
@@ -31,8 +31,8 @@
             </ion-col>
           </ion-row>
         
-  </div> -->
-  <form [formGroup]="todo" (ngSubmit)="logForm()">
+  </div>
+  <!-- <form [formGroup]="todo" (ngSubmit)="logForm()">
       <ion-item>
         <ion-label>Todo</ion-label>
         <ion-input type="text" formControlName="title"></ion-input>
@@ -45,5 +45,5 @@
       <button ion-button type="submit" [disabled]="!todo.valid">Submit</button>
     
     </form>
-    <pre>{{todo.value|json}}</pre>
+    <pre>{{todo.value|json}}</pre> -->
 </ion-content>

@@ -25,5 +25,8 @@ export class CustomerAmountPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomerAmountPage');
   }
+  public ChartsLables:string[] = ['มกราคม','กุมภาพันธ','มีนาคม  ']
+public ChartsData:number[] = [10,20,100]
+public ChartsType:string = "doughnut"
 
 }

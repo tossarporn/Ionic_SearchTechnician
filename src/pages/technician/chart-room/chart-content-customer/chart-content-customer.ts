@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'chart-content-customer.html',
 })
 export class ChartContentCustomerPage {
+public star5:number = 5;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -18,4 +18,16 @@
     <ion-label>ค้นหา</ion-label>
     <ion-datetime displayFormat="DD:MM:YYYY" pickerFormat="DD: MM : YYYY" [(ngModel)]="event.month"></ion-datetime>
   </ion-item>
+  <div class="block">
+  <canvas baseChart
+    [data]='ChartsData'
+    [labels]='ChartsLables'
+    [chartType]='ChartsType'
+  >
+  </canvas>
+  <!-- <div style="display:block">
+{{ChartsLables}}
+</div>
+{{ChartsData}} -->
+</div>
 </ion-content>

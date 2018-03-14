@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.20.155/Final_Project/service/";   
+  host: string = "http://10.5.5.198/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php"; 
   get_area:string ="Get_Area.php" 

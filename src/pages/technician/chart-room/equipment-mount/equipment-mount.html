@@ -4,7 +4,8 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+
 <ion-header>
 
   <ion-navbar>
@@ -20,4 +21,17 @@
         <ion-datetime displayFormat="MM:  YYYY" pickerFormat="MM : YYYY" [(ngModel)]="event.month"></ion-datetime>
       </ion-item>
 
+     
+<div class="block">
+  <canvas baseChart
+    [data]='ChartsData'
+    [labels]='ChartsLables'
+    [chartType]='ChartsType'
+  >
+
+  </canvas>
+  
+</div>
 </ion-content>
+
+

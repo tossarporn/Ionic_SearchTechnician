@@ -20,10 +20,13 @@ import {RentPage} from '../pages/technician/rent/rent';
 import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-content-customer/chart-content-customer';
 import{EquipmentMountPage} from'../pages/technician/chart-room/equipment-mount/equipment-mount'
 import {CustomerAmountPage} from '../pages/technician/chart-room/customer-amount/customer-amount';
-
+import{SerachPage} from '../pages/customer/serach/serach';
 
 //send internet
 import { GetDataProvider } from '../providers/get-data/get-data';
+import {ChartsModule} from 'ng2-charts';
+import {GoogleMaps} from '@ionic-native/google-maps';
+
 
 //upload images
 import { Camera } from '@ionic-native/camera';
@@ -45,12 +48,14 @@ import { Calendar } from '@ionic-native/calendar';
     RentPage,
     ChartContentCustomerPage,
     EquipmentMountPage,
-    CustomerAmountPage
+    CustomerAmountPage,
+    SerachPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,7 +70,8 @@ import { Calendar } from '@ionic-native/calendar';
     RentPage,
     ChartContentCustomerPage,
     EquipmentMountPage,
-    CustomerAmountPage
+    CustomerAmountPage,
+    SerachPage
 
   ],
   providers: [
@@ -78,7 +84,8 @@ import { Calendar } from '@ionic-native/calendar';
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GetDataProvider,
-    Calendar
+    Calendar,
+    GoogleMaps
   ]
 })
 export class AppModule {}

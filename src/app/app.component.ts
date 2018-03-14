@@ -13,7 +13,7 @@ import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-cont
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TechnicianPage;
+  rootPage:any = CustomerPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,dialog:Dialogs) {
     platform.ready().then(() => {
