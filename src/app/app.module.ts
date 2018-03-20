@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { MbscModule } from '@mobiscroll/angular-trial';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -11,7 +13,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RegisterPage } from '../pages/register/register';
-import {CustomerPage} from'../pages/customer/customer';
 import {TechnicianPage} from'../pages/technician/technician';
 import {BulidRoomPage} from '../pages/technician/bulid-room/bulid-room';
 import {ChartRoomPage} from '../pages/technician/chart-room/chart-room';
@@ -20,7 +21,9 @@ import {RentPage} from '../pages/technician/rent/rent';
 import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-content-customer/chart-content-customer';
 import{EquipmentMountPage} from'../pages/technician/chart-room/equipment-mount/equipment-mount'
 import {CustomerAmountPage} from '../pages/technician/chart-room/customer-amount/customer-amount';
-import{SerachPage} from '../pages/customer/serach/serach';
+import {CustomerPage} from '../pages/customer/customer';
+import {SearchPage} from '../pages/search/search'
+import {DataRentPage} from '../pages/data-rent/data-rent'
 
 //send internet
 import { GetDataProvider } from '../providers/get-data/get-data';
@@ -40,7 +43,7 @@ import { Calendar } from '@ionic-native/calendar';
     MyApp,
     HomePage,
     RegisterPage,
-    CustomerPage,
+    
     TechnicianPage,
     BulidRoomPage,
     ChartRoomPage,
@@ -49,9 +52,14 @@ import { Calendar } from '@ionic-native/calendar';
     ChartContentCustomerPage,
     EquipmentMountPage,
     CustomerAmountPage,
-    SerachPage
+    CustomerPage,
+    SearchPage,
+    DataRentPage
+    
   ],
-  imports: [
+  imports: [ 
+    FormsModule, 
+    MbscModule,
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
@@ -62,7 +70,7 @@ import { Calendar } from '@ionic-native/calendar';
     MyApp,
     HomePage,
     RegisterPage,
-    CustomerPage,
+    
     TechnicianPage,
     BulidRoomPage,
     ChartRoomPage,
@@ -71,7 +79,10 @@ import { Calendar } from '@ionic-native/calendar';
     ChartContentCustomerPage,
     EquipmentMountPage,
     CustomerAmountPage,
-    SerachPage
+    CustomerPage,
+    SearchPage,
+    DataRentPage
+    
 
   ],
   providers: [

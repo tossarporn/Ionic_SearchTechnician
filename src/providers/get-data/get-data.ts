@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.5.198/Final_Project/service/";   
+  host: string = "http://192.168.202.39/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php"; 
   get_area:string ="Get_Area.php" 
@@ -44,7 +44,8 @@ export class GetDataProvider {
   login_provider(user,password){
     return new Promise ((reslov,reject)=>{
       this.http.post(this.host + this.get_login,
-        {user:user,
+        {
+          user:user,
           password:password,
         },
         {headers:this.headers
@@ -67,6 +68,9 @@ export class GetDataProvider {
     });
   }//show_area
 
+
+   
+ 
   show_equipment(){
     return new Promise((reslov,reject)=>{this.http.get(this.host+this.get_equipment,{headers:this.headers}).subscribe(result=>{reslov(result)},
       err=>{

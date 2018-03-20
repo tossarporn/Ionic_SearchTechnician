@@ -1,0 +1,38 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="danger">
+    
+  <ion-title  *ngIf="!isSearchbarOpened">
+    ค้นหาเขต
+  </ion-title>
+  <ion-searchbar  
+  *ngIf="isSearchbarOpened" 
+  (ionInput)="onInput($event)"
+  showCancelButton="true" 
+  placeholder = "ใส่เขตที่ต้องการค้นหา"
+  (search)="onSearch($event)" 
+  (ionCancel)="isSearchbarOpened=false">
+  </ion-searchbar>
+  
+  <ion-buttons end>
+    <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true" block clear>  
+      <ion-icon  ios="ios-search" md="md-search" ></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list no-lines>
+    <button ion-item *ngFor="let item of items " detail-push>
+      {{ item.area_name }}
+    </button>
+  </ion-list>
+</ion-content>
+

@@ -4,16 +4,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Dialogs } from '@ionic-native/dialogs';
 
+import {SearchPage} from '../pages/search/search'
 
+import {CustomerPage} from '../pages/customer/customer';
 import { HomePage } from '../pages/home/home';
-import {CustomerPage} from'../pages/customer/customer';
 import {TechnicianPage} from'../pages/technician/technician';
 import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-content-customer/chart-content-customer';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
-  rootPage:any = CustomerPage;
+export class MyApp { 
+  rootPage:any = CustomerPage; 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,dialog:Dialogs) {
     platform.ready().then(() => {

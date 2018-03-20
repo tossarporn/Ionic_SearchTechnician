@@ -5,9 +5,8 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 //page
 import { RegisterPage } from '../register/register';
-import {CustomerPage} from'../customer/customer';
 import {TechnicianPage} from'../technician/technician';
-
+import {CustomerPage} from '../customer/customer';
 //Internet
 import {GetDataProvider } from '../../providers/get-data/get-data';
 
@@ -47,17 +46,20 @@ export class HomePage {
    .then((data)=>{
       this.res = data;
       let status_user = this.res.data_user.status;
+      let message_user = this.res.message;
+      console.log(data);
       // alert(status_user)
-      if(status_user == 1){
+      if(status_user == 1 ){
          this.navCtrl.push(CustomerPage);
         //  alert(JSON.stringify(status_user))
-        alert("ยินดีต้อนรับเข้าสู่ระบบ");
-      }else if(status_user == 2){
+        alert(message_user);
+      }else if(status_user == 2 ){
          this.navCtrl.push(TechnicianPage);
         //  alert(JSON.stringify(status_user))
-        alert("ยินดีต้อนรับเข้าสู่ระบบ");
+        alert(message_user);
       }else{
-        alert("กรุณากรอกรหัสผ่านด้วยครับ"); 
+        // alert("กรุณากรอกรหัสผ่านด้วยครับ"); 
+        alert(message_user);
       }
    })
    .catch((err)=>{
