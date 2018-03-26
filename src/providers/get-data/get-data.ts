@@ -9,14 +9,15 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://192.168.202.39/Final_Project/service/";   
+  host: string = "http://10.5.10.183/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php"; 
-  get_area:string ="Get_Area.php" 
+  get_area:string ="Get_Area.php" ;
   get_equipment:string = "get_equipment.php";
-  insert_build_store : string= "insert_BuildStore.php"
+  insert_build_store : string= "insert_BuildStore.php";
   upload_img : string= "new_insertBuildStore.php";
-  headers: any =   
+  show_TecDetail:string = "get_detailTech.php";
+  headers: any =  
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     };
@@ -106,23 +107,20 @@ creat_store(name_store,equipment,tel,time_start,time_end,cost_begin,num_house,st
   })
 }//creat_store
 
-// creat_img(images){
-//   return new Promise((reslov,reject)=>{
-//     this.http.post(this.host+this.upload_img,{
-//       images:images
-//     },{
-//       headers:this.headers
-//     }).subscribe(result=>{
-//       reslov(result)
-//       alert(JSON.stringify(result));
-//       alert("success");
-//     },
-//     err=>{reject(err)
-//       alert(JSON.stringify(err));
-//       alert("fail");
-//     })
-//   })
-// }
+showDetail_Technician(area_id,equip_id){
+ return new Promise((reslov,reject)=>{this.http.post(this.host+this.show_TecDetail,{
+  area_id:area_id,
+  equip_id:equip_id
+ },
+  {
+    headers:this.headers
+  }).subscribe(result=>{
+    reslov(result)},
+    err=>{
+      reject(err)
+    })
+  })
+}
 
 
 

@@ -1,5 +1,5 @@
 <!--
-  Generated template for the SearchPage page.
+  Generated template for the SearchEquipmentPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -16,7 +16,6 @@
   showCancelButton="true" 
   placeholder = "ใส่เขตที่ต้องการค้นหา"
   (search)="onSearch($event)" 
-  (ionClear)="onCancel($event)"
   (ionCancel)="isSearchbarOpened=false">
   </ion-searchbar>
   
@@ -27,13 +26,10 @@
   </ion-buttons>
 </ion-toolbar>
 </ion-header>
-
-
 <ion-content>
-  <ion-list no-lines >
-    <button ion-item *ngFor="let item of items " detail-push (click)="area_name(item)">
-      {{ item.area_name }}
-    </button>
+  <ion-list>
+      <button ion-item *ngFor="let item of items" (click)="equpiment_i(item)">
+          {{item.type_name}}
+      </button>
   </ion-list>
 </ion-content>
-

@@ -24,6 +24,8 @@ import {CustomerAmountPage} from '../pages/technician/chart-room/customer-amount
 import {CustomerPage} from '../pages/customer/customer';
 import {SearchPage} from '../pages/search/search'
 import {DataRentPage} from '../pages/data-rent/data-rent'
+import {SearchEquipmentPage} from '../pages/search-equipment/search-equipment'
+import {ShowTecDetailPage} from '../pages/show-tec-detail/show-tec-detail'
 
 //send internet
 import { GetDataProvider } from '../providers/get-data/get-data';
@@ -54,7 +56,9 @@ import { Calendar } from '@ionic-native/calendar';
     CustomerAmountPage,
     CustomerPage,
     SearchPage,
-    DataRentPage
+    DataRentPage,
+    SearchEquipmentPage,
+    ShowTecDetailPage
     
   ],
   imports: [ 
@@ -81,7 +85,9 @@ import { Calendar } from '@ionic-native/calendar';
     CustomerAmountPage,
     CustomerPage,
     SearchPage,
-    DataRentPage
+    DataRentPage,
+    SearchEquipmentPage,
+    ShowTecDetailPage
     
 
   ],

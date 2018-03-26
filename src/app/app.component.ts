@@ -5,7 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Dialogs } from '@ionic-native/dialogs';
 
 import {SearchPage} from '../pages/search/search'
-
+import {ShowTecDetailPage} from '../pages/show-tec-detail/show-tec-detail'
+import {SearchEquipmentPage} from '../pages/search-equipment/search-equipment'
 import {CustomerPage} from '../pages/customer/customer';
 import { HomePage } from '../pages/home/home';
 import {TechnicianPage} from'../pages/technician/technician';
@@ -14,7 +15,7 @@ import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-cont
   templateUrl: 'app.html'
 })
 export class MyApp { 
-  rootPage:any = CustomerPage; 
+  rootPage:any = SearchPage; 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,dialog:Dialogs) {
     platform.ready().then(() => {
