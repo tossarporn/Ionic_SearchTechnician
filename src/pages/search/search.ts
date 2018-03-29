@@ -31,7 +31,7 @@ constructor(
     public navParams: NavParams, 
     public GetDataProvider:GetDataProvider) 
 {
-    this.GetDataProvider.show_area();
+    // this.GetDataProvider.show_area();
     this.ionViewCanEnter();
 
 }//constructor
@@ -74,12 +74,16 @@ onInput(ev:any){
 }
 onCancel(ev:any){
     // this.GetDataProvider.show_area
-    this.ionViewCanEnter();
+    
     let val = ev.target.value;
         if(val&& val.trim()!=''){
         this.items = this.items.filter((item)=>{
             return(item.area_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
+    }
+    else{
+
+        this.ionViewCanEnter();
     }
         console.log(val,this.items.area_name);
 }   
@@ -89,6 +93,7 @@ listView(){
     
 }
 onSearch(event){
+    
 console.log(event.target.value);
 }
 area_name(area_loop){

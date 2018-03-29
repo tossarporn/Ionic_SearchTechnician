@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ActionSheetController } from 'ionic-angular';
 import {Camera,CameraOptions, PictureSourceType} from '@ionic-native/camera';
-import { Geolocation } from '@ionic-native/geolocation';
+
 import {Validators, FormBuilder, FormGroup ,AbstractControl,FormControl }from '@angular/forms';
 
 import {GetDataProvider } from '../../../providers/get-data/get-data';
@@ -10,6 +10,8 @@ import { Alert } from 'ionic-angular/components/alert/alert';
 import { stringify } from '@angular/compiler/src/util';
 import { TechnicianPage } from '../technician';
 
+//Geolocation getCurrent location
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 
@@ -27,9 +29,8 @@ import { TechnicianPage } from '../technician';
 })
 export class BulidRoomPage {
 
-// latlng:any;
-public lat : number= 0;
-public lng : number= 0;
+ lat : number= 0 ;
+ lng : number= 0;
 name_store:string='' ;
 tel: string='';
 time_start:string='' ;
@@ -53,13 +54,14 @@ private myform : FormGroup;//new
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public getdataProvider :GetDataProvider, 
-              private geolocation:Geolocation,
+              public geolocation:Geolocation,
               private camera: Camera, 
               public alertCtrl:AlertController,
               public actionSheetCtrl: ActionSheetController, 
               private formBuilder: FormBuilder//new
               ) 
 {
+  
   this.myform = this.formBuilder.group({
     name_stroe: ['', Validators.required],
     account: ['',Validators.required],
@@ -74,8 +76,11 @@ private myform : FormGroup;//new
     area:['',Validators.required],
     lat:['',Validators.required],
     lng:['',Validators.required],
+    // images :'assets/imgs/photo-camera.png'
   });
-this.images = 'assets/imgs/photo-camera.png'; 
+  this.lat
+  this.lng
+  this.images = 'assets/imgs/photo-camera.png'; 
 }
   ionViewCanEnter(){
     this.getdataProvider.show_area()
@@ -83,6 +88,7 @@ this.images = 'assets/imgs/photo-camera.png';
       this.area_for = data;
       let tech_area = this.area.area_name;
       let tech_id = this.area.id;
+      
       //alert(JSON.stringify(data));
       console.log('area==>',data);
     }).catch((err)=>{
@@ -105,7 +111,7 @@ this.images = 'assets/imgs/photo-camera.png';
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BulidRoomPage');
-
+    
   }
 
   image(){
@@ -117,6 +123,8 @@ this.images = 'assets/imgs/photo-camera.png';
           handler: () => {
             const options: CameraOptions = {
               quality: 50,
+              targetWidth:180,
+              targetHeight:120,
               destinationType: this.camera.DestinationType.DATA_URL,
               encodingType: this.camera.EncodingType.JPEG,
               mediaType: this.camera.MediaType.PICTURE,
@@ -139,7 +147,7 @@ this.images = 'assets/imgs/photo-camera.png';
           handler: () => {
             const options:CameraOptions =
               {
-                quality:100,
+                quality:50,
                 destinationType:this.camera.DestinationType.DATA_URL,
                 encodingType:this.camera.EncodingType.JPEG,
                 mediaType:this.camera.MediaType.PICTURE
@@ -160,6 +168,7 @@ this.images = 'assets/imgs/photo-camera.png';
         }
       ]
     });
+    
     alert.present();
   }//image
   
@@ -169,10 +178,15 @@ this.images = 'assets/imgs/photo-camera.png';
       // resp.coords.longitude
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
-      console.log('success',resp);
+      console.log('success',this.lat,this.lng);
+      // alert(resp);
+      // alert(this.lng);
      }).catch((error) => {
+      alert(error);
+      // alert(this.lat);
+      // alert(this.lng);
        console.log('Error getting location', error);
-     });
+});
   }//location
  
   submit(){
@@ -203,17 +217,7 @@ this.images = 'assets/imgs/photo-camera.png';
         alert("กรุณากรอกข้อมูลให้ครบด้วยครับ");
         console.log(err); 
       })
-      //upload_imges
-      // this.getdataProvider.creat_img(this.images).then((res)=>{
-        // 
-        // alert(JSON.stringify(res));
-        // alert("success");
-      //   console.log(res);
-      // }).catch((err)=>{
-        // alert(JSON.stringify(err));
-        // alert('fail');
-        // console.log(err); 
-      // })
+      
   }//submit
 
 }//BulidRoomPage

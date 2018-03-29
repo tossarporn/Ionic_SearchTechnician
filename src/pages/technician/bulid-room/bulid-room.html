@@ -14,125 +14,15 @@
 
 
 <ion-content padding>
-        <!-- <ion-list>
-    <ion-row class="logo-row">
-        <ion-col></ion-col> 
-         <ion-img width="180" height="120" src="assets/imgs/windows.jpg" (click)="image()"></ion-img>
-        <ion-col></ion-col>
-      </ion-row>
-
         
-     
-         
-          <ion-row>
-          <ion-item col-7>
-              <ion-label stacked>ชื่อร้านค้า</ion-label>
-              <ion-input type="text" [(ngModel)]="name_store" ></ion-input>
-            </ion-item>
-
-          <ion-item col-5>
-            <ion-label stacked>บัญชีธนาคาร</ion-label>
-            <ion-input type="tel" [(ngModel)]="account"></ion-input>
-        </ion-item>
-          </ion-row>
-
-         
-          <ion-row>
-              <ion-item col-7>
-                    <ion-label stacked>ประเภทเครื่องใช้ไฟฟ้า</ion-label>
-                    <ion-select [(ngModel)]="equipment" >
-                        <ion-option [value]="item_type.id" *ngFor="let item_type of type_equipment" >{{item_type.type_name}}</ion-option>
-                    </ion-select>
-                    
-              </ion-item>
-              
-              <ion-item col-5>
-                  <ion-label stacked>เบอร์โทรศัพท์</ion-label>
-              <ion-input type="tel" [(ngModel)]="tel"></ion-input>
-              </ion-item>
-              </ion-row>
-      
-               
-              <ion-row>
-                    <ion-item col-4>
-                        <ion-label stacked>เวลาเปิด</ion-label>
-                    <ion-input type="tel" [(ngModel)]="time_start" ></ion-input>
-                    </ion-item>
-
-                    <ion-item col-4>
-                        <ion-label stacked>เวลาปิด</ion-label>
-                    <ion-input type="tel" [(ngModel)]="time_end"></ion-input>
-                    </ion-item>
-
-                    <ion-item col-4>
-                            <ion-label stacked>ราคาเริ่มต้น</ion-label>
-                        <ion-input type="tel" [(ngModel)]="cost_begin" ></ion-input> 
-                    </ion-item>
-                    </ion-row>
-
-                     
-                    <ion-row>
-                            
-                            <ion-label style="padding-left:20px;">ใส่ที่อยู่ :</ion-label>
-                           
-        
-                            <ion-item col-4>
-                                <ion-label stacked>บ้านเลขที่</ion-label>
-                            <ion-input type="tel" [(ngModel)]="num_house" ></ion-input>
-                            </ion-item>
-        
-                            <ion-item col-4>
-                                    <ion-label stacked>ถนน</ion-label>
-                                <ion-input type="text" [(ngModel)]="street"></ion-input> 
-                            </ion-item>
-                            </ion-row>
-
-                            <ion-row>
-                                    <ion-label style="margin-left:15px;"></ion-label>
-                                    <ion-item col-4>
-                                        <ion-label stacked>แขวง</ion-label>
-                                    <ion-input type="text" [(ngModel)]="distric"  ></ion-input>
-                                    </ion-item>
-                
-                                    <ion-item col-4>
-                                            <ion-label stacked>เลือกเขต</ion-label>
-                                            <ion-select [(ngModel)]="area">
-                                                <ion-option [value]="item.id" *ngFor="let item of area_for" >{{item.area_name}}</ion-option>
-                                            </ion-select>
-                                    </ion-item>      
-                            </ion-row>
-                            
-                            
-                            <ion-row>
-                            
-                                    <ion-label style="margin-left:30px;">ที่ตั้ง :</ion-label>
-                                   
-                                    <ion-item col-3>
-                                        <ion-label stacked>lat</ion-label>
-                                    <ion-input type="text" [(ngModel)]="lat" >{{lat}} </ion-input>
-                                    </ion-item>
-
-                                    <ion-item col-3>
-                                            <ion-label stacked>lng</ion-label>
-                                        <ion-input type="text" [(ngModel)]="lng" >{{lng}}</ion-input> 
-                                    </ion-item>
-                                    <ion-row style="margin-top:20px;">
-                                            <button ion-button block clear (click)="location()" color="danger">ดูที่ตั้ง</button>
-                                    </ion-row>
-                                    </ion-row>
-            </ion-list> 
-            
-        <div padding>
-          <button ion-button icon-start block round (click)="submit()" >ยืนยันการสมัคร</button>
-        </div>  -->
-        <ion-row class="logo-row">
-                <ion-col></ion-col>
-                 <ion-img width="180" height="160" src="assets/imgs/photo-camera.png" (click)="image()" ></ion-img>
-                 <ion-col></ion-col>
-              </ion-row>
 
         <form [formGroup]="myform" >
-            
+          <ion-row class="logo-row">
+            <ion-col></ion-col>
+             <ion-img width="180" height="160" src="{{images}}" (click)="image()" ></ion-img>
+             <ion-col></ion-col>
+          </ion-row>
+
         <ion-row>
           <ion-item col-6>
           <ion-label stacked><h6>ชื่อร้านค้า</h6></ion-label>
@@ -186,7 +76,7 @@
         <ion-label stacked>บ้านเลขที่</ion-label>
     <ion-input type="tel" [(ngModel)]="num_house" formControlName="num_house"></ion-input>
     </ion-item>
-
+ 
     <ion-item col-4>
             <ion-label stacked>ถนน</ion-label>
         <ion-input type="text" [(ngModel)]="street" formControlName="street"></ion-input> 
@@ -211,12 +101,12 @@
     <ion-row>                
         <ion-label style="margin-left:30px;">ที่ตั้ง :</ion-label>
        
-        <ion-item col-3>
+        <ion-item col-3>  
             <ion-label stacked>lat</ion-label>
         <ion-input type="text" [(ngModel)]="lat" formControlName="lat" >{{lat}} </ion-input>
         </ion-item>
 
-        <ion-item col-3>
+        <ion-item col-3> 
                 <ion-label stacked>lng</ion-label>
             <ion-input type="text" [(ngModel)]="lng" formControlName="lng" >{{lng}}</ion-input> 
         </ion-item>

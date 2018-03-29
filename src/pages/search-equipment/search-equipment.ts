@@ -27,7 +27,7 @@ export class SearchEquipmentPage {
     private GetDataProvider:GetDataProvider
   ) 
   {
-    this.GetDataProvider.show_equipment();
+    // this.GetDataProvider.show_equipment();
     this.ionViewCanEnter();
    this.items_area = this.navParams.get('area')
     this.items_name = this.navParams.get('area_names');
@@ -62,6 +62,11 @@ export class SearchEquipmentPage {
         this.ionViewCanEnter();
     }
   }
+
+  onSearch(event){
+    
+    console.log(event.target.value);
+    }
 
   equpiment_i(loop_equipment){
     this.navCtrl.push(ShowTecDetailPage,{
