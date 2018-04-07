@@ -14,5 +14,33 @@
 
 
 <ion-content padding>
+ 
+
+  <ion-card>
+      <ion-card-header>
+          <p class="detail" >
+              <b> วันที่ส่งซ่อม: 00/00/00 </b> 
+              <b >ชื่อร้าน:</b>  {{detail_tec.name_store}}
+            </p>
+          
+      </ion-card-header>
+      <ion-card-content >
+
+       
+        <p class="detail">
+            <b>บ้านเลขที่:</b> {{detail_tec.home_number}} 
+            <b>ถนน:</b> {{detail_tec.street}}
+        </p>    
+        <p class="detail">
+            <b>แขวง:</b> {{detail_tec.district}}  &nbsp;
+            <b>เขต:</b> {{detail_tec.area_name}}
+        </p>
+
+        <p class="detail">
+        <b>เบอร์โทรศัพท์:</b> {{detail_tec.tel_technician}}
+        <button  ion-button icon-left clear small style="margin-bottom:10px;" > <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
+      </p>
+      </ion-card-content>
+    </ion-card>
 
 </ion-content>

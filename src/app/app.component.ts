@@ -11,11 +11,16 @@ import {CustomerPage} from '../pages/customer/customer';
 import { HomePage } from '../pages/home/home';
 import {TechnicianPage} from'../pages/technician/technician';
 import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-content-customer/chart-content-customer';
+import {DetailTecPage} from '../pages/detail-tec/detail-tec'
+import {CustomerAddressPage} from '../pages/customer-address/customer-address';
+import {DataRentPage} from '../pages/data-rent/data-rent'
+
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp { 
-  rootPage:any = SearchPage; 
+  rootPage:any = HomePage; 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,dialog:Dialogs) {
     platform.ready().then(() => {

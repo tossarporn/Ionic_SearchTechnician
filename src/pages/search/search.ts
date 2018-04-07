@@ -88,16 +88,11 @@ onCancel(ev:any){
         console.log(val,this.items.area_name);
 }   
 
-
-listView(){
-    
-}
 onSearch(event){
     
 console.log(event.target.value);
 }
 area_name(area_loop){
-    // alert(JSON.stringify(area_loop) )
 this.navCtrl.push(SearchEquipmentPage,
     {
     area:area_loop.id,

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {GetDataProvider } from '../../providers/get-data/get-data';
+import {DetailTecPage} from '../detail-tec/detail-tec';
+import {HttpClient} from '@angular/common/http'
+
+
 /**
  * Generated class for the ShowTecDetailPage page.
  *
@@ -14,27 +18,31 @@ import {GetDataProvider } from '../../providers/get-data/get-data';
   templateUrl: 'show-tec-detail.html',
 })
 export class ShowTecDetailPage {
-  show_imgs = "http://10.5.10.183";
+  show_imgs = "http://10.5.1.57";
   Detail_for:any;
   Detail_area:string;
   detail_equipment:string;
   detail_items_name:string;
- loop_detail_area:any = [];
- loop_detail_equipment:any = [];
+  detail_technicain:string;
+  showDetail:string="http://10.5.1.57/Final_Project/service/get_detailTech.php";
+  count = 1;
+  headers: any =  
+    {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    };
+
    constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private GetDataProvider:GetDataProvider
+    private GetDataProvider:GetDataProvider,
+    public http: HttpClient
   ) 
   {
-   let area_id:any = this.Detail_area = this.navParams.get("items_area")
-    let equip_id:any = this.detail_equipment = this.navParams.get("items_equipmet");
-    // this.detail_items_name = this.navParams.get("items_name");
+   let area_id:any =  this.navParams.get("items_area")
+    let equip_id:any = this.navParams.get("items_equipmet");
     console.log('area==>',area_id)
     console.log('equipment==>',equip_id)
-    // console.log(JSON.stringify(this.detail_items_name))
-    // console.log(JSON.stringify(this.navParams))  
-    
-    // alert(this.Detail);
+     
+
     this.GetDataProvider.showDetail_Technician(area_id,equip_id).then((res)=>{
       this.Detail_for = res; 
       this.show_imgs
@@ -47,7 +55,37 @@ export class ShowTecDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShowTecDetailPage');
   }
-  ionViewCanEnter(){
+  
 
+  detail_tec(details_tec:any){
+    this.navCtrl.push(DetailTecPage,{
+      details_tec:details_tec
+    });
   }
+   doRefresh(refresher) {
+    this.http.get('http://10.5.1.57/Final_Project/service/get_detailTech.php?results='+this.count)
+    .subscribe(res =>{
+      this.Detail_for= res;
+      this.count+=1;
+      refresher.complete();
+      console.log("refresher=>",res)
+    },(error)=>{
+      console.log("error=>",error)
+    })
+  }
+
+  doInfinite(infiniteScroll) {
+    this.http.get('http://10.5.1.57/Final_Project/service/get_detailTech.php?results='+this.count)
+    .subscribe(res =>{
+      this.Detail_for= res;
+      this.count+=1;
+      infiniteScroll.complete();
+      console.log("infiniteScroll=>",res)
+    },(error)=>{
+      console.log("infiniteScroll=>",error)
+    })
+
+      infiniteScroll.complete();
+  }
+
 }

@@ -63,6 +63,20 @@ export class SearchEquipmentPage {
     }
   }
 
+  onCancel(ev:any){
+    this.items
+    let val = ev.target.value;
+        if(val&& val.trim()!=''){
+        this.items = this.items.filter((item)=>{
+            return(item.type_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+    }
+    else{
+        this.ionViewCanEnter();
+    }
+
+  }
+
   onSearch(event){
     
     console.log(event.target.value);

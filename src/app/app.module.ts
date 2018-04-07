@@ -26,6 +26,8 @@ import {SearchPage} from '../pages/search/search'
 import {DataRentPage} from '../pages/data-rent/data-rent'
 import {SearchEquipmentPage} from '../pages/search-equipment/search-equipment'
 import {ShowTecDetailPage} from '../pages/show-tec-detail/show-tec-detail'
+import {DetailTecPage} from '../pages/detail-tec/detail-tec'
+import {CustomerAddressPage} from '../pages/customer-address/customer-address';
 
 //send internet
 import { GetDataProvider } from '../providers/get-data/get-data';
@@ -45,7 +47,6 @@ import { Calendar } from '@ionic-native/calendar';
     MyApp,
     HomePage,
     RegisterPage,
-    
     TechnicianPage,
     BulidRoomPage,
     ChartRoomPage,
@@ -58,7 +59,9 @@ import { Calendar } from '@ionic-native/calendar';
     SearchPage,
     DataRentPage,
     SearchEquipmentPage,
-    ShowTecDetailPage
+    ShowTecDetailPage,
+    DetailTecPage,
+    CustomerAddressPage
     
   ],
   imports: [ 
@@ -67,14 +70,14 @@ import { Calendar } from '@ionic-native/calendar';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    ChartsModule
+    ChartsModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     RegisterPage,
-    
     TechnicianPage,
     BulidRoomPage,
     ChartRoomPage,
@@ -87,9 +90,9 @@ import { Calendar } from '@ionic-native/calendar';
     SearchPage,
     DataRentPage,
     SearchEquipmentPage,
-    ShowTecDetailPage
-    
-
+    ShowTecDetailPage,
+    DetailTecPage,
+    CustomerAddressPage
   ],
   providers: [
     StatusBar,

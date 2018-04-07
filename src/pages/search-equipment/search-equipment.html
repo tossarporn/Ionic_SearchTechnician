@@ -16,6 +16,7 @@
   showCancelButton="true" 
   placeholder = "ใส่เขตที่ต้องการค้นหา"
   (search)="onSearch($event)" 
+  (ionClear)="onCancel($event)"
   (ionCancel)="isSearchbarOpened=false">
   </ion-searchbar>
   

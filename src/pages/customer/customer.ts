@@ -19,6 +19,9 @@ export class CustomerPage {
 
   searchRoot = SearchPage;
   dataRentRoot = DataRentPage;
+
+  DatarentEnabled = false;//tabEnable
+
   
   constructor(public navCtrl: NavController,public app:App) {
 this.searchRoot = SearchPage;

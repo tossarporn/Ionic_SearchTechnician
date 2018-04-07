@@ -14,51 +14,37 @@
 
 
 <ion-content>
-    <!-- <ion-list *ngFor="let item of Detail_for">
-        <ion-card>
-            <img src="{{show_imgs}}/Final_Project/service/{{item.image_name}}"/>
-            <ion-card-content>
-              <ion-card-title>
-                {{item.name_store}}
-                </ion-card-title>
-                <ion-row>
-                  <ion-col> 
-                              เวลาทำการ : {{item.time_start}} - {{item.time_end}}
-                              เขต : {{item.area_name}} 
-                              ประเภท : {{item.type_name}} 
-                  </ion-col>
-                </ion-row>
-                
-            </ion-card-content>
-            
-            <ion-row no-padding>
-              <ion-col>
-                <button ion-button clear small color="danger" icon-start>
-                  <ion-icon name='star'></ion-icon>
-                  ระดับความพึงพอใจ
-                </button>
-              </ion-col>
-      
-              <ion-col>
-                  <button ion-button clear small color="danger" icon-start>
-                    <ion-icon name='search'></ion-icon>
-                    ดูรายละเอียด
-                  </button>
-                </ion-col>  
-            </ion-row>
-      
-        </ion-card> 
-      </ion-list> -->
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="กรุณารอสักครู่...">
+          
+        </ion-refresher-content>
+      </ion-refresher>
 <ion-grid>
   <ion-list *ngFor="let item of Detail_for">
-
+ 
   <ion-card>
       <img src="{{show_imgs}}/Final_Project/service/{{item.image_name}}"/>
         <ion-card-content>
             <ion-card-title>
-               ชื่อร้านค้า:{{item.name_store}}
-               (<ion-icon name="star" color="danger"></ion-icon>5.0)
+              
+               <ion-row>
+                 <div>
+                    ชื่อร้านค้า:{{item.name_store}}
+                 </div>
+
+               </ion-row>
+
+               <ion-row>
+                  <div>
+                      (<ion-icon name="star" color="danger"></ion-icon>5.0)
+                  </div>
+                </ion-row>
                 </ion-card-title>
+                
         </ion-card-content>
 
       <ion-row >
@@ -88,10 +74,11 @@
 
       <ion-row  style="float:right">
         <div >
-            <button ion-button clear small color="danger" icon-start >
+            <button ion-button clear  color="secondary" icon-start (click)="detail_tec(item)">
                 <ion-icon name='search'></ion-icon>
                 ดูรายละเอียด
               </button>
+              
         </div>
         
 </ion-row>
@@ -99,5 +86,10 @@
   </ion-card>
 </ion-list>
 </ion-grid>
-
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="กรุณารอสักครู่...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

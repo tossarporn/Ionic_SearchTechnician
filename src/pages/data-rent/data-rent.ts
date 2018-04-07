@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {SearchPage} from '../search/search'
 
 /**
  * Generated class for the DataRentPage page.
@@ -14,8 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'data-rent.html',
 })
 export class DataRentPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  detail_tec:any={};
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams) 
+  {
+    this.detail_tec = this.navParams.get("tec_address");
+    console.log('tec_address=>',this.detail_tec);
+    if(this.detail_tec){
+       
+    }
+  
   }
 
   ionViewDidLoad() {

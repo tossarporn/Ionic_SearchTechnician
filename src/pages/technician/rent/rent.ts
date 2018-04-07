@@ -14,8 +14,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'rent.html',
 })
 export class RentPage {
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams) 
+  
+  {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    // this.detail_tec = this.navParams.get("tec_address");
+    // console.log('tec_address=>',this.detail_tec);
   }
 
   ionViewDidLoad() {
