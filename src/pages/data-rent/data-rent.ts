@@ -21,10 +21,7 @@ export class DataRentPage {
   {
     this.detail_tec = this.navParams.get("tec_address");
     console.log('tec_address=>',this.detail_tec);
-    if(this.detail_tec){
-       
-    }
-  
+
   }
 
   ionViewDidLoad() {

@@ -33,6 +33,7 @@ import {CustomerAddressPage} from '../pages/customer-address/customer-address';
 import { GetDataProvider } from '../providers/get-data/get-data';
 import {ChartsModule} from 'ng2-charts';
 import {GoogleMaps} from '@ionic-native/google-maps';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 //upload images
@@ -70,6 +71,7 @@ import { Calendar } from '@ionic-native/calendar';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     ChartsModule,
     
   ],

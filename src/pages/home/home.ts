@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 //page
 import { RegisterPage } from '../register/register';
 import {TechnicianPage} from'../technician/technician';
 import {CustomerPage} from '../customer/customer';
+import { SearchPage } from '../search/search';
 //Internet
 import {GetDataProvider } from '../../providers/get-data/get-data';
+
 
 
 @Component({
@@ -26,7 +29,7 @@ export class HomePage {
     public navCtrl:NavController,
     public navParam:NavParams,
     public getprovi:GetDataProvider,
-
+    private storage: Storage,
     private formBuilder: FormBuilder//new
     
     ){
@@ -44,29 +47,32 @@ export class HomePage {
   login(_item_login){
    this.getprovi.login_provider(this.username,this.password) 
    .then((data)=>{
-      this.res = data;
+       this.res = data;
       let status_user = this.res.data_user.status;
       let message_user = this.res.message;
-      console.log(data);
-      // alert(status_user)
+
       if(status_user == 1 ){
-         this.navCtrl.push(CustomerPage);
-        //  alert(JSON.stringify(status_user))
-        alert(message_user);
+        this.storage.set('guest',this.res).then((succ)=>{
+          this.navCtrl.push(CustomerPage)
+          console.log('success_home=>',succ)
+          alert(message_user);
+        }).catch((err)=>{
+          console.log('error_home=>',err)
+        })
+        //  this.navCtrl.push(CustomerPage,
+        //   {detail_user:data});
+        //  console.log('data_user=>',data);
+        // alert(message_user);
       }else if(status_user == 2 ){
          this.navCtrl.push(TechnicianPage);
-        //  alert(JSON.stringify(status_user))
         alert(message_user);
       }else{
-        // alert("กรุณากรอกรหัสผ่านด้วยครับ"); 
         alert(message_user);
       }
    })
    .catch((err)=>{
     alert(JSON.stringify(err));
    })
-    // this.navCtrl.push(CustomerPage,{item_login:_item_login});
-    // alert(_item_login);
   }
 }
 

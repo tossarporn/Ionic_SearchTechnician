@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {GetDataProvider} from '../../providers/get-data/get-data';
-import {ShowTecDetailPage} from '../show-tec-detail/show-tec-detail'
+import {ShowTecDetailPage} from '../show-tec-detail/show-tec-detail';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the SearchEquipmentPage page.
  *
@@ -22,15 +23,23 @@ export class SearchEquipmentPage {
   items_area:any;
   items_name:any;
   items_equipmet:any;
+  guest:any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams , 
-    private GetDataProvider:GetDataProvider
+    private GetDataProvider:GetDataProvider,
+    private storage: Storage
   ) 
   {
     // this.GetDataProvider.show_equipment();
     this.ionViewCanEnter();
-   this.items_area = this.navParams.get('area')
-    this.items_name = this.navParams.get('area_names');
+    // this.items_area = this.navParams.get('area')
+    // this.items_name = this.navParams.get('area_names');
+    // this.guest= this.navParams.get('guest_data');
+    // console.log('guest=>',this.guest)
+    storage.get('guest').then((val)=>{
+      let data_guest = val
+        console.log('searchEquipment_page=>',data_guest);
+    })
   // alert(this.area);
   }
 
@@ -86,9 +95,11 @@ export class SearchEquipmentPage {
     this.navCtrl.push(ShowTecDetailPage,{
       items_area:this.items_area,
       items_equipmet:loop_equipment.id,
-      items_name :this.items_name
+      items_name :this.items_name,
+      guest_data:this.guest
     });
-    console.log("Selected area", this.items_name);
-    console.log("Selected equipment",loop_equipment.type_name);
+    // console.log("Selected area", this.items_name);
+    // console.log("Selected equipment",loop_equipment.type_name);
+    // console.log('sending_guest=>',this.guest);
   } 
 }

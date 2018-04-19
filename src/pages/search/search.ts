@@ -7,6 +7,9 @@ import { Platform } from 'ionic-angular/platform/platform';
 import { Searchbar } from 'ionic-angular';
 import { TechnicianPage } from '../technician/technician';
 import {SearchEquipmentPage} from '../search-equipment/search-equipment'
+import {DataRentPage} from '../data-rent/data-rent';//tabs
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the SearchPage page.
  *
@@ -25,16 +28,31 @@ area:any;
 area_names:any;
 items:any ;
 items_area:any;
+data_user:any;
 public isSearchbarOpened = false;
+
 constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public GetDataProvider:GetDataProvider) 
+    public GetDataProvider:GetDataProvider,
+    private storage: Storage
+) 
 {
+    
     // this.GetDataProvider.show_area();
     this.ionViewCanEnter();
+    // let details_user = this.navParams.get("detail_user");
+    // console.log('customer_address=>',details_user);
 
+//   this.data_user= this.navParams.get('data_user');
+//       console.log('user=>',this.data_user);
+
+storage.get('guest').then((val)=>{
+    let data_guest = val
+      console.log('search_page=>',data_guest);
+  })
 }//constructor
+
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
@@ -96,9 +114,11 @@ area_name(area_loop){
 this.navCtrl.push(SearchEquipmentPage,
     {
     area:area_loop.id,
-    area_names:area_loop.area_name
+    area_names:area_loop.area_name,
+    guest_data:this.data_user
     }
 );
 console.log("Selected Item", area_loop.area_name);
+// console.log('data_user=>',this.data_user);
 }
 }

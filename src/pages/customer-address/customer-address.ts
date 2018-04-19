@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup ,AbstractControl,FormControl }from '@angular/forms';
 import {GetDataProvider} from'../../providers/get-data/get-data';
 import {DataRentPage} from '../data-rent/data-rent'
+import {CustomerPage} from '../customer/customer';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the CustomerAddressPage page.
@@ -19,29 +21,36 @@ import {DataRentPage} from '../data-rent/data-rent'
 export class CustomerAddressPage {
   private detail : FormGroup
   address:any={};
+  guest_data:any={};
+
   type_equipment:any="";
   data_area:any="";
-
-  name:string="";
-  last_name:string="";
-  tel:string="";
-  equipment:string="";
-  num_house:string="";
-  nastreetme:string="";
-  ditstric:string="";
-  area:string="";
-  myDate:string="";
-
+  area:any ="";
+  equipment:any ="";
+  data_array:any;
+  details_guest={
+    name:'',
+    last_name:'',
+    tel:'',
+    num_house:'',
+    street:'',
+    ditstric:'',
+    myDate:'',
+  };
+  
+  guest:any;
+  guest_id:any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private formBuilder: FormBuilder,
-    private GetDataProvider: GetDataProvider
+    private GetDataProvider: GetDataProvider,
+    private storage: Storage
   ) 
   {
     this.detail = this.formBuilder.group({
       name:['', Validators.required],
-      last_name:['', Validators.required],
+      last_name:['', Validators.required], 
       equipment:['', Validators.required],
       num_house: ['', Validators.required],
       street: ['',Validators.required],
@@ -51,15 +60,24 @@ export class CustomerAddressPage {
       tel: ['',Validators.required],
     });
     this.address = this.navParams.get("address_tec");
-    console.log('customer_address=>',this.address);
+    let technician_id = this.address.id
+    // console.log('customer_address=>',technician_id);//SendingForTechnician
+
+   this.guest = storage.get('guest').then((val)=>{ 
+        let data_guest = val
+        this.guest_id = data_guest.data_user.id 
+          // console.log('customer_address_page=>',data_guest);
+          // console.log('id_guest=>',this.guest_id);
+      })//get data_user
+
+   
 
     this.GetDataProvider.show_equipment()
     .then((data_typ)=>{
       this.type_equipment = data_typ;
       let tech_equipment = this.type_equipment.type_name;
       let tech_equipmentID = this.type_equipment.id;
-      // alert(JSON.stringify(data_typ));
-      console.log('data_typ==>',data_typ);
+      // console.log('data_typ==>',   this.type_equipment);
     })
     .catch((err)=>{
       alert(JSON.stringify(err));
@@ -69,10 +87,9 @@ export class CustomerAddressPage {
     this.GetDataProvider.show_area()
     .then((data)=>{
         this.data_area = data;
-        let tect_areaName = this.data_area.area_name;
-        let tect_areaID = this.data_area.id;
-
-      console.log('area_success=>',this.data_area)
+        let tech_area = this.area.area_name;
+        let tech_id = this.area.id;
+      // console.log('area_success=>', this.data_area );
     })
     .catch((error)=>{
       console.log('area_error=>',error)
@@ -85,12 +102,29 @@ export class CustomerAddressPage {
     console.log('ionViewDidLoad CustomerAddressPage');
   }
 
-  submit(tec_address){
-    this.navCtrl.push(DataRentPage,{
-      tec_address:this.address
+  submit(){
+    this.GetDataProvider.builid_guest(
+      this.details_guest.name,
+      this.details_guest.last_name,
+      this.details_guest.tel,
+      this.equipment,
+      this.details_guest.num_house,
+      this.details_guest.street,
+      this.details_guest.ditstric,
+      this.area,
+      this.details_guest.myDate,
+      this.address.id,
+      this.guest_id
+    ).then((res)=>{ 
+      this.data_array = res;
+      let message = this.data_array.message;
+      alert(message);
+      // console.log('insert=>', this.data_array);
+      
+    }).catch((err)=>{ 
+      console.log('not_insert=>',err);
+      alert(JSON.stringify(err))
     })
-    this.GetDataProvider
-
-    console.log('select_tec=>',this.address);
+    
   }
 }

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {GetDataProvider } from '../../providers/get-data/get-data';
 import {DetailTecPage} from '../detail-tec/detail-tec';
 import {HttpClient} from '@angular/common/http'
+import { Storage } from '@ionic/storage';
 
 
 /**
@@ -18,29 +19,34 @@ import {HttpClient} from '@angular/common/http'
   templateUrl: 'show-tec-detail.html',
 })
 export class ShowTecDetailPage {
-  show_imgs = "http://10.5.1.57";
+  show_imgs = "http://127.0.0.1";
   Detail_for:any;
   Detail_area:string;
   detail_equipment:string;
   detail_items_name:string;
   detail_technicain:string;
-  showDetail:string="http://10.5.1.57/Final_Project/service/get_detailTech.php";
+  showDetail:string="http://127.0.0.1/Final_Project/service/get_detailTech.php";
+  guest:any;
   count = 1;
-  headers: any =  
-    {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    };
 
    constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private GetDataProvider:GetDataProvider,
-    public http: HttpClient
+    public http: HttpClient,
+    private storage: Storage
   ) 
   {
    let area_id:any =  this.navParams.get("items_area")
     let equip_id:any = this.navParams.get("items_equipmet");
-    console.log('area==>',area_id)
-    console.log('equipment==>',equip_id)
+    // this.guest = this.navParams.get("guest_data");
+    // console.log('area==>',area_id)
+    // console.log('equipment==>',equip_id)
+    // console.log("guest_show_tec_detail=>",this.guest);
+
+    storage.get('guest').then((val)=>{
+      let data_guest = val
+        console.log('show_tec_detail_page=>',data_guest);
+    })
      
 
     this.GetDataProvider.showDetail_Technician(area_id,equip_id).then((res)=>{
@@ -59,11 +65,14 @@ export class ShowTecDetailPage {
 
   detail_tec(details_tec:any){
     this.navCtrl.push(DetailTecPage,{
-      details_tec:details_tec
+      details_tec:details_tec,
+      data_guest:this.guest
     });
+    // console.log("sending=>",this.guest);
+    console.log("sending=>",details_tec);
   }
    doRefresh(refresher) {
-    this.http.get('http://10.5.1.57/Final_Project/service/get_detailTech.php?results='+this.count)
+    this.http.get(this.showDetail+'?results='+this.count)
     .subscribe(res =>{
       this.Detail_for= res;
       this.count+=1;
@@ -75,7 +84,7 @@ export class ShowTecDetailPage {
   }
 
   doInfinite(infiniteScroll) {
-    this.http.get('http://10.5.1.57/Final_Project/service/get_detailTech.php?results='+this.count)
+    this.http.get(this.showDetail+'?results='+this.count)
     .subscribe(res =>{
       this.Detail_for= res;
       this.count+=1;

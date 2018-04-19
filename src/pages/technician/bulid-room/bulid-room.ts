@@ -94,10 +94,10 @@ private myform : FormGroup;//new
     }).catch((err)=>{
       alert(JSON.stringify(err));
     })//show_area
-
+    
     this.getdataProvider.show_equipment()
     .then((data_typ)=>{
-      this.type_equipment = data_typ;
+      this.type_equipment = data_typ; 
       let tech_equipment = this.type_equipment.type_name;
       let tech_equipmentID = this.type_equipment.id;
       // alert(JSON.stringify(data_typ));

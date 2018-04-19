@@ -23,19 +23,19 @@
           <ion-row>
               <ion-item col-6>
                   <ion-label floating>ชื่อ:</ion-label>
-              <ion-input type="tel" [(ngModel)]="name" formControlName="name"></ion-input>
+              <ion-input type="tel" [(ngModel)]="details_guest.name" formControlName="name"></ion-input>
               </ion-item>
     
               <ion-item col-6>
                       <ion-label floating>นามสกุล:</ion-label>
-                  <ion-input type="text" [(ngModel)]="last_name" formControlName="last_name"></ion-input> 
+                  <ion-input type="text" [(ngModel)]="details_guest.last_name" formControlName="last_name"></ion-input> 
               </ion-item>
           </ion-row>
 
           <ion-row>
             <ion-item col-6>
                 <ion-label floating>เบอร์โทรศัพท์ :</ion-label> 
-            <ion-input type="tel" [(ngModel)]="tel" formControlName="tel"></ion-input> 
+            <ion-input type="tel" [(ngModel)]="details_guest.tel" formControlName="tel"></ion-input> 
           </ion-item>
 
           <ion-item col-6>
@@ -51,12 +51,12 @@
             
                 <ion-item col-4>
                     <ion-label floating>บ้านเลขที่</ion-label>
-                <ion-input type="tel" [(ngModel)]="num_house" formControlName="num_house"></ion-input>
+                <ion-input type="tel" [(ngModel)]="details_guest.num_house" formControlName="num_house"></ion-input>
                 </ion-item>
             
         <ion-item col-4 >
                 <ion-label floating>ถนน</ion-label>
-            <ion-input type="text" [(ngModel)]="street" formControlName="street"></ion-input> 
+            <ion-input type="text" [(ngModel)]="details_guest.street" formControlName="street"></ion-input> 
         </ion-item>
           </ion-row>
 
@@ -64,7 +64,7 @@
             <ion-label ></ion-label>
           <ion-item col-4>
               <ion-label floating>แขวง</ion-label>
-          <ion-input type="text" [(ngModel)]="ditstric" formControlName="ditstric"></ion-input>
+          <ion-input type="text" [(ngModel)]="details_guest.ditstric" formControlName="ditstric"></ion-input>
           </ion-item>
        
           <ion-item col-4>
@@ -78,7 +78,7 @@
         <ion-row>
             <ion-item >
                 <ion-label  staked>เลือกวันที่การซ่อม :</ion-label>
-                <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate" formControlName="myDate"></ion-datetime>
+                <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="details_guest.myDate" formControlName="myDate"></ion-datetime>
               </ion-item>
         </ion-row>
 
@@ -90,5 +90,4 @@
             <ion-col></ion-col>
           </ion-row>
         </form> 
-<!-- {{address.name_store}} -->
 </ion-content>

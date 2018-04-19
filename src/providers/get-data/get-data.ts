@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.1.57/Final_Project/service/";   
+  host: string = "http://127.0.0.1/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php"; 
   get_area:string ="Get_Area.php" ;
@@ -17,6 +17,8 @@ export class GetDataProvider {
   insert_build_store : string= "insert_BuildStore.php";
   upload_img : string= "new_insertBuildStore.php";
   show_TecDetail:string = "get_detailTech.php";
+  guest_insert = "CustomerForRent.php";
+
   headers: any =  
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -120,8 +122,30 @@ showDetail_Technician(area_id,equip_id){
       reject(err)
     })
   })
-}
+}//showDetail_Technician
 
-
+builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,ref_tec,ref_regis){
+  return new Promise((reslov,reject)=>{this.http.post(this.host+this.guest_insert,
+    {
+      name_guest:name,
+      last_name_guest:last_name,
+      tel:tel,
+      equipment:equipment,
+      num_house:num_house,
+      street:street,
+      ditstric:ditstric,
+      area:area,
+      date:date,
+      ref_tec:ref_tec,
+      ref_regis:ref_regis
+  },
+  {headers:this.headers
+  }).subscribe(result=>{
+    reslov(result)
+  })
+  err=>{
+    reject(err)}
+})
+}//builid_guest
 
 }//GetDataProvider
