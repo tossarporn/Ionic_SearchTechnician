@@ -8,16 +8,16 @@ import { Injectable } from '@angular/core';
   and Angular DI.
 */
 @Injectable()
-export class GetDataProvider {
-  host: string = "http://127.0.0.1/Final_Project/service/";   
+export class GetDataProvider {       
+  host: string = "http://192.168.1.42/Final_Project/service/";   
   get_register: string = "register.php";
-  get_login:string = "login.php"; 
+  get_login:string = "login.php";      
   get_area:string ="Get_Area.php" ;
   get_equipment:string = "get_equipment.php";
   insert_build_store : string= "insert_BuildStore.php";
   upload_img : string= "new_insertBuildStore.php";
   show_TecDetail:string = "get_detailTech.php";
-  guest_insert = "CustomerForRent.php";
+  guest_insert = "CustomerForRent.php"; 
 
   headers: any =  
     {

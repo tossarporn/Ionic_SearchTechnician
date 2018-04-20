@@ -19,13 +19,13 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'show-tec-detail.html',
 })
 export class ShowTecDetailPage {
-  show_imgs = "http://127.0.0.1";
+  show_imgs = "http://192.168.1.42";
   Detail_for:any;
   Detail_area:string;
-  detail_equipment:string;
+  detail_equipment:string;   
   detail_items_name:string;
   detail_technicain:string;
-  showDetail:string="http://127.0.0.1/Final_Project/service/get_detailTech.php";
+  showDetail:string="http://192.168.1.42/Final_Project/service/get_detailTech.php";
   guest:any;
   count = 1;
 

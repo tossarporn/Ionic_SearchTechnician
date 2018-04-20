@@ -41,8 +41,9 @@
           <ion-item col-6>
                 <ion-label floating>ประเภทอุปกรณ์:</ion-label>
                 <ion-select [(ngModel)]="equipment" formControlName="equipment" >
-                    <ion-option [value]="item_type.id" *ngFor="let item_type of type_equipment" >{{item_type.type_name}}</ion-option>
+                    <ion-option  [value]="address.ref_type">{{address.type_name}}</ion-option>
                 </ion-select>
+                <!-- <ion-input type="text" [(ngModel)]="equipment" [value]="item_type.id" formControlName="equipment"></ion-input> -->
         </ion-item>
         </ion-row>
         
@@ -90,4 +91,6 @@
             <ion-col></ion-col>
           </ion-row>
         </form> 
+
+    <!-- {{address.type_name}} -->
 </ion-content>

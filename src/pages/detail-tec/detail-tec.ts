@@ -19,7 +19,7 @@ import { Storage } from '@ionic/storage';
 })
 export class DetailTecPage {
   technician_store:any={};
-  show_imgs = "http://127.0.0.1";
+  show_imgs = "http://192.168.1.42";
   guest:any;
   constructor(
     public navCtrl: NavController, 

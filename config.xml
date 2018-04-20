@@ -90,7 +90,8 @@
     <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
     <plugin name="info.protonet.imageresizer" spec="^0.1.1" />
     <allow-navigation href="http://10.5.10.183:8100" />
-    <engine name="android" spec="^6.4.0" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.0" />
+    <allow-navigation href="http://10.5.27.88:8100" />
+    <engine name="android" spec="^6.4.0" />
 </widget>
