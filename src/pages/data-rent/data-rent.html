@@ -14,12 +14,13 @@
 
 
 <ion-content nopadding>
-
-  <!-- <ion-card >
+   
+  <ion-card >
+    
       <ion-card-header>
           <p class="detail" >
               <b> วันที่ส่งซ่อม: 00/00/00 </b> 
-              <b >ชื่อร้าน:</b>  {{detail_tec.name_store}}
+              <b >ชื่อร้าน:</b>  {{Detail_for.name_store}}
             </p>
           
       </ion-card-header>
@@ -27,18 +28,26 @@
 
        
         <p class="detail">
-            <b>บ้านเลขที่:</b> {{detail_tec.home_number}} 
-            <b>ถนน:</b> {{detail_tec.street}}
+            <b>บ้านเลขที่:</b> {{Detail_for.home_number}} 
+            <b>ถนน:</b> {{Detail_for.street}}
         </p>    
         <p class="detail">
-            <b>แขวง:</b> {{detail_tec.district}}  &nbsp;
-            <b>เขต:</b> {{detail_tec.area_name}}
+            <b>แขวง:</b> {{Detail_for.district}}  &nbsp;
+            <b>เขต:</b> {{Detail_for.area_name}}
         </p>
 
         <p class="detail">
-        <b>เบอร์โทรศัพท์:</b> {{detail_tec.tel_technician}}
+        <b>เบอร์โทรศัพท์:</b> {{Detail_for.tel_technician}}
         <button  ion-button icon-left clear small style="margin-bottom:10px;" > <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
       </p>
+      <ion-grid class="rating">
+          <ion-row>
+            <ion-col *ngFor="let star of stars; let i=index" tappable (click)="starClicked(i)" >
+              <ion-icon [name]="star" color="danger" ></ion-icon>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
       </ion-card-content>
-    </ion-card> -->
+    </ion-card>
+   
 </ion-content>

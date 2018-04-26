@@ -41,7 +41,7 @@
           <ion-item col-6>
                 <ion-label floating>ประเภทอุปกรณ์:</ion-label>
                 <ion-select [(ngModel)]="equipment" formControlName="equipment" >
-                    <ion-option  [value]="address.ref_type">{{address.type_name}}</ion-option>
+                    <ion-option  [value]="address.type_name">{{address.type_name}}</ion-option>
                 </ion-select>
                 <!-- <ion-input type="text" [(ngModel)]="equipment" [value]="item_type.id" formControlName="equipment"></ion-input> -->
         </ion-item>
@@ -71,7 +71,7 @@
           <ion-item col-4>
                   <ion-label floating>เขต</ion-label>
                   <ion-select [(ngModel)]="area" formControlName="area" >
-                    <ion-option [value]="item_area.id" *ngFor="let item_area of data_area" >{{item_area.area_name}}</ion-option>
+                    <ion-option [value]="item_area.area_name" *ngFor="let item_area of data_area" >{{item_area.area_name}}</ion-option>
                 </ion-select>
           </ion-item>
         </ion-row>

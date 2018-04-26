@@ -59,10 +59,7 @@ export class HomePage {
         }).catch((err)=>{
           console.log('error_home=>',err)
         })
-        //  this.navCtrl.push(CustomerPage,
-        //   {detail_user:data});
-        //  console.log('data_user=>',data);
-        // alert(message_user);
+
       }else if(status_user == 2 ){
          this.navCtrl.push(TechnicianPage);
         alert(message_user);

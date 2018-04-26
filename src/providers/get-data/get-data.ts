@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {       
-  host: string = "http://192.168.1.42/Final_Project/service/";   
+  host: string = "http://192.168.43.89/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php";      
   get_area:string ="Get_Area.php" ;
@@ -18,7 +18,7 @@ export class GetDataProvider {
   upload_img : string= "new_insertBuildStore.php";
   show_TecDetail:string = "get_detailTech.php";
   guest_insert = "CustomerForRent.php"; 
-
+  get_for_rentTech = "get_for_rentTech.php";
   headers: any =  
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -147,5 +147,20 @@ builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,re
     reject(err)}
 })
 }//builid_guest
+  GetTechnician(tec_id){
+    return new Promise((reslov,reject)=>{this.http.post(this.host+this.get_for_rentTech,{
+      tec_id:tec_id
+    },
+    {
+      headers:this.headers
+    }).subscribe(result=>{
+        reslov(result)
+    })
+    err=>{
+      reject(err)
+    }
+  })
+  }
+
 
 }//GetDataProvider

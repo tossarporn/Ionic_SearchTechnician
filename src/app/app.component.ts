@@ -15,6 +15,9 @@ import {DetailTecPage} from '../pages/detail-tec/detail-tec'
 import {CustomerAddressPage} from '../pages/customer-address/customer-address';
 import {DataRentPage} from '../pages/data-rent/data-rent'
 
+//components
+import {IonRatingComponent} from '../components/ion-rating/ion-rating'
+
 
 @Component({
   templateUrl: 'app.html'

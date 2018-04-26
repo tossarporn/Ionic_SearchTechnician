@@ -34,6 +34,8 @@ import { GetDataProvider } from '../providers/get-data/get-data';
 import {ChartsModule} from 'ng2-charts';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import { IonicStorageModule } from '@ionic/storage';
+import { CallNumber } from '@ionic-native/call-number';
+import {AppRate} from '@ionic-native/app-rate';
 
 
 //upload images
@@ -42,6 +44,9 @@ import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Calendar } from '@ionic-native/calendar';
+
+//components
+import {IonRatingComponent} from '../components/ion-rating/ion-rating'
 
 @NgModule({
   declarations: [
@@ -62,7 +67,8 @@ import { Calendar } from '@ionic-native/calendar';
     SearchEquipmentPage,
     ShowTecDetailPage,
     DetailTecPage,
-    CustomerAddressPage
+    CustomerAddressPage,
+    IonRatingComponent
     
   ],
   imports: [ 
@@ -94,7 +100,8 @@ import { Calendar } from '@ionic-native/calendar';
     SearchEquipmentPage,
     ShowTecDetailPage,
     DetailTecPage,
-    CustomerAddressPage
+    CustomerAddressPage,
+    IonRatingComponent
   ],
   providers: [
     StatusBar,
@@ -107,7 +114,9 @@ import { Calendar } from '@ionic-native/calendar';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GetDataProvider,
     Calendar,
-    GoogleMaps
+    GoogleMaps,
+    CallNumber,
+    AppRate 
   ]
 })
 export class AppModule {}
