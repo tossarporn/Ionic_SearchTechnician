@@ -9,6 +9,8 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
 import { Alert } from 'ionic-angular/components/alert/alert';
 import { stringify } from '@angular/compiler/src/util';
 import { TechnicianPage } from '../technician';
+import {HttpClient} from '@angular/common/http';
+import {Storage} from '@ionic/storage';
 
 //Geolocation getCurrent location
 import { Geolocation } from '@ionic-native/geolocation';
@@ -29,8 +31,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class BulidRoomPage {
 
- lat : number= 0 ;
- lng : number= 0;
+lat : number= 0 ;
+lng : number= 0;
 name_store:string='' ;
 tel: string='';
 time_start:string='' ;
@@ -45,10 +47,11 @@ account:string='';
 distric : string='';
 type_equipment:any="";
 equipment:any='';
+tec_id:string="";
 
-data_inputjson:any;
+data_inputjson:any;//loop
 private myform : FormGroup;//new  
-
+res:any;
 // id:string="";
 // name_area:string="";
   constructor(public navCtrl: NavController, 
@@ -58,7 +61,9 @@ private myform : FormGroup;//new
               private camera: Camera, 
               public alertCtrl:AlertController,
               public actionSheetCtrl: ActionSheetController, 
-              private formBuilder: FormBuilder//new
+              private formBuilder: FormBuilder,//new
+              private http:HttpClient,
+              private storage:Storage
               ) 
 {
   
@@ -74,13 +79,14 @@ private myform : FormGroup;//new
     street:['',Validators.required],
     distric:['',Validators.required],
     area:['',Validators.required],
-    lat:['',Validators.required],
-    lng:['',Validators.required],
+    // lat:['',Validators.required],
+    // lng:['',Validators.required],
     // images :'assets/imgs/photo-camera.png'
   });
-  this.lat
-  this.lng
-  this.images = 'assets/imgs/photo-camera.png'; 
+  this.lat;
+  this.lng;
+  this.images = 'assets/imgs/photo-camera.png';
+  this.get_data_tech(); 
 }
   ionViewCanEnter(){
     this.getdataProvider.show_area()
@@ -168,35 +174,29 @@ private myform : FormGroup;//new
         }
       ]
     });
-    
     alert.present();
   }//image
   
   location(){
     this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
       console.log('success',this.lat,this.lng);
-      // alert(resp);
-      // alert(this.lng);
      }).catch((error) => {
       alert(error);
-      // alert(this.lat);
-      // alert(this.lng);
        console.log('Error getting location', error);
 });
   }//location
- 
+ get_data_tech(){
+  this.storage.get('tec').then((val) => {
+    this.res = val
+    this.tec_id = this.res.data_user.id;
+    console.log('build_room_page=>',  this.tec_id );
+    })
+ }//get_data_tech
   submit(){
-    // alert(this.area);
-    // alert(this.equipment);
-    // alert(this.image_base64);
-
     this.getdataProvider.creat_store(this.name_store,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
-    this.num_house,this.street,this.distric,this.area,this.account,this.lat,this.lng,this.images
-    ).then((res)=>{
+    this.num_house,this.street,this.distric,this.area,this.account,this.lat,this.lng,this.images,this.tec_id).then((res)=>{
       this.data_inputjson = res;
       let data_text = this.data_inputjson.message;
       let data_status = this.data_inputjson.status;
@@ -210,14 +210,11 @@ private myform : FormGroup;//new
         else{
           alert(JSON.stringify(res))
         }
-        // alert(JSON.stringify(res))
-        // console.log(res);
       })
       .catch((err)=>{ 
         alert("กรุณากรอกข้อมูลให้ครบด้วยครับ");
         console.log(err); 
       })
-      
   }//submit
 
 }//BulidRoomPage

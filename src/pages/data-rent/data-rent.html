@@ -14,40 +14,71 @@
 
 
 <ion-content nopadding>
-   
-  <ion-card >
-    
+
+<ng-template #test >
+  <h1 class="tex-rent">กรุณาทำการจอง</h1>
+</ng-template>
+  
+  <ion-card *ngIf="Detail_for||mydata ;else test">
       <ion-card-header>
-          <p class="detail" >
-              <b> วันที่ส่งซ่อม: 00/00/00 </b> 
-              <b >ชื่อร้าน:</b>  {{Detail_for.name_store}}
-            </p>
+            <table>
+              <tr >
+                <td> <b>ชื่อร้าน:</b>  {{Detail_for.name_store}}</td>
+                <td ><b> วันที่ส่งซ่อม:{{ mydata.myDate }}</b> </td>
+              </tr>
+            </table>
           
       </ion-card-header>
       <ion-card-content >
+        <table>
+          <tr>
+            <td>
+                <b >บ้านเลขที่:</b> {{Detail_for.home_number}} 
+            </td>
+            <td>
+                <b>ถนน:</b> {{Detail_for.street}}
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                <b>แขวง:</b> {{Detail_for.district}}
+            </td>
+            <td>
+                <b>เขต:</b> {{Detail_for.area_name}}
+                <!-- <b>เขต:</b>  ป้อมปราบศัตรูพ่าย -->
+
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                    <b>เบอร์โทรศัพท์:</b> {{Detail_for.tel_technician}}
+                    <!-- <b>เบอร์โทรศัพท์:</b> 012-345-6789 -->
+                   
+            </td>
+            <td>
+                <button  ion-button icon-left clear small  > <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
+            </td>
+          </tr>
+        </table>
 
        
-        <p class="detail">
-            <b>บ้านเลขที่:</b> {{Detail_for.home_number}} 
-            <b>ถนน:</b> {{Detail_for.street}}
-        </p>    
-        <p class="detail">
-            <b>แขวง:</b> {{Detail_for.district}}  &nbsp;
-            <b>เขต:</b> {{Detail_for.area_name}}
-        </p>
-
-        <p class="detail">
-        <b>เบอร์โทรศัพท์:</b> {{Detail_for.tel_technician}}
-        <button  ion-button icon-left clear small style="margin-bottom:10px;" > <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
-      </p>
-      <ion-grid class="rating">
-          <ion-row>
+      <ion-grid>
+          <ion-row >
+            <div class="rating">
             <ion-col *ngFor="let star of stars; let i=index" tappable (click)="starClicked(i)" >
               <ion-icon [name]="star" color="danger" ></ion-icon>
             </ion-col>
+           {{value}}.0
+          
+          </div>
+          <button ion-button small style="margin-left:5px;"(click)="submit(value)">ยืนยัน</button>
         </ion-row>
+
       </ion-grid>
       </ion-card-content>
     </ion-card>
-   
+   {{test.tel_technician}}
 </ion-content>
+

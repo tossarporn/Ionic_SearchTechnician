@@ -21,7 +21,7 @@
         <ion-col> </ion-col>
             <img src="{{show_imgs}}/Final_Project/service/{{technician_store.image_name}}" width="240" height="180px">
         <ion-col></ion-col>
-        <div  style="margin:auto"><h3>ชื่อร้าน:{{technician_store.name_store}} (<ion-icon name="star" color="danger"></ion-icon>5.0)</h3>
+        <div  style="margin:auto"><h3>ชื่อร้าน:{{technician_store.name_store}} ({{technician_store.star}}<ion-icon name="star" color="danger"></ion-icon>)</h3>
           
         </div>
       </ion-row>
@@ -29,10 +29,6 @@
       <ion-row>
         <h4> รายละเอียดร้านค้า:</h4>
       </ion-row>
-      <!-- <ion-row>
-        <div col-7>เวลาทำการ:{{technician_store.time_start}} - {{technician_store.time_end}}</div>
-        <div col-5>ประเภท:{{technician_store.type_name}}</div>
-      </ion-row> -->
       <ion-row>
         <div col-6>บ้านเลขที่:{{technician_store.home_number}}</div>
         <div col-6>ถนน:{{technician_store.street}}</div>
@@ -46,16 +42,14 @@
       <ion-row>
         <p>
           เบอร์โทรศัพท์: {{technician_store.tel_technician}}
-          <button  ion-button icon-left clear  style="margin-bottom:10px;" color="dark"> 
-            <ion-icon name="call" color="secondary" (click)=" call_tec()"></ion-icon>
+          <button  ion-button icon-left clear  style="margin-bottom:10px;" color="dark" (click)="call_tec()"> 
+            <ion-icon name="call" color="secondary" ></ion-icon>
             โทรหาช่าง</button>
         </p>
-        <!-- <div><button ion-button>โทรหาช่าง</button></div> -->
       </ion-row>
       <ion-row>
         <button ion-button style="margin:auto" (click)="customer_address()">จอง</button>
       </ion-row>
-    <!-- </ion-list> -->
     </ion-grid>
 
     

@@ -1,12 +1,6 @@
-<!--
-  Generated template for the ShowTecDetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header hidden>
 
-  <ion-navbar >
+  <ion-navbar>
     <ion-title>showTecDetail</ion-title>
   </ion-navbar>
 
@@ -15,81 +9,74 @@
 
 <ion-content>
     <ion-refresher (ionRefresh)="doRefresh($event)">
-            <ion-refresher-content
-            pullingIcon="arrow-dropdown"
-            pullingText="Pull to refresh"
-            refreshingSpinner="circles"
-            refreshingText="กรุณารอสักครู่...">
-          
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="กรุณารอสักครู่...">
+    
         </ion-refresher-content>
       </ion-refresher>
-<ion-grid>
-  <ion-list *ngFor="let item of Detail_for">
- 
-  <ion-card>
-      <img src="{{show_imgs}}/Final_Project/service/{{item.image_name}}"/>
+  <ion-grid>
+      
+    <ion-list *ngFor="let item of Detail_for">
+      <ion-card>
+        <img src="{{show_imgs}}/Final_Project/service/{{item.image_name}}" />
         <ion-card-content>
-            <ion-card-title>
-              
-               <ion-row>
-                 <div>
-                    ชื่อร้านค้า:{{item.name_store}}
-                 </div>
+          <ion-card-title>
 
-               </ion-row>
+            <ion-row>
+              <div>
+                ชื่อร้านค้า:{{item.name_store}}
+              </div>
 
-               <ion-row>
-                  <div>
-                      (<ion-icon name="star" color="danger"></ion-icon>5.0)
-                  </div>
-                </ion-row>
-                </ion-card-title>
-                
+            </ion-row>
+
+            <ion-row >
+              <div>
+                ({{item.star}}
+                <ion-icon name="star" color="danger"></ion-icon>) 
+              </div>
+            </ion-row>
+          </ion-card-title>
         </ion-card-content>
 
-      <ion-row >
+        <ion-row>
 
-        <table>
+          <table>
             <tr>
               <td class="type_marrgin">
-                  ราคา:{{item.cost_begin}}
+                ราคา:{{item.cost_begin}}
               </td>
               <td class="area_marrgin">
-                  ประเภท:{{item.type_name}}
+                ประเภท:{{item.type_name}}
               </td>
             </tr>
-  
+
             <tr>
-                <td class="type_marrgin">
-                    
-                    เวลาทำการ:{{item.time_start}} - {{item.time_end}}
-                </td>
-                <td class="area_marrgin">
-                    เขต:{{item.area_name}}
+              <td class="type_marrgin">
 
-                </td>
-              </tr>
+                เวลาทำการ:{{item.time_start}} - {{item.time_end}}
+              </td>
+              <td class="area_marrgin">
+                เขต:{{item.area_name}}
+
+              </td>
+            </tr>
           </table>
-</ion-row>
+        </ion-row>
 
-      <ion-row  style="float:right">
-        <div >
-            <button ion-button clear  color="secondary" icon-start (click)="detail_tec(item)">
-                <ion-icon name='search'></ion-icon>
-                ดูรายละเอียด
-              </button>
-              
-        </div>
-        
-</ion-row>
+        <ion-row style="float:right">
+          <div>
+            <button ion-button clear color="secondary" icon-start (click)="detail_tec(item)">
+              <ion-icon name='search'></ion-icon>
+              ดูรายละเอียด
+            </button>
+          </div>
+        </ion-row>
 
-  </ion-card>
-</ion-list>
-</ion-grid>
-<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="กรุณารอสักครู่...">
+      </ion-card>
+    </ion-list>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="กรุณารอสักครู่...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+
 </ion-content>

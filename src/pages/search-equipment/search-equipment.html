@@ -29,8 +29,8 @@
 </ion-header>
 <ion-content>
   <ion-list>
-      <button ion-item *ngFor="let item of items" (click)="equpiment_i(item)">
-          {{item.type_name}}
+      <button ion-item *ngFor="let item of items;let i = index" (click)="equpiment_i(item)">
+         {{i+1}}. {{item.type_name}}
       </button>
   </ion-list>
 </ion-content>

@@ -1,5 +1,5 @@
 <ion-tabs>
-    <ion-tab [root]="searchRoot" tabTitle="Search" tabIcon="ios-search-outline" ></ion-tab>
-    <ion-tab [root]="dataRentRoot" tabTitle="Data rent" tabIcon="ios-clipboard-outline" ></ion-tab>
-    <ion-tab  tabTitle="Logout" tabIcon="ios-log-out-outline" (ionSelect)="logout()"></ion-tab>
+    <ion-tab [root]="searchRoot" tabTitle="Search" tabIcon="ios-search-outline"></ion-tab>
+    <ion-tab [root]="dataRentRoot" tabTitle="Data rent" tabIcon="ios-clipboard-outline" (ionSelect)="onSegmentSelected"></ion-tab>
+    <ion-tab tabTitle="Logout" tabIcon="ios-log-out-outline" (ionSelect)="logout()"></ion-tab>
 </ion-tabs>

@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {       
-  host: string = "http://192.168.43.89/Final_Project/service/";   
+  host: string = "http://10.5.17.141/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php";      
   get_area:string ="Get_Area.php" ;
@@ -17,8 +17,11 @@ export class GetDataProvider {
   insert_build_store : string= "insert_BuildStore.php";
   upload_img : string= "new_insertBuildStore.php";
   show_TecDetail:string = "get_detailTech.php";
-  guest_insert = "CustomerForRent.php"; 
+  guest_insert = "CustomerForRent.php";  
   get_for_rentTech = "get_for_rentTech.php";
+  insert_rating = "rating.php"; 
+  get_ratings = "get_rating.php";
+  get_guest_rent:string="get_data_rent.php";
   headers: any =  
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -26,7 +29,7 @@ export class GetDataProvider {
   constructor(public http: HttpClient) {
     console.log('Hello GetDataProvider Provider'); 
   }
-
+ 
   register_provi(user,password,status){
     // alert(user+" "+pass+" "+status_cus)
     return new Promise((reslove,reject)=>{
@@ -81,7 +84,7 @@ export class GetDataProvider {
       })
     });
   }
-creat_store(name_store,equipment,tel,time_start,time_end,cost_begin,num_house,street,distric,area,account,lat,lng,images){
+creat_store(name_store,equipment,tel,time_start,time_end,cost_begin,num_house,street,distric,area,account,lat,lng,images,tec_id){
   return new Promise ((reslov,reject)=>{
     this.http.post(this.host+this.insert_build_store,{
         name_store:name_store,
@@ -97,7 +100,8 @@ creat_store(name_store,equipment,tel,time_start,time_end,cost_begin,num_house,st
         account:account,
         lat:lat,
         lng:lng,
-        images:images
+        images:images, 
+        tec_id:tec_id
     },
       {
         headers:this.headers
@@ -124,7 +128,7 @@ showDetail_Technician(area_id,equip_id){
   })
 }//showDetail_Technician
 
-builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,ref_tec,ref_regis){
+builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,ref_tec,ref_regis,ref_id_tec){
   return new Promise((reslov,reject)=>{this.http.post(this.host+this.guest_insert,
     {
       name_guest:name,
@@ -137,7 +141,8 @@ builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,re
       area:area,
       date:date,
       ref_tec:ref_tec,
-      ref_regis:ref_regis
+      ref_regis:ref_regis,
+      ref_id_tec:ref_id_tec
   },
   {headers:this.headers
   }).subscribe(result=>{
@@ -147,6 +152,8 @@ builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,re
     reject(err)}
 })
 }//builid_guest
+
+
   GetTechnician(tec_id){
     return new Promise((reslov,reject)=>{this.http.post(this.host+this.get_for_rentTech,{
       tec_id:tec_id
@@ -160,7 +167,55 @@ builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,re
       reject(err)
     }
   })
-  }
+  }//GetTechnician
 
+  rating(rating,details_tecID,guest_id){
+    return new Promise((reslov,reject)=>{this.http.post(this.host+this.insert_rating,{
+      rating:rating,
+      ref_tec:details_tecID,
+      ref_regis:guest_id
+    },
+    {
+      headers:this.headers
+    }).subscribe(result=>{
+      reslov(result)
+    })
+    err=>{
+      reject(err)
+    }
+  })
+  }      
+get_rating(details_tec){
+  return new Promise((reslov,reject)=>{
+    this.http.post(this.host+this.get_ratings,
+      {
+        ref_tec:details_tec
+    }
+    ,{
+      headers:this.headers
+    }).subscribe(result=>{
+      reslov(result)
+    })
+    err=>{
+      reject(err)
+    }
+  });
+}//get_rating
 
+get_data_rent(id_tec){
+  return new Promise((reslov,reject)=>{
+    this.http.post(this.host+this.get_guest_rent,
+    {
+      tec_id:id_tec 
+    },
+    {
+      headers:this.headers
+    }).subscribe(result=>{
+      reslov(result)
+    })
+    err=>{
+      reject(err)
+    }
+  });
+}//get_data_rent
 }//GetDataProvider

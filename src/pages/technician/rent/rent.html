@@ -13,30 +13,67 @@
 </ion-header>
 
 
-<ion-content padding>
-    <ion-card>
+<ion-content padding> 
+    <ion-list *ngFor="let details of get_result" >
+    <ion-card >
+            <!-- <ion-icon name="close-circle" style="float:right"></ion-icon> -->
+            <!-- <ion-radio ></ion-radio> -->
         <ion-card-header>
-            <b> วันที่รับซ่อม: 00/00/00 </b> 
+            <b style="margin:auto;"> วันที่รับซ่อม: {{details['date of service']}} </b> 
         </ion-card-header>
         <ion-card-content >
+        <ion-grid>
 
-          <p class="detail" >
-              <b >ชื่อ:</b> 123456789
-              <b style=" margin-left:13px;">นามสกุล:</b> 123456789
-          </p>
-          <p class="detail">
-              <b>บ้านเลขที่:</b> 123/456 
-              <b>ถนน:</b> 123456789
-          </p>    
-          <p class="detail">
-              <b>แขวง:</b> 123456789 &nbsp;
-              <b>เขต:</b> 123456789
-          </p>
+            <ion-row>
+                <ion-col>
+                        <div>
+                            <div>
+                                <b>ชื่อ:{{details.name}}</b>
+                                <b>นามสกุล:{{details.lastname}}</b> 
+                            </div> 
+                        </div>
+                </ion-col>            
+        </ion-row>
+        <!--name-->
+        
+        <!-- address-->
+         <ion-row>
+             <ion-col>
+                  <div >
+                      <div>
+                            <b>บ้านเลขที่: {{details.house_number}}</b>
+                            <b>ถนน:{{details.street}}</b> 
+                      </div>
+                  </div>
+                       
+             </ion-col>
+         </ion-row>
+           
+         <ion-row>
+             <ion-col>
+                    <div>
+                        <b>แขวง:{{details.distric}}</b>  &nbsp;
+                        <b style="margin-right:50px">เขต:{{details.area}}</b> 
+                        </div>
+             </ion-col>
+         </ion-row>
+            
 
-          <p class="detail">
-          <b>เบอร์โทรศัพท์:</b> 0123456789
-          <button  ion-button icon-left clear small style="margin-bottom:10px;" > <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
-        </p>
+        <!--tell-->
+        <ion-row>
+            <ion-col>
+                    <p >
+                      <b>เบอร์โทรศัพท์:</b> {{details.tel}}
+                      <button  ion-button icon-left clear small style="margin-bottom:10px;" (click)="tel_guest(details.tel)" > <ion-icon name="call" color="secondary" ></ion-icon>โทร</button>
+                    </p>
+            </ion-col>
+        </ion-row>
+       
+  
+        </ion-grid>
+         
         </ion-card-content>
+   
       </ion-card>
+    </ion-list>
 </ion-content>

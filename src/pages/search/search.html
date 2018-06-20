@@ -32,8 +32,8 @@
 
 <ion-content>
   <ion-list  >
-    <button ion-item *ngFor="let item of items " detail-push (click)="area_name(item)">
-      {{ item.area_name }}
+    <button ion-item *ngFor="let item of items; let i = index;" detail-push (click)="area_name(item)">
+     {{i+1}}. {{ item.area_name }}
     </button>
   </ion-list>
 

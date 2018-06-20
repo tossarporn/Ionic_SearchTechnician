@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {GetDataProvider} from '../../providers/get-data/get-data';
 import {ShowTecDetailPage} from '../show-tec-detail/show-tec-detail';
 import { Storage } from '@ionic/storage';
+import {HttpClient} from '@angular/common/http';
 /**
  * Generated class for the SearchEquipmentPage page.
  *
@@ -21,29 +22,53 @@ export class SearchEquipmentPage {
   items:any;
   // area :string;
   items_area:any;
-  items_name:any;
+  id_tec:any;
   items_equipmet:any;
-  guest:any;
+  details_tecnician:any=[];
+  // ratings_for:any;
+  show_imgs = "http://10.5.20.1/";
+  // rating:string=this.show_imgs+"Final_Project/service/get_rating.php";
+  get_details:string=this.show_imgs+"Final_Project/service/get_detailTech.php";
   constructor(public navCtrl: NavController, 
     public navParams: NavParams , 
     private GetDataProvider:GetDataProvider,
-    private storage: Storage
+    private storage: Storage,
+    public http: HttpClient,
   ) 
   {
-    // this.GetDataProvider.show_equipment();
-    this.ionViewCanEnter();
-    // this.items_area = this.navParams.get('area')
-    // this.items_name = this.navParams.get('area_names');
-    // this.guest= this.navParams.get('guest_data');
-    // console.log('guest=>',this.guest)
-    storage.get('guest').then((val)=>{
+    
+    // this.get_details_tec();
+    this.get_area();
+    this.guest_details();
+
+  }//constuctor
+
+  guest_details(){
+    this.storage.get('guest').then((val)=>{
       let data_guest = val
         console.log('searchEquipment_page=>',data_guest);
-    })
-  // alert(this.area);
+    })//guest
+  }
+
+  get_area(){
+    this.items_area = this.navParams.get("area")
+    console.log('area_id=>',this.items_area);
   }
 
 
+  get_details_tec(){
+  //   this.http.get(this.get_details+'?result=').subscribe(res =>{    
+  //     this.details_tecnician = res
+       
+  //  this.id_tec = this.details_tecnician.map(item => {
+  //    return item.id
+  //  })
+  //    console.log("get_details_success=>",this.id_tec);
+  //   },(error)=>{
+  //    console.log("get_details_fail=>",error);
+  //   })//get_detaisl_tec 
+  }
+    
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchEquipmentPage');
@@ -95,11 +120,15 @@ export class SearchEquipmentPage {
     this.navCtrl.push(ShowTecDetailPage,{
       items_area:this.items_area,
       items_equipmet:loop_equipment.id,
-      items_name :this.items_name,
-      guest_data:this.guest
+      items_tec:this.id_tec,
+      // details:this.ratings_for
+      // items_name :this.items_name,
+      // guest_data:this.guest
     });
-    // console.log("Selected area", this.items_name);
-    // console.log("Selected equipment",loop_equipment.type_name);
+    // console.log("Selected details", this.ratings_for);
+    console.log("Selected idTec=>",this.id_tec);
+    console.log("Selected area=>", this.items_area);
+    console.log("Selected equipment",loop_equipment.type_name);
     // console.log('sending_guest=>',this.guest);
   } 
 }

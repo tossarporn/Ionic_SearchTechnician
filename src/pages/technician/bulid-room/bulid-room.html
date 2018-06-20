@@ -51,7 +51,7 @@
 
     <ion-row>
         <ion-item  col-4>
-            <ion-label stacked>เวลาปิด</ion-label>
+            <ion-label stacked>เวลาเปิด</ion-label>
             <ion-input formControlName="time_start" [(ngModel)]="time_start" type="tel"></ion-input>
 
     </ion-item>
@@ -98,7 +98,7 @@
             </ion-item>
     </ion-row>
 
-    <ion-row>                
+    <!-- <ion-row>                
         <ion-label style="margin-left:30px;">ที่ตั้ง :</ion-label>
        
         <ion-item col-3>  
@@ -114,7 +114,7 @@
         <ion-row style="margin-top:30px;">
                 <button ion-button block clear (click)="location()" color="danger"  >ดูที่ตั้ง</button>
         </ion-row>
-        </ion-row>
+        </ion-row> -->
                 <button ion-button type="submit" [disabled]="!myform.valid"  (click)="submit()" style="margin-top:20px;" block clear >สร้างร้านค้า</button>
             </form>
 </ion-content>

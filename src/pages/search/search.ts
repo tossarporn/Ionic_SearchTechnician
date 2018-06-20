@@ -27,7 +27,7 @@ export class SearchPage {
 area:any;
 area_names:any;
 items:any ;
-items_area:any;
+// items_area:any;
 data_user:any;
 public isSearchbarOpened = false;
 
@@ -47,10 +47,13 @@ constructor(
 //   this.data_user= this.navParams.get('data_user');
 //       console.log('user=>',this.data_user);
 
+
+
 storage.get('guest').then((val)=>{
     let data_guest = val
       console.log('search_page=>',data_guest);
   })
+ 
 }//constructor
 
   
@@ -119,6 +122,8 @@ this.navCtrl.push(SearchEquipmentPage,
     }
 );
 console.log("Selected Item", area_loop.area_name);
+console.log("Selected Item", area_loop.id);
 // console.log('data_user=>',this.data_user);
 }
+
 }
