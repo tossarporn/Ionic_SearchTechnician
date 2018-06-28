@@ -20,7 +20,7 @@ import { CallNumber } from '@ionic-native/call-number';
 })
 export class DetailTecPage {
   technician_store:any={};
-  show_imgs = "http://10.5.17.141";
+  show_imgs = "http://10.5.22.122";
   guest:any;
   constructor(
     public navCtrl: NavController, 

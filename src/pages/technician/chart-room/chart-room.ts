@@ -22,9 +22,9 @@ export class ChartRoomPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ChartRoomPage');
-  }
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad ChartRoomPage');
+  // }
 customer_rating(){
   // alert("customer_rating");
   this.navCtrl.push(ChartContentCustomerPage);

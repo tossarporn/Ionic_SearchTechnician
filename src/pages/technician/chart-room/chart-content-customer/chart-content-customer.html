@@ -14,39 +14,27 @@
 
 
 <ion-content padding>
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
-      <ion-col >
+      <ion-col col-md-8>
           <img src="assets/imgs/5-Star-282x300.png" height="100%" width="100%">
-          
       </ion-col>
-      <ion-row>
-        
-          <ion-col>
-            <ion-row style="margin-top:25px;">
-              {{star5}}
-            </ion-row>
-            <ion-row class="number_star"> 
-                {{star5}}
-            </ion-row>
-              
-            <ion-row class="number_star">
-                {{star5}}
-            </ion-row>
-             
-              <ion-row class="number_star">
-                  {{star5}}
-                </ion-row>
-                <ion-row class="number_star"  > 
-                    {{star5}}
-                  </ion-row>
-            </ion-col>
-      </ion-row>
-  </ion-row>
       
-</ion-grid>
-<!-- <img src="assets/imgs/5-Star-282x300.png" height="80%" width="80%"> -->
-<!-- <ion-row>
-
-</ion-row> -->
+          <ion-col col-md-2 style=" text-align: right; line-height: 3;">
+              <div  *ngFor="let stars of all_stars">
+                  {{stars.count_star}}
+              </div>
+          </ion-col>
+  </ion-row>
+</ion-grid> -->
+<!-- <ion-row >
+    <span class="rating">
+    <ion-col *ngFor="let star of stars; let i=index" >
+      <ion-icon [name]="star" color="danger"></ion-icon>
+    </ion-col>
+  </span>
+  </ion-row> -->
+  <div *ngIf="chart">
+    <canvas id="canvas">{{chart}}</canvas>
+  </div>
 </ion-content>

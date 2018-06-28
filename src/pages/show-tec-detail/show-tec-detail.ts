@@ -20,7 +20,7 @@ import { Refresher } from 'ionic-angular/components/refresher/refresher';
   templateUrl: 'show-tec-detail.html',
 })
 export class ShowTecDetailPage {
-  show_imgs = "http://10.5.17.141/";
+  show_imgs = "http://10.5.22.122/";
   Detail_for:any;
   ratings_for:any;
   Detail_area:string;

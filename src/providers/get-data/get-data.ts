@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {       
-  host: string = "http://10.5.17.141/Final_Project/service/";   
+  host: string = "http://10.5.22.122/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php";      
   get_area:string ="Get_Area.php" ;
@@ -169,11 +169,12 @@ builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,re
   })
   }//GetTechnician
 
-  rating(rating,details_tecID,guest_id){
+  rating(rating,details_tecID,guest_id,ref_id){
     return new Promise((reslov,reject)=>{this.http.post(this.host+this.insert_rating,{
-      rating:rating,
+      rating:rating, 
       ref_tec:details_tecID,
-      ref_regis:guest_id
+      ref_regis:guest_id,
+      ref_id:ref_id
     },
     {
       headers:this.headers
@@ -185,11 +186,13 @@ builid_guest(name,last_name,tel,equipment,num_house,street,ditstric,area,date,re
     }
   })
   }      
-get_rating(details_tec){
+get_rating(get_star){
+  // console.log('get_star',get_star);
+  
   return new Promise((reslov,reject)=>{
     this.http.post(this.host+this.get_ratings,
       {
-        ref_tec:details_tec
+        ref_id:get_star
     }
     ,{
       headers:this.headers

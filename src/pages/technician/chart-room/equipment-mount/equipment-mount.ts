@@ -33,7 +33,9 @@ export class EquipmentMountPage {
     private calendar: Calendar,
     private platform:Platform
   ) 
-  { }
+  { 
+    
+  }
 public ChartsLables:string[] = ['พัดลม','ตู้เย็น','ทีวี']
 public ChartsData:number[] = [10,20,100]
 public ChartsType:string = "doughnut"

@@ -42,7 +42,7 @@ export class RentPage {
     this.storage.get('tec').then((val) => {
       this.res = val
       let data_tec = this.res.data_user.id;
-      // console.log('tec_page=>', data_tec);
+      console.log('tec_page=>', data_tec); 
     
     this.getDataProvider.get_data_rent(data_tec)
     .then((result)=>{

@@ -72,7 +72,7 @@ export class CustomerAddressPage {
     let technician_equipment = this.address.type_name
     let technician_equipmentID = this.address.ref_type
     let tecnician_regisID = this.address.ref_regis_tec
-    // console.log(this.address.ref_regis_tec);
+    console.log(this.address.ref_regis_tec);
     console.log('technician_address=>', this.address);//SendingForTechnician
 
   

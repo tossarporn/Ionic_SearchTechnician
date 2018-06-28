@@ -86,6 +86,8 @@ export class DataRentPage {
     this.tec_id = this.storeage.get('tech').then((succ) => {
       this.Detail_for = succ
       let id_tec = this.Detail_for.id;
+      let ref_id_tec = this.Detail_for.ref_regis_tec;
+      console.log(this.Detail_for.ref_regis_tec)
       console.log('ID_TEC=>', this.Detail_for);
 
     }).catch((err) => {
@@ -93,7 +95,7 @@ export class DataRentPage {
     })//tech
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit() { 
     this.calc();
   }
   calc() {
@@ -136,13 +138,14 @@ export class DataRentPage {
           handler: () => {
             this.storage.remove('tech')
             this.storage.remove('details')
-            // this.navCtrl.insert(0,CustomerPage);
+            this.navCtrl.insert(0,CustomerPage);
             this.ionViewWillEnter();
             this.navCtrl.popToRoot();
             this.GetDataProvider.rating(
               rating,
               this.Detail_for.id,
-              this.guest_id
+              this.guest_id,
+              this.Detail_for.ref_regis_tec
             ).then((result) => {
               console.log('result=>', result)
               this.rating_complacent = result;
@@ -151,7 +154,8 @@ export class DataRentPage {
               alert(ratings);
             }).catch((err) => {
               console.log('fail', err)
-            })
+            }) 
+            // console.log("details=>",rating,this.Detail_for.id,this.guest_id,this.Detail_for.ref_regis_tec);
           }
         }
       ]
