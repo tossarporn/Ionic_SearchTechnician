@@ -67,39 +67,48 @@ chart=[];
     get_rating_star(start){
       this.getDataProvider.get_rating(start).then((val)=>{
         this.all_stars = val
-        let loop_count = this.all_stars.map(item=>{
-          return item.count_star
+        let loop_rating = this.all_stars.map(star=>{
+          return star.rating
         })
-        let count_labels =[]
-            count_labels.push('จำนวน')
+        console.log('loop_rating=>',loop_rating);
+        
+        let loop_count = this.all_stars.map(item=>{
+          return item.count_star  
+        })
+        console.log('loop_count=>',loop_count);
         this.chart = new Chart('canvas',{
-          type:'horizontalBar',
+          type:'pie',
           data:{
-            labels:loop_count,
+            labels:loop_rating,
             datasets:[
               {
+                // label:["จำนวนดาว"],
                 data:loop_count,
-                borderColor:'#3cba9f',
-                fill:false
+                backgroundColor: [
+                    'rgb(128, 255, 0)',
+                    'rgb(0, 255, 191)',
+                    'rgb(0, 0, 255)',
+                    'rgb(255, 0, 191)',
+                    'rgb(255, 0, 0)',
+                ]
               },
-
             ]//datasets
           },//data
           options:{
               legend:{
                 display:false
               },
-          scales:{
-              xAxes:[{
-                display:true
-              }],
-              yAxes:[{
-                display:true
-              }]
-            }
+          // scales:{
+          //     xAxes:[{
+          //       display:true
+          //     }],
+          //     yAxes:[{
+          //       display:true
+          //     }]
+          //   }
           }
         })
-        console.log(loop_count)
+        // console.log(loop_count)
         console.log("all_stars=>", this.all_stars);
       }).catch((err)=>{
         console.log("err=>",err);

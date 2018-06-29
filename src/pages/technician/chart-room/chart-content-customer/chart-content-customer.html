@@ -14,19 +14,19 @@
 
 
 <ion-content padding>
-  <!-- <ion-grid>
+  <ion-grid>
     <ion-row>
-      <ion-col col-md-8>
+      <!-- <ion-col col-md-8>
           <img src="assets/imgs/5-Star-282x300.png" height="100%" width="100%">
-      </ion-col>
+      </ion-col> -->
       
-          <ion-col col-md-2 style=" text-align: right; line-height: 3;">
+          <!-- <ion-col col-md-2 style=" text-align: right; line-height: 3;">
               <div  *ngFor="let stars of all_stars">
-                  {{stars.count_star}}
+                {{stars.count_star}}
               </div>
-          </ion-col>
+          </ion-col> -->
   </ion-row>
-</ion-grid> -->
+</ion-grid>
 <!-- <ion-row >
     <span class="rating">
     <ion-col *ngFor="let star of stars; let i=index" >
@@ -35,6 +35,13 @@
   </span>
   </ion-row> -->
   <div *ngIf="chart">
-    <canvas id="canvas">{{chart}}</canvas>
+      
+    <div style="text-align:center"><b><h3>จำนวนลูกค้าให้การประเมิน</h3></b></div>
+    <div style="text-align:center">
+        <ion-icon name="ios-cube-outline" style="color:red"></ion-icon>
+        จำนวนเรตติ้ง:คะแนนเรตติ้ง
+    </div>
+    <canvas id="canvas" style="margin-top:30px">{{chart}}</canvas>
   </div>
+  
 </ion-content>
