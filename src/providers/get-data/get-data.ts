@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {       
-  host: string = "http://10.5.22.122/Final_Project/service/";   
+  host: string = "http://10.5.22.221/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php";      
   get_area:string ="Get_Area.php" ;
@@ -22,12 +22,13 @@ export class GetDataProvider {
   insert_rating = "rating.php"; 
   get_ratings = "get_rating.php";
   get_guest_rent:string="get_data_rent.php";
+  showall_equipment:string="show_equipment_mont.php"
   headers: any =  
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     };
   constructor(public http: HttpClient) {
-    console.log('Hello GetDataProvider Provider'); 
+    // console.log('Hello GetDataProvider Provider'); 
   }
  
   register_provi(user,password,status){
@@ -221,4 +222,22 @@ get_data_rent(id_tec){
     }
   });
 }//get_data_rent
+
+get_data_equipment(Equipment,show_myDate){
+    return new Promise((reslov,reject)=>{
+      this.http.post(this.host+this.showall_equipment,
+      {
+        ref_id_tec:Equipment,
+        date_service:show_myDate
+      },
+      {
+        headers:this.headers
+      }).subscribe(result=>{
+        reslov(result)
+      })
+      err=>{
+        reject(err)
+      }
+    });
+  }//get_data_equipment
 }//GetDataProvider

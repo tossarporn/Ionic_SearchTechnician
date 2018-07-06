@@ -77,12 +77,12 @@ chart=[];
         })
         console.log('loop_count=>',loop_count);
         this.chart = new Chart('canvas',{
-          type:'pie',
+          type:'horizontalBar',
           data:{
-            labels:loop_rating,
+            labels:["เรตติ้ง1","เรตติ้ง2","เรตติ้ง3","เรตติ้ง4","เรตติ้ง5"], 
             datasets:[
               {
-                // label:["จำนวนดาว"],
+                label:["จำนวนคะแนน"],
                 data:loop_count,
                 backgroundColor: [
                     'rgb(128, 255, 0)',
@@ -91,12 +91,33 @@ chart=[];
                     'rgb(255, 0, 191)',
                     'rgb(255, 0, 0)',
                 ]
+               
               },
+              // {
+              //   label:["จำนวนเรตติ้ง"],
+              //   data:loop_count
+              // }
             ]//datasets
           },//data
           options:{
               legend:{
                 display:false
+              },
+              layout:{
+                padding:{
+                        left: 0,
+                        right: 0,
+                        top: 10,
+                        bottom:10
+                },
+              },
+              scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: true,
+                }]
               },
           // scales:{
           //     xAxes:[{

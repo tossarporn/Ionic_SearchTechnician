@@ -100,7 +100,6 @@ status_customer:any = '1';
     });
 
     alert_technician.present();
-
     }
   }
     // registers(status){

@@ -80,6 +80,7 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
     IonicStorageModule.forRoot(),
     ChartsModule,
     
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [

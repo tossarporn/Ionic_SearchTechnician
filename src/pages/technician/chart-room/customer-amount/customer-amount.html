@@ -14,20 +14,19 @@
 
 
 <ion-content padding>
-  <ion-item>
-    <ion-label>ค้นหา</ion-label>
-    <ion-datetime displayFormat="DD:MM:YYYY" pickerFormat="DD: MM : YYYY" [(ngModel)]="event.month"></ion-datetime>
-  </ion-item>
-  <div class="block">
-  <canvas baseChart
-    [data]='ChartsData'
-    [labels]='ChartsLables'
-    [chartType]='ChartsType'
-  >
-  </canvas>
-  <!-- <div style="display:block">
-{{ChartsLables}}
-</div>
-{{ChartsData}} -->
-</div>
+    <ion-item>
+        <ion-label>ค้นหา</ion-label>
+      <ion-datetime displayFormat="DD/MMM/YYYY"  
+      monthShortNames='มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม' 
+      doneText="ตกลง" cancelText="ยกเลิก" 
+      placeholder="กรุณาเลือกเดือน"
+      [(ngModel)]="myDate"
+      (ionChange)="submit(myDate)"
+      >
+    </ion-datetime>
+    </ion-item>
+
+    <div *ngIf="chart">
+      <canvas  id="canvas" width="500" height="500" style="margin-top:50px">{{chart}}</canvas>
+    </div>
 </ion-content>

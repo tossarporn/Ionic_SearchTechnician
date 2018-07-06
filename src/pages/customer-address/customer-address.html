@@ -79,7 +79,15 @@
         <ion-row>
             <ion-item >
                 <ion-label  staked>เลือกวันที่การซ่อม :</ion-label>
-                <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="details_guest.myDate" formControlName="myDate"></ion-datetime>
+                <ion-datetime 
+                displayFormat="DD/MMM/YYYY" 
+                [(ngModel)]="details_guest.myDate"
+                monthShortNames='มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม'
+                doneText="ตกลง" cancelText="ยกเลิก" 
+                placeholder="กรุณาเลือกเดือน" 
+                formControlName="myDate"
+                >
+            </ion-datetime>
               </ion-item>
         </ion-row>
 
