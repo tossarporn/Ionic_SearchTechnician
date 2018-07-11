@@ -16,21 +16,39 @@
 
 
 <ion-content padding>
-      <ion-item>
-          <ion-label>ค้นหา</ion-label>
-        <ion-datetime displayFormat="MMM/YYYY"  
-        monthShortNames='มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม' 
-        doneText="ตกลง" cancelText="ยกเลิก" 
-        placeholder="กรุณาเลือกเดือน"
-        [(ngModel)]="myDate"
-        (ionChange)="submit(myDate)"
-        >
-      </ion-datetime>
-      </ion-item>
+    <ion-col>
+        <ion-item>
+            <ion-label stacked>ปี</ion-label>
+          <ion-datetime displayFormat="YYYY"  
+          monthShortNames='มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม' 
+          doneText="ตกลง" cancelText="ยกเลิก" 
+          placeholder="เลือกปี"
+          [(ngModel)]="myDate"
+          >
+        </ion-datetime>
+        </ion-item>
+  
+        <ion-item>
+            <ion-label stacked>อุปกรณ์</ion-label>
+            <ion-select [(ngModel)]="equipment" 
+            okText="ตกลง" cancelText="ยกเลิก"
+            placeholder="เลือกอุปกรณ์">
+              <ion-option [value]="show.type_name" *ngFor="let show of show_equip">{{show.type_name}}</ion-option>
+            </ion-select>
+          </ion-item>
+    </ion-col>
+ 
 
+  <div style="text-align:center;">
+      <button ion-button type="submit" (click)="submit()" icon-start>
+        <ion-icon name="search"></ion-icon>
+        ค้นหา</button>
+  </div>
+  
 <div *ngIf="chart" >
-  <canvas  id="canvas" width="500" height="500" style="margin-top:50px">{{chart}}</canvas>
+  <canvas  id="canvas" width="500" height="500" style="margin-top:30px">{{chart}}</canvas>
 </div>
+
 </ion-content>
 
 

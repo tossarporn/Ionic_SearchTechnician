@@ -78,7 +78,7 @@
 
         <ion-row>
             <ion-item >
-                <ion-label  staked>เลือกวันที่การซ่อม :</ion-label>
+                <ion-label  staked>เลือกวันที่ :</ion-label>
                 <ion-datetime 
                 displayFormat="DD/MMM/YYYY" 
                 [(ngModel)]="details_guest.myDate"
@@ -90,9 +90,7 @@
             </ion-datetime>
               </ion-item>
         </ion-row>
-
-       
-
+        
           <ion-row style="margin-top:40px;">
             <ion-col></ion-col>
             <button ion-button color="secondary" [disabled]="!detail.valid" (click)="submit()">ยืนยัน</button>

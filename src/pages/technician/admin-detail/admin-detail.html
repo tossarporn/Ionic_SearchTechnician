@@ -33,7 +33,10 @@
       </p>
       <p class="detail">
       <b>เบอร์โทรศัพท์:</b> 0123456789
-      <button  ion-button icon-left clear small style="margin-bottom:10px;" >โทร</button>
+      <button  ion-button icon-left clear small style="margin-bottom:10px;" (click)="tel_admin(0123456789)" >
+          <ion-icon name="search" color="secondary"></ion-icon>
+        โทร
+      </button>
     </p>
     </ion-card-content>
   </ion-card>

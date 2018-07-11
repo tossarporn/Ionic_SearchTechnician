@@ -22,7 +22,10 @@ export class GetDataProvider {
   insert_rating = "rating.php"; 
   get_ratings = "get_rating.php";
   get_guest_rent:string="get_data_rent.php";
-  showall_equipment:string="show_equipment_mont.php"
+  showall_customer:string="show_equipment_mont.php"
+  count_equipment:string="count_equipment.php";
+  show_Equipment:string = "get_privete_details.php";
+
   headers: any =  
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -225,7 +228,7 @@ get_data_rent(id_tec){
 
 get_data_equipment(Equipment,show_myDate){
     return new Promise((reslov,reject)=>{
-      this.http.post(this.host+this.showall_equipment,
+      this.http.post(this.host+this.showall_customer,
       {
         ref_id_tec:Equipment,
         date_service:show_myDate
@@ -240,4 +243,37 @@ get_data_equipment(Equipment,show_myDate){
       }
     });
   }//get_data_equipment
+
+  get_count_equipment(ref_id_tec,date_service,count_equipment){
+      return new Promise((reslov,reject)=>{this.http.post(this.host+this.count_equipment,
+      {
+        ref_id_tec:ref_id_tec,
+        date_service:date_service,
+        count_equipment:count_equipment
+      },
+      {
+        headers:this.headers
+      }).subscribe(result =>{
+        reslov(result)
+      })
+      err=>{
+        reject(err)
+      }
+    })
+  }// get_count_equipment
+  show_details_equipment(ref_regis_tec){
+    return new Promise((reslov,reject)=>{this.http.post(this.host+this.show_Equipment,
+    {
+      ref_regis_tec:ref_regis_tec
+    },
+    {
+      headers:this.headers
+    }).subscribe(result=>{
+      reslov(result)
+    })
+    err=>{
+      reject(err)
+    }
+  })
+  }//show_details_equipment
 }//GetDataProvider
