@@ -3,6 +3,8 @@ import { NavController} from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
+import { AlertController } from 'ionic-angular';
+
 
 //page
 import { RegisterPage } from '../register/register';
@@ -11,8 +13,8 @@ import {CustomerPage} from '../customer/customer';
 import { SearchPage } from '../search/search';
 //Internet
 import {GetDataProvider } from '../../providers/get-data/get-data';
-
-
+import { stringify } from '@angular/compiler/src/util';
+ 
 
 @Component({
   selector: 'page-home',
@@ -20,27 +22,26 @@ import {GetDataProvider } from '../../providers/get-data/get-data';
   
 }) 
 export class HomePage {
-  private todo : FormGroup;//new
+  // private todo : FormGroup;//new
 
   username:string="";
   password:string="";
+
+
   res :any;
+  alert_message:any
   constructor(
     public navCtrl:NavController,
     public navParam:NavParams,
     public getprovi:GetDataProvider,
+    public AlertController:AlertController,
     private storage: Storage,
     private formBuilder: FormBuilder//new
     
-    ){
-      this.todo = this.formBuilder.group({
-        title: ['', Validators.required],
-        description: ['',Validators.required],
-      });
-    }
-    logForm(){
-      console.log(this.todo.value)  
-    }
+    )
+    {
+      
+    }//constructor
   alert(_item) {
       this.navCtrl.push(RegisterPage,{item:_item});
   }
@@ -55,7 +56,6 @@ export class HomePage {
       
       if(status_user == 1 ){
         this.storage.set('guest',this.res).then((succ)=>{
-          // console.log('success_home=>',succ)
           alert(message_user);
           this.navCtrl.push(CustomerPage)     
         }).catch((err)=>{
@@ -79,6 +79,54 @@ export class HomePage {
    .catch((err)=>{
     alert(JSON.stringify(err));
    })
+  }
+
+  register_construct(construct){
+    let resgster_promt = this.AlertController.create({
+      title: 'สมัครสมาชิกแบบช่าง',
+      inputs: [
+        {
+          name: 'ConstructUsername',
+          placeholder: 'Username'
+        },
+        
+        {
+          name: 'ConstructPassword',
+          placeholder: 'Password',
+          type: 'password'
+        },
+      ],
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'ยืนยัน',
+          handler: data => {
+            if(data.ConstructUsername == "" || data.ConstructPassword == ""){
+              alert("กรุณากรอกข้อมูล");
+            }
+            else{
+              this.getprovi.register_provi(data.ConstructUsername,data.ConstructPassword,construct)
+              .then((result)=>{
+                this.alert_message = result
+                let success_message = this.alert_message.message
+                alert(success_message)
+                this.navCtrl.push(TechnicianPage);
+              })
+              .catch((nosucc)=>{
+                    console.log("not_result=>",nosucc);
+              })  
+            // console.log("username=>",data.ConstructUsername,"password=>",data.ConstructPassword,"status=>",construct);
+            }
+          }
+        }
+      ]
+    });
+   resgster_promt.present();
   }
 }
 

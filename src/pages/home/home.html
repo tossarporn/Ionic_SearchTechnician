@@ -26,8 +26,25 @@
 
           <ion-row>
             <ion-col class="sigeup"> 
-                <button ion-button class="submit-btn" full type="submit" (click)="login(items_login)">เข้าสู่ระบบ</button>
-          <button ion-button class="register-btn" block clear color="danger" (click)="alert(item)" >สมัครสมาชิก</button>
+                <button ion-button icon-end class="submit-btn" round type="submit" (click)="login(items_login)">
+                  เข้าสู่ระบบ
+                  <ion-icon name="ios-log-in-outline"></ion-icon>
+                </button>
+                <div style="margin-top:25px">
+                    <button ion-button icon-end class="register-btn" round  color="secondary" (click)="alert(item)" >
+                        สมัครสมาชิกแบบลูกค้า
+                        <ion-icon name="md-contact"></ion-icon>
+                      </button>
+                </div>
+               
+                  <div style="margin-top:10px;margin-bottom:10px;text-align:center">
+                      <b>หรือ</b>
+                  </div>
+
+                <button ion-button icon-end class="register-btn" round  color="danger" (click)="register_construct(2)" >
+                  สมัครสมาชิกแบบช่าง
+                  <ion-icon name="md-construct" ></ion-icon>
+                </button>
             </ion-col>
           </ion-row>
         
