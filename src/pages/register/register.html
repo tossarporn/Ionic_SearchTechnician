@@ -14,7 +14,101 @@
 
 
 <ion-content padding>
-  <ion-row class="logo-row">
+    <ion-row>
+        <div><h3>สมัครสมาชิกสำหรับลูกค้า</h3></div>
+      </ion-row>
+
+      
+      <form [formGroup]="detail">
+          <ion-row>
+              <ion-item col-6>
+                    <ion-label floating>Username:</ion-label>
+                    <ion-input type="tel" [(ngModel)]="details_guest.Username" formControlName="Username"></ion-input>
+              </ion-item>
+              <ion-item col-6>
+                    <ion-label floating>Password:</ion-label>
+                    <ion-input type="password" [(ngModel)]="details_guest.Password" formControlName="Password"></ion-input>
+                </ion-item>
+          </ion-row>
+          <ion-row>
+              <ion-item col-6>
+                  <ion-label floating>ชื่อ:</ion-label>
+              <ion-input type="tel" [(ngModel)]="details_guest.name" formControlName="name"></ion-input>
+              </ion-item>
+    
+              <ion-item col-6>
+                      <ion-label floating>นามสกุล:</ion-label>
+                  <ion-input type="text" [(ngModel)]="details_guest.last_name" formControlName="last_name"></ion-input> 
+              </ion-item>
+          </ion-row>
+
+          <ion-row>
+            <ion-item col-12>
+                <ion-label floating>เบอร์โทรศัพท์ :</ion-label> 
+            <ion-input type="tel" [(ngModel)]="details_guest.tel" formControlName="tel"></ion-input> 
+          </ion-item>
+
+          <!-- <ion-item col-6>
+                <ion-label floating>ประเภทอุปกรณ์:</ion-label>
+                <ion-select [(ngModel)]="equipment" formControlName="equipment" >
+                    <ion-option  [value]="address.type_name">{{address.type_name}}</ion-option>
+                </ion-select>
+                <ion-input type="text" [(ngModel)]="equipment" [value]="item_type.id" formControlName="equipment"></ion-input>
+        </ion-item> -->
+        </ion-row>
+        
+    <ion-row>             
+        <ion-label style="padding-left:10px; padding-top:20px;"><h6>ใส่ที่อยู่:</h6></ion-label>
+            
+                <ion-item col-4>
+                    <ion-label floating>บ้านเลขที่</ion-label>
+                <ion-input type="tel" [(ngModel)]="details_guest.num_house" formControlName="num_house"></ion-input>
+                </ion-item>
+            
+        <ion-item col-4 >
+                <ion-label floating>ถนน</ion-label>
+            <ion-input type="text" [(ngModel)]="details_guest.street" formControlName="street"></ion-input> 
+        </ion-item>
+          </ion-row>
+
+        <ion-row>
+            <ion-label ></ion-label>
+          <ion-item col-4>
+              <ion-label floating>แขวง</ion-label>
+          <ion-input type="text" [(ngModel)]="details_guest.ditstric" formControlName="ditstric"></ion-input>
+          </ion-item>
+       
+          <ion-item col-4>
+                  <ion-label floating>เขต</ion-label>
+                  <ion-select [(ngModel)]="area" formControlName="area" >
+                    <ion-option [value]="item_area.area_name" *ngFor="let item_area of data_area" >{{item_area.area_name}}</ion-option>
+                </ion-select>
+          </ion-item>
+        </ion-row>
+
+        <!-- <ion-row>
+            <ion-item >
+                <ion-label  staked>เลือกวันที่ :</ion-label>
+                <ion-datetime 
+                displayFormat="DD/MMM/YYYY" 
+                [(ngModel)]="details_guest.myDate"
+                monthShortNames='มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม'
+                doneText="ตกลง" cancelText="ยกเลิก" 
+                placeholder="กรุณาเลือกเดือน" 
+                formControlName="myDate"
+                >
+            </ion-datetime>
+              </ion-item>
+        </ion-row> -->
+        
+          <ion-row style="margin-top:40px;">
+            <ion-col></ion-col>
+            <button ion-button color="secondary" [disabled]="!detail.valid" (click)="submit()">ยืนยัน</button>
+            <ion-col></ion-col>
+          </ion-row>
+        </form> 
+   
+  <!-- <ion-row class="logo-row">
     <ion-col></ion-col> 
         <ion-img width="180" height="120" src="assets/imgs/windows.jpg"></ion-img>
     <ion-col></ion-col>
@@ -41,5 +135,5 @@
                 <button ion-button class="register-btn"  block clear  color="danger" type="submit" (click) = "technician(2)"  >สมัครสมาชิกแบบช่าง</button>
             </ion-col>
           </ion-row>
-  </div>
+  </div> -->
 </ion-content>

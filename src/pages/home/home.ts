@@ -43,6 +43,7 @@ export class HomePage {
       
     }//constructor
   alert(_item) {
+    // alert(_item);
       this.navCtrl.push(RegisterPage,{item:_item});
   }
   login(_item_login){
