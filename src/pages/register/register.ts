@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core';
-import {GetDataProvider } from '../../providers/get-data/get-data'
+import { GetDataProvider } from '../../providers/get-data/get-data'
 import { Alert } from 'ionic-angular/components/alert/alert';
 import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
@@ -23,16 +23,16 @@ import { Location } from '@angular/common';
 })
 export class RegisterPage {
   private detail: FormGroup
-// host:string;
+  // host:string;
   address: any = {};
   guest_data: any;
   data_area: any = "";
-  area:any ="";
-  ref_regis:number=0;
-  status_guest:string
+  area: any = "";
+  ref_regis: number = 0;
+  status_guest: string
   details_guest = {
-    Username:'',
-    Password:'',
+    Username: '',
+    Password: '',
     name: '',
     last_name: '',
     tel: '',
@@ -41,13 +41,13 @@ export class RegisterPage {
     ditstric: '',
     // myDate: '',
   };
-  result:any
+  result: any
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public alert:AlertController,
-    public getprovi:GetDataProvider,
-    public http:HttpClient,
+    public alert: AlertController,
+    public getprovi: GetDataProvider,
+    public http: HttpClient,
     private formBuilder: FormBuilder,
 
   ) {
@@ -73,7 +73,7 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  get_area(){
+  get_area() {
     this.getprovi.show_area()
       .then((data) => {
         this.data_area = data;
@@ -84,77 +84,74 @@ export class RegisterPage {
         console.log('area_error=>', error)
       });//show_area
   }
-get_status(){
-  this.status_guest =  this.navParams.get("item");
-  console.log(this.status_guest);
-  
-}
+  get_status() {
+    this.status_guest = this.navParams.get("item");
+    console.log(this.status_guest);
+  }
 
-submit(){
-  console.log("details=>",this.details_guest);
-  console.log("area=>",this.area);
-  console.log("status=>",this.status_guest);
-  console.log("ref_regis=>",this.ref_regis);
-  
-  
-  
-this.getprovi.guest_register(
-  this.details_guest.Username,
-  this.details_guest.Password,
-  this.details_guest.name,
-  this.details_guest.last_name,
-  this.details_guest.tel,
-  this.details_guest.num_house,
-  this.details_guest.street,
-  this.details_guest.ditstric,
-  this.area,
-  this.status_guest,
-  this.ref_regis
-
-)
-  .then((val)=>{
-    this.result = val;
-    let message = this.result.message;
-    let regis_status = this.result.status
+  submit() {
+    console.log("details=>", this.details_guest);
+    console.log("area=>", this.area);
+    console.log("status=>", this.status_guest);
+    console.log("ref_regis=>", this.ref_regis);
+    this.navCtrl.push(HomePage,{status_guest:this.status_guest})
     
-    // console.log("message=>",message);
-    console.log("success=>",val);
-    if(regis_status == true){
-      const sure_alert = this.alert.create({
-        title:"แจ้งเตือนจากระบบ",
-        subTitle: message,
-        buttons: [
-          {
-            text: 'ยืนยัน',
-            handler: () => {
-              this.navCtrl.push(HomePage)
-            }
-          }
-        ]
-      })
-      sure_alert.present();
-    }else{
-      const fail_alert = this.alert.create({
-        title:"แจ้งเตือนจากระบบ",
-        subTitle: message,
-        buttons: [
-          {
-            text: 'ยืนยัน',
-            handler: () => {
-            }
-          }
-        ]
-      })
-      fail_alert.present();
-    }
 
+      // this.getprovi.guest_register(
+      //   this.details_guest.Username,
+      //   this.details_guest.Password,
+      //   this.details_guest.name,
+      //   this.details_guest.last_name,
+      //   this.details_guest.tel,
+      //   this.details_guest.num_house,
+      //   this.details_guest.street,
+      //   this.details_guest.ditstric,
+      //   this.area,
+      //   this.status_guest,
+      //   this.ref_regis
 
-  })
-  .catch((err)=>{
-    console.log("error=>",err);
-    })
+      // )
+      //   .then((val) => {
+      //     this.result = val;
+      //     let message = this.result.message;
+      //     let regis_status = this.result.status
+
+      //     // console.log("message=>",message);
+      //     console.log("success=>", val);
+      //     if (regis_status == true) {
+      //       const sure_alert = this.alert.create({
+      //         title: "แจ้งเตือนจากระบบ",
+      //         subTitle: message,
+      //         buttons: [
+      //           {
+      //             text: 'ยืนยัน',
+      //             handler: () => {
+      //               this.navCtrl.push(HomePage)
+      //             }
+      //           }
+      //         ]
+      //       })
+      //       sure_alert.present();
+      //     } else {
+      //       const fail_alert = this.alert.create({
+      //         title: "แจ้งเตือนจากระบบ",
+      //         subTitle: message,
+      //         buttons: [
+      //           {
+      //             text: 'ยืนยัน',
+      //             handler: () => {
+      //             }
+      //           }
+      //         ]
+      //       })
+      //       fail_alert.present();
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log("error=>", err);
+      //   })
   }
 }
-    
-  
+
+
 
