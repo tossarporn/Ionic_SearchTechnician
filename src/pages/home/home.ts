@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
 
@@ -22,7 +22,7 @@ import { stringify } from '@angular/compiler/src/util';
 
 })
 export class HomePage {
-  // private todo : FormGroup;//new
+  private check_login : FormGroup;//new
 
   username: string = "";
   password: string = "";
@@ -38,9 +38,15 @@ export class HomePage {
     private storage: Storage,
     private formBuilder: FormBuilder//new
 
-  ) {
+
+  ) 
+  {
     
-   
+   this.check_login = this.formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+    status: ['', Validators.required],
+    });
 
   }//constructor
   register_guest(_item) {
@@ -50,7 +56,7 @@ export class HomePage {
   login(_item_login) {
     
     console.log("username=>",this.username,"password=>",this.password,"status=>",this.status);
-    // let status_guest = this.navParam.get("item")
+    
 
     this.getprovi.login_provider(this.username, this.password,this.status)
       .then((data) => {

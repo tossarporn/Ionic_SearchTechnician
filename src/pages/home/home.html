@@ -10,39 +10,40 @@
   </ion-row>
 
   <div class="login-box">
-    
-        <ion-row>
-            <ion-col>
-              <ion-item>
-                  <ion-input [(ngModel)]="username" type="text" placeholder="Username" clearInput required></ion-input>
-                </ion-item>
-       
-            
-              <ion-item>
-                  <ion-input [(ngModel)]="password" type="password" placeholder="Password" clearInput required></ion-input>
-                </ion-item>
-            </ion-col>
-          </ion-row>
 
-
-          <div style="text-align:center">
-                <ion-row radio-group [(ngModel)]="status">
-                    <ion-col>
-                        <ion-radio value="1" checked></ion-radio>
-                        <b style="margin-left:5px">เข้าสู่ระบบลูกค้า</b>
-                        <ion-radio value="2" ></ion-radio>
-                        <b style="margin-left:5px">เข้าสู่ระบบช่าง</b>
-                    </ion-col>
-                  </ion-row>
-          </div>
-
+          <form [formGroup]="check_login">
+              <ion-row>
+                  <ion-col>
+                    <ion-item>
+                        <ion-input [(ngModel)]="username" type="text" placeholder="Username" clearInput  formControlName="username"></ion-input>
+                      </ion-item>
+             
+                  
+                    <ion-item>
+                        <ion-input [(ngModel)]="password" type="password" placeholder="Password" clearInput  formControlName="password"></ion-input>
+                      </ion-item>
+                  </ion-col>
+                </ion-row>
+                <div style="text-align:center">
+                    <ion-row radio-group [(ngModel)]="status" formControlName="status">
+                        <ion-col>
+                            <ion-radio value="1"></ion-radio>
+                            <b style="margin-left:5px">เข้าสู่ระบบลูกค้า</b>
+                            <ion-radio value="2" ></ion-radio>
+                            <b style="margin-left:5px">เข้าสู่ระบบช่าง</b>
+                        </ion-col>
+                      </ion-row>
+              </div>
+              <ion-row style="margin-top:15px;">
+                  <ion-col></ion-col>
+                  <button ion-button color="secondary" [disabled]="!check_login.valid" (click)="login(items_login)">ยืนยัน</button>
+                  <ion-col></ion-col>
+                </ion-row>
+          </form>
+          
           <ion-row>
             <ion-col class="sigeup"> 
-                <button ion-button icon-end class="submit-btn" round type="submit" (click)="login(items_login)">
-                  เข้าสู่ระบบ
-                  <ion-icon name="ios-log-in-outline"></ion-icon>
-                </button>
-                <div style="margin-top:25px">
+                <div style="margin-top:20px">
                     <button ion-button icon-end class="register-btn" round  color="secondary" (click)="register_guest(1)" >
                         สมัครสมาชิกแบบลูกค้า
                         <ion-icon name="md-contact"></ion-icon>
@@ -59,6 +60,5 @@
                 </button>
             </ion-col>
           </ion-row>
-        
   </div>
 </ion-content>
