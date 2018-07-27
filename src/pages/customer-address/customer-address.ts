@@ -20,6 +20,16 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'customer-address.html',
 })
 export class CustomerAddressPage {
+guest_name: any
+guest_lastname:any
+guest_area:any
+guest_distric:any 
+guest_num_house:any
+guest_street: any
+guest_tel:any
+
+
+  editng: boolean
   private detail: FormGroup
   address: any = {};
   guest_data: any;
@@ -44,9 +54,11 @@ export class CustomerAddressPage {
   guest: any;
   guest_id: any;
 
-  tech_id:any;
+  tech_id: any;
 
-
+  todo;
+  nav;
+  todoIndex;
   status: boolean = true;
   constructor(
     public navCtrl: NavController,
@@ -56,6 +68,9 @@ export class CustomerAddressPage {
     private storage: Storage,
 
   ) {
+
+    this.editng = false;
+
     this.detail = this.formBuilder.group({
       name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -63,7 +78,7 @@ export class CustomerAddressPage {
       num_house: ['', Validators.required],
       street: ['', Validators.required],
       ditstric: ['', Validators.required],
-      area: ['', Validators.required],
+      area: [{value:this.data_area,disabled:true}, Validators.required],
       myDate: ['', Validators.required],
       tel: ['', Validators.required],
     });
@@ -73,18 +88,27 @@ export class CustomerAddressPage {
     let technician_equipmentID = this.address.ref_type
     let tecnician_regisID = this.address.ref_regis_tec
     console.log(this.address.ref_regis_tec);
-    console.log('technician_address=>', this.address);//SendingForTechnician
+    console.log('technician_address=>',  this.address);//SendingForTechnician
 
-  
+
     this.guest = storage.get('guest').then((val) => {
       let data_guest = val
       this.guest_id = data_guest.data_user.id
+      this.guest_name = data_guest.data_user.guest_name
+      this.guest_lastname = data_guest.data_user.guest_lastname
+      this.guest_tel = data_guest.data_user.guest_tel
+      this.guest_num_house = data_guest.data_user.guest_num_house
+      this.guest_street= data_guest.data_user.guest_street
+      this.guest_distric = data_guest.data_user.guest_distric
+      this.guest_area = data_guest.data_user.guest_area
+      
+      
+      
       // console.log('customer_address_page=>',this.guest_id);
-      console.log('customer_address_val=>', val);
+      // console.log('customer_address_val=>', val);
+      console.log('customer_address_val=>', this.guest_name)
 
     })//get data_user
-
-
 
     this.GetDataProvider.show_area()
       .then((data) => {
@@ -96,13 +120,7 @@ export class CustomerAddressPage {
         console.log('area_error=>', error)
       });//show_area
 
-    // storage.set('tab_status',this.mapTabEnabled)
-    // .then((success)=>{
-    //     console.log('success=>',success)
-    // })
-    // .catch((err)=>{
-    //   console.log('err=>',err);
-    // })
+
 
   }//constructor
 
@@ -110,17 +128,62 @@ export class CustomerAddressPage {
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad CustomerAddressPage');
   // }
+  
 
-  submit(address_guest) {
+  submit() {
+  //  console.log(
+  //   // this.guest_id, 
+  //   // this.guest_name,
+  //   // this.guest_lastname, 
+  //   // this.guest_tel, 
+  //   // this.guest_num_house, 
+  //   // this.guest_street,
+  //   // this.guest_distric,
+  //   this.guest_area,
+  // );
+
+  this.GetDataProvider.updates_guest(
+    this.guest_id, 
+    this.guest_name,
+    this.guest_lastname, 
+    this.guest_tel, 
+    this.guest_num_house, 
+    this.guest_street,
+    this.guest_distric,
+    this.guest_area)
+    .then((result)=>{
+      let val = result
+      console.log("val_detials",val);
+      
+    })
+    .catch((err)=>{
+      console.log("val_detials_err",err);
+    })
+
+  // console.log(
+  //   this.guest_name,
+  //   this.guest_lastname, 
+  //   this.guest_tel, 
+  //   this.address.type_name,
+  //   this.guest_num_house, 
+  //   this.guest_street,
+  //   this.guest_distric,
+  //   this.guest_area,
+  //   this.details_guest.myDate,
+  //   this.address.id,
+  //   this.guest_id,
+  //   this.address.ref_regis_tec);
+  
+    
     this.GetDataProvider.builid_guest(
-      this.details_guest.name,
-      this.details_guest.last_name,
-      this.details_guest.tel,
+      this.guest_name,
+      this.guest_lastname, 
+      this.guest_tel, 
       this.address.type_name,
-      this.details_guest.num_house,
-      this.details_guest.street,
-      this.details_guest.ditstric,
-      this.area,
+      this.guest_num_house, 
+      this.guest_street,
+      this.guest_distric,
+      this.guest_area,
       this.details_guest.myDate,
       this.address.id,
       this.guest_id,
@@ -136,7 +199,7 @@ export class CustomerAddressPage {
         let tech = this.storage.set('tech', this.address, )
           .then((succ) => {
             let guest_data = this.storage.set('details', this.details_guest)
-            this.navCtrl.insert(1,DataRentPage);
+            this.navCtrl.insert(1, DataRentPage);
             this.navCtrl.popToRoot();
           }).catch((err) => {
             console.log(err);
