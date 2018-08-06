@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {       
-  host: string = "http://10.5.22.221/Final_Project/service/";   
+  host: string = "http://10.5.27.128/Final_Project/service/";   
   get_register: string = "register.php";
   get_login:string = "login.php";      
   get_area:string ="Get_Area.php" ;
@@ -25,6 +25,8 @@ export class GetDataProvider {
   showall_customer:string="show_equipment_mont.php"
   count_equipment:string="count_equipment.php";
   show_Equipment:string = "get_privete_details.php";
+  register_guest:string="guest_register.php";
+  update_guest:string="update_guest.php";
 
   headers: any =  
     {
@@ -35,7 +37,6 @@ export class GetDataProvider {
   }
  
   register_provi(user,password,status){
-    // alert(user+" "+pass+" "+status_cus)
     return new Promise((reslove,reject)=>{
       this.http.post(this.host+this.get_register,{
         user:user,
@@ -51,12 +52,13 @@ export class GetDataProvider {
     });
   }//register_provi
 
-  login_provider(user,password){
+  login_provider(user,password,status){
     return new Promise ((reslov,reject)=>{
       this.http.post(this.host + this.get_login,
         {
           user:user,
           password:password,
+          status:status
         },
         {headers:this.headers
         }).subscribe(result=>{reslov(result)},
@@ -261,6 +263,7 @@ get_data_equipment(Equipment,show_myDate){
       }
     })
   }// get_count_equipment
+  
   show_details_equipment(ref_regis_tec){
     return new Promise((reslov,reject)=>{this.http.post(this.host+this.show_Equipment,
     {
@@ -276,4 +279,62 @@ get_data_equipment(Equipment,show_myDate){
     }
   })
   }//show_details_equipment
+guest_register(Username,Password,name,last_name,tel,num_house,street,ditstric,area,status_guest){
+      return new Promise((reslov,reject)=>{this.http.post(this.host+this.register_guest,
+        {
+          user:Username,
+          password:Password,
+          status:status_guest,
+          guest_name:name,
+          guest_lastname:last_name,
+          guest_tel:tel,
+          guest_num_house:num_house,
+          guest_street:street,
+          guest_distric:ditstric,
+          guest_area:area,
+        },
+        {
+          headers:this.headers
+        }).subscribe(result=>{
+          reslov(result)
+        })
+        err=>{
+          reject(err)
+        }
+      })
+    }//guest_register
+updates_guest(
+  guest_id,
+  guest_name,
+  guest_lastname,
+  guest_tel,
+  guest_num_house,
+  guest_street,
+  guest_distric,
+  guest_area,
+  )
+  {
+  return new Promise((reslov,reject)=>{this.http.post(this.host+this.update_guest,
+    {
+      guest_id:guest_id,
+      guest_name:guest_name,
+      guest_lastname:guest_lastname,
+      guest_tel:guest_tel,
+      guest_num_house:guest_num_house,
+      guest_street:guest_street,
+      guest_distric:guest_distric,
+      guest_area:guest_area,
+    },
+    {
+      headers:this.headers
+    }).subscribe(result=>{
+      reslov(result)
+    })
+    err=>{
+      reject(err)
+    }
+  })
+}//updates_guest
+
+
 }//GetDataProvider

@@ -12,28 +12,49 @@
   <div class="login-box">
 
           <form [formGroup]="check_login">
-              <ion-row>
+            
+              <!-- <ion-row>
                   <ion-col>
-                    <ion-item>
+                    <ion-item >
                         <ion-input [(ngModel)]="username" type="text" placeholder="Username" clearInput  formControlName="username"></ion-input>
                       </ion-item>
              
-                  
                     <ion-item>
                         <ion-input [(ngModel)]="password" type="password" placeholder="Password" clearInput  formControlName="password"></ion-input>
                       </ion-item>
                   </ion-col>
-                </ion-row>
-                <div style="text-align:center">
-                    <ion-row radio-group [(ngModel)]="status" formControlName="status">
-                        <ion-col>
-                            <ion-radio value="1"></ion-radio>
-                            <b style="margin-left:5px">เข้าสู่ระบบลูกค้า</b>
-                            <ion-radio value="2" ></ion-radio>
-                            <b style="margin-left:5px">เข้าสู่ระบบช่าง</b>
-                        </ion-col>
-                      </ion-row>
+                </ion-row> -->
+                <ion-row>
+                  <ion-item col-6>
+                        <ion-label floating>Username:</ion-label>
+                        <ion-input type="tel" [(ngModel)]="username" formControlName="username" placeholder="Username" clearInput></ion-input>
+                  </ion-item>
+                  <ion-item col-6>
+                        <ion-label floating>Password:</ion-label>
+                        <ion-input type="password" [(ngModel)]="password" formControlName="password" placeholder="Password" clearInput></ion-input>
+                    </ion-item>
+              </ion-row>
+
+              <div>
+                  <ion-list>
+                      <ion-item>
+                          <ion-label>สถานะเข้าสู่ระบบ</ion-label>
+                        <ion-select [(ngModel)]="status" 
+                        formControlName="status"  
+                        okText="ยืนยัน" 
+                        cancelText="ยกเลิก"
+                        placeholder="เลือกสถานะ"
+                        >
+                          <ion-option value="1">ลูกค้า</ion-option>
+                          <ion-option value="2">ช่าง</ion-option>
+                          <ion-option value="3">ผู้ดูแล</ion-option>
+                        </ion-select>
+                      </ion-item>
+                    </ion-list>
+
               </div>
+
+
               <ion-row style="margin-top:15px;">
                   <ion-col></ion-col>
                   <button ion-button color="secondary" [disabled]="!check_login.valid" (click)="login(items_login)">ยืนยัน</button>
@@ -61,4 +82,5 @@
             </ion-col>
           </ion-row>
   </div>
+  
 </ion-content>
