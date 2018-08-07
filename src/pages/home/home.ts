@@ -11,11 +11,13 @@ import { RegisterPage } from '../register/register';
 import { TechnicianPage } from '../technician/technician';
 import { CustomerPage } from '../customer/customer';
 import { SearchPage } from '../search/search';
+import {AdminPage} from '../admin/admin'
 //Internet
 import { GetDataProvider } from '../../providers/get-data/get-data';
 import { stringify } from '@angular/compiler/src/util';
 import { RequiredValidator } from '@angular/forms/src/directives/validators';
 import { Select } from 'ionic-angular/components/select/select';
+
 
 
 @Component({
@@ -28,8 +30,8 @@ export class HomePage {
 
   username: string = "";
   password: string = "";
-  status:string="";
-
+  status:any;
+  value:any;
   
 
   res: any;
@@ -57,79 +59,19 @@ export class HomePage {
   register_guest(_item) {
     this.navCtrl.push(RegisterPage, { item: _item });
     console.log(_item);
-    
-      // let register_alert = this.AlertController.create({
-      //   title: 'สมัครสมาชิกแบบลูกค้า',
-      //   inputs: [
-      //     {
-      //       name:'guest_Username',
-      //       placeholder: 'Username',
-      //       type:'text',
-      //       id:'guest_Username'
-      //     },
-      //     {
-      //       name:'guest_password',
-      //       placeholder:'password',
-      //       id:'guest_password',
-      //       type: 'password'
-      //     }
-      //   ],
-      //   buttons: [
-      //     {
-      //       text: 'ยกเลิก',
-      //       role: 'cancel',
-      //       handler: data => {
-      //         console.log('Cancel clicked');
-      //       }
-      //     },
-      //     {
-      //       text: 'ยืนยัน',
-      //       handler: data => {
-      //         if(data.guest_Username == "" ||data.guest_password ){
-      //           let guest_alarm = this.AlertController.create({
-      //             title: 'แจ้งเตือนจากระบบ',
-      //             subTitle: 'กรุณากรอกข้อมูล',
-      //             buttons: ['OK']
-      //           });
-      //           guest_alarm.present();
-      //           return false
-      //         }else{
-      //           // this.getprovi.guest_register(
-
-      //           // ).then(()=>{
-      //           //   if(){
-      //           //   }
-      //           //   else{
-
-      //           //   }
-      //           // }).catch((val_error)=>{
-      //           //   console.log(val_error);
-                  
-      //           // })  
-      //         }
-      //         console.log(_item,data.guest_Username,data.guest_password)
-      //         return false
-      //       }
-      //     }
-      //   ]
-      // });
-      // register_alert.present();
     }
-  list(){
-    
-  }
-  login(_item_login) {
-    
-    console.log("username=>",this.username,"password=>",this.password,"status=>",this.status);
+  login() {
     this.getprovi.login_provider(this.username, this.password,this.status)
       .then((data) => {
         this.res = data;
         this.status = this.res.data_user.status;
         let message_user = this.res.message;
-        console.log('data_guest=>',  this.res);
+        // console.log('data_guest=>',  this.res);
 
-        if (this.status == '1') {
-
+        if (this.status == 1) {
+          console.log(this.status);
+          alert(11111)
+          console.log(this.status);
           const confirm = this.AlertController.create({
             title: 'ยินดีต้อนรับลูกค้าทุกท่าน',
             message: message_user,
@@ -147,7 +89,8 @@ export class HomePage {
             ]
           });//setData_guest
           confirm.present();
-        } else if(this.status == '2') {
+          
+        }  else if(this.status == 2) {
           const confirm = this.AlertController.create({
             title: 'ยินดีต้อนรับช่างทุกท่าน',
             message: message_user,
@@ -165,8 +108,27 @@ export class HomePage {
             ]
           });
           confirm.present();
-          return false;
-        } else {
+        } 
+       else if (this.status == 3) {
+          const confirm = this.AlertController.create({
+            title: 'ยินดีต้อนรับลูกค้าทุกท่าน',
+            message: message_user,
+            buttons: [
+              {
+                text: 'ยืนยัน',
+                handler: () => {
+                  this.storage.set('admin', this.res).then((succ) => {
+                    this.navCtrl.push(AdminPage)
+                  }).catch((err) => {
+                    console.log('error_home=>', err)
+                  })
+                }
+              }
+            ]
+          });
+          confirm.present();
+        }
+        else {
           const fail = this.AlertController.create({
             title: 'แจ้งเตือนจากระบบ',
             message: message_user,
@@ -175,7 +137,6 @@ export class HomePage {
                 text: 'ยืนยัน',
                 handler: () => {
                   this.check_login.reset()
-                  console.log('Agree clicked');
                 }
               }
             ]
