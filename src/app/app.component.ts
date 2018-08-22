@@ -14,6 +14,8 @@ import {ChartContentCustomerPage}from '../pages/technician/chart-room/chart-cont
 import {DetailTecPage} from '../pages/detail-tec/detail-tec'
 import {CustomerAddressPage} from '../pages/customer-address/customer-address';
 import {DataRentPage} from '../pages/data-rent/data-rent'
+import {EditsGuestPage} from '../pages/admin/edits-guest/edits-guest';
+import {EditsTecPage} from '../pages/admin/edits-tec/edits-tec';
 
 //components
 import {IonRatingComponent} from '../components/ion-rating/ion-rating'
@@ -23,7 +25,7 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
   templateUrl: 'app.html'
 })
 export class MyApp { 
-  rootPage:any = HomePage; 
+  rootPage:any = EditsTecPage; 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,dialog:Dialogs) {
     platform.ready().then(() => {

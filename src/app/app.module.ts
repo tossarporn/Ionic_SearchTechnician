@@ -28,6 +28,12 @@ import {SearchEquipmentPage} from '../pages/search-equipment/search-equipment'
 import {ShowTecDetailPage} from '../pages/show-tec-detail/show-tec-detail'
 import {DetailTecPage} from '../pages/detail-tec/detail-tec'
 import {CustomerAddressPage} from '../pages/customer-address/customer-address';
+import {AdminPage} from '../pages/admin/admin'
+import {EditsAdminPage} from '../pages/admin/edits-admin/edits-admin';
+import {EditsGuestPage} from '../pages/admin/edits-guest/edits-guest';
+import {EditsTecPage} from '../pages/admin/edits-tec/edits-tec';
+import {DetailsEditingTecPage} from '../pages/admin/details-editing-tec/details-editing-tec';
+import {DetailsEdtingGuestPage} from '../pages/admin/details-edting-guest/details-edting-guest';
 
 //send internet
 import { GetDataProvider } from '../providers/get-data/get-data';
@@ -36,7 +42,7 @@ import {GoogleMaps} from '@ionic-native/google-maps';
 import { IonicStorageModule } from '@ionic/storage';
 import { CallNumber } from '@ionic-native/call-number';
 import {AppRate} from '@ionic-native/app-rate';
-
+import {Badge} from '@ionic-native/badge';
 
 //upload images
 import { Camera } from '@ionic-native/camera';
@@ -68,8 +74,13 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
     ShowTecDetailPage,
     DetailTecPage,
     CustomerAddressPage,
-    IonRatingComponent
-    
+    IonRatingComponent,
+    AdminPage,
+    EditsAdminPage,
+    EditsGuestPage,
+    EditsTecPage,
+    DetailsEditingTecPage,
+    DetailsEdtingGuestPage,
   ],
   imports: [ 
     FormsModule, 
@@ -102,7 +113,13 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
     ShowTecDetailPage,
     DetailTecPage,
     CustomerAddressPage,
-    IonRatingComponent
+    IonRatingComponent,
+    AdminPage,
+    EditsAdminPage,
+    EditsGuestPage,
+    EditsTecPage,
+    DetailsEditingTecPage,
+    DetailsEdtingGuestPage,
   ],
   providers: [
     StatusBar,
@@ -117,7 +134,8 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
     Calendar,
     GoogleMaps,
     CallNumber,
-    AppRate 
+    AppRate,
+    Badge 
   ]
 })
 export class AppModule {}

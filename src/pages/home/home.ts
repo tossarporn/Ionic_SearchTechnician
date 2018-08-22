@@ -111,7 +111,7 @@ export class HomePage {
         } 
        else if (this.status == 3) {
           const confirm = this.AlertController.create({
-            title: 'ยินดีต้อนรับลูกค้าทุกท่าน',
+            title: 'ยินดีต้อนรับผู้ดูแลระบบ',
             message: message_user,
             buttons: [
               {

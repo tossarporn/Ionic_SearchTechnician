@@ -1,0 +1,64 @@
+<!--
+  Generated template for the EditsTecPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="!tech_editing">แก้ไขข้อมูลช่าง</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="tech_editing=!tech_editing" *ngIf="!tech_editing">
+                <ion-icon name="options">เลือก</ion-icon>
+            </button>
+        </ion-buttons>
+        
+        <ion-buttons end>
+            <button ion-button *ngIf="tech_editing" (click)="checks_all()">
+                <ion-icon name="checkmark">เลือกทั้งหมด</ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button *ngIf="tech_editing" (click)="check_all=!check_all">
+                <ion-icon name="close" md="md-close">ยกเลิก</ion-icon>
+            </button>
+        </ion-buttons>
+
+        <ion-buttons >
+            <button ion-button (click)="tech_editing=!tech_editing" *ngIf="tech_editing">
+                <ion-icon name="arrow-back" md="md-arrow-back">ย้อนกลับ</ion-icon>
+            </button>
+        </ion-buttons>
+
+        <ion-buttons end>
+          <button ion-button (click)="tec_delete()" *ngIf="tech_editing">
+              <ion-icon name="trash" md="md-trash">ลบ</ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content nopadding>
+
+<div *ngIf="!tech_editing">
+    <ion-list *ngFor="let item of details_technician">
+        <button ion-item (click)="editing_guest(item)">
+            {{item.name_store}}
+          </button> 
+    </ion-list>
+</div>
+
+<div *ngIf="tech_editing">
+    <ion-list>
+        <ion-item *ngFor="let item of details_technician">
+            <ion-label>
+                {{item.name_store}}
+            </ion-label>
+            <ion-checkbox item-end *ngIf="!check_all"></ion-checkbox>
+            <ion-checkbox item-end *ngIf="check_all" [checked]="check_all"></ion-checkbox>
+          </ion-item>
+    </ion-list>
+</div>
+</ion-content>

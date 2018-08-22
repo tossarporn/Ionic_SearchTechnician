@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams } from 'ionic-angular';
 import{GetDataProvider} from'../../../providers/get-data/get-data';
 import {HttpClient} from '@angular/common/http';
 import {Storage} from '@ionic/storage';
-import { CallNumber } from '@ionic-native/call-number';
+import {CallNumber } from '@ionic-native/call-number';
+import {Badge} from '@ionic-native/badge';
 /**
  * Generated class for the RentPage page.
  *
@@ -27,11 +28,11 @@ export class RentPage {
     private getDataProvider:GetDataProvider,
     private http:HttpClient,
     private storage:Storage,
-    private callNumber: CallNumber
+    private callNumber: CallNumber,
+    private badge:Badge
   ) 
   
   {
-
     this.get_detais_tec();
   }//constructor
 

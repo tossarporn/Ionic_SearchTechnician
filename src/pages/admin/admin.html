@@ -1,0 +1,52 @@
+<!--
+  Generated template for the AdminPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-title>ผู้ดูแลระบบ</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div class="Icons">
+    <ion-grid>
+      <ion-row>
+        <div col-6>
+          <ion-col (click)="edit_guest()">
+            <img src="assets/imgs/team.png">
+            <div>แก้ไขข้อมูลลูกค้า</div>
+          </ion-col>
+        </div>
+
+        <div col-6>
+          <ion-col (click)="edit_tec()">
+            <img src="assets/imgs/wrench.png">
+            <div>แก้ไขข้อมูลช่าง</div>
+          </ion-col>
+        </div>
+      </ion-row>
+
+      <ion-row>
+        <div col-6>
+          <ion-col (click)="edit_admin()">
+            <img src="assets/imgs/memory.png">
+            <div>แก้ไขข้อมูลผู้ดูแลระบบ</div>
+          </ion-col>
+        </div>
+
+        <div col-6>
+          <ion-col (click)="logout()">
+            <img src="assets/imgs/exit.png">
+            <div>ออกจากระบบ</div>
+          </ion-col>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

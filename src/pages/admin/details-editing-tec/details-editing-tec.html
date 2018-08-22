@@ -1,0 +1,92 @@
+<!--
+  Generated template for the DetailsEditingTecPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>แก้ไขข้อมูลช่าง</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content nopadding>
+<ion-row>
+    <ion-item col-6>
+        <ion-label stacked><h6>ชื่อร้านค้า</h6></ion-label>
+      <ion-input type="text" [(ngModel)]="details_tec.name_store" value="{{details_tec.name_store}}"></ion-input>
+    </ion-item>
+<ion-item col-6>
+<ion-label stacked>บัญชีธนาคาร</ion-label>
+<ion-input  type="tel"  [(ngModel)]="details_tec.account" value="{{details_tec.account}}"></ion-input>
+</ion-item>
+</ion-row>
+
+<ion-row>
+  <ion-item  col-6>
+  <ion-label stacked>เครื่องใช้ไฟฟ้า</ion-label>
+  <ion-select [(ngModel)]="details_tec.ref_type_equipment">
+    <ion-option value="{{item_type.id}}" *ngFor="let item_type of data_equipment">{{item_type.type_name}}</ion-option>
+</ion-select>
+</ion-item>
+
+<ion-item  col-6 >
+<ion-label stacked>เบอร์โทรศัพท์</ion-label>
+<ion-input  [(ngModel)]="details_tec.tel" type="tel" value="{{details_tec.tel}}"></ion-input>
+</ion-item>
+</ion-row>
+
+<ion-row>
+<ion-item  col-4>
+    <ion-label stacked>เวลาเปิด</ion-label>
+    <ion-input [(ngModel)]="details_tec.time_start" type="tel" value="{{details_tec.time_start}}"></ion-input>
+
+</ion-item>
+
+<ion-item  col-4 >
+<ion-label stacked>เวลาปิด</ion-label>
+<ion-input  [(ngModel)]="details_tec.time_end" type="tel" value="{{details_tec.time_end}}"></ion-input>
+</ion-item>
+
+<ion-item col-4>
+<ion-label stacked>ราคาเริ่มต้น</ion-label>
+<ion-input  [(ngModel)]="details_tec.cost_begin" type="tel" value="{{details_tec.cost_begin}}"></ion-input> 
+</ion-item>
+</ion-row>
+
+<ion-row>
+                    
+<ion-label style="padding-left:20px;">ใส่ที่อยู่ :</ion-label>
+
+
+<ion-item col-4>
+<ion-label stacked>บ้านเลขที่</ion-label>
+<ion-input type="tel" [(ngModel)]="details_tec.num_house" value="{{details_tec.num_house}}"></ion-input>
+</ion-item>
+
+<ion-item col-4>
+    <ion-label stacked>ถนน</ion-label>
+<ion-input type="text" [(ngModel)]="details_tec.street" value="{{details_tec.street}}"></ion-input> 
+</ion-item>
+</ion-row>
+
+<ion-row>
+    <ion-label style="margin-left:15px;"></ion-label>
+    <ion-item col-4>
+        <ion-label stacked>แขวง</ion-label>
+    <ion-input type="text" [(ngModel)]="details_tec.distric" value="{{details_tec.distric}}"></ion-input>
+    </ion-item>
+
+    <ion-item col-4>
+            <ion-label stacked>เลือกเขต</ion-label>
+            <ion-select [(ngModel)]="details_tec.ref_area_name">
+                <ion-option value="{{item.id}}" *ngFor="let item of data_area" >{{item.area_name}}</ion-option>
+            </ion-select>
+    </ion-item>
+</ion-row>
+        <button ion-button type="submit" (click)="submit()" style="margin-top:20px;" block round>ยืนยันแก้ไขข้อมูล</button>
+
+</ion-content>

@@ -1,0 +1,64 @@
+<!--
+  Generated template for the EditsGuestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="!guest_editing">แก้ไขข้อมูลลูกค้า</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="guest_editing=!guest_editing" *ngIf="!guest_editing">
+                <ion-icon name="options">เลือก</ion-icon>
+            </button>
+        </ion-buttons>
+        
+        <ion-buttons end>
+            <button ion-button *ngIf="guest_editing" (click)="checks_all()">
+                <ion-icon name="checkmark">เลือกทั้งหมด</ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button *ngIf="guest_editing" (click)="check_all=!check_all">
+                <ion-icon name="close" md="md-close">ยกเลิก</ion-icon>
+            </button>
+        </ion-buttons>
+
+        <ion-buttons >
+            <button ion-button (click)="guest_editing=!guest_editing" *ngIf="guest_editing">
+                <ion-icon name="arrow-back" md="md-arrow-back">ย้อนกลับ</ion-icon>
+            </button>
+        </ion-buttons>
+
+
+        <ion-buttons end>
+          <button ion-button (click)="guest_delete()" *ngIf="guest_editing">
+              <ion-icon name="trash" md="md-trash">ลบ</ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content nopadding>
+    <div *ngIf="!guest_editing">
+          <ion-list >
+            <button ion-item *ngFor="let item of details_guset">
+              {{item.guest_name}}
+            </button> 
+          </ion-list>
+    </div>
+
+<div *ngIf="guest_editing">
+    <ion-list> 
+        <ion-item *ngFor="let item of details_guset">
+          <ion-label>
+              {{item.guest_name}}
+          </ion-label>
+          <ion-checkbox item-end *ngIf="!check_all"></ion-checkbox>
+          <ion-checkbox item-end *ngIf="check_all" [checked]="check_all"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+</div>
+</ion-content>
