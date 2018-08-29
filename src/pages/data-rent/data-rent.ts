@@ -75,7 +75,7 @@ export class DataRentPage {
   //   console.log('ionViewDidLoad DataRentPage');
   // }
   ionViewWillEnter(){
-
+ 
     this.details = this.storage.get('details').then((success) => {
       this.mydata = success;
       // console.log('get_detail=>', success);

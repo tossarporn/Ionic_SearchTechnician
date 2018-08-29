@@ -69,8 +69,8 @@ export class DetailsEditingTecPage {
     this.details_tec.cost_begin = this.get_details_tec.cost_begin;
     this.details_tec.distric = this.get_details_tec.district;
     this.details_tec.street = this.get_details_tec.street;
-    console.log("get_details_tec=>", this.get_details_tec);
-    console.log("this.id=>", this.details_tec);
+    // console.log("get_details_tec=>", this.get_details_tec);
+    // console.log("this.id=>", this.details_tec);
 
   }
 
@@ -125,6 +125,8 @@ export class DetailsEditingTecPage {
     }).catch((error) => {
       console.log("error=>", error);
     })
+    console.log("this.details_tec=>",this.get_details_tec);
+    
   }
 
 }

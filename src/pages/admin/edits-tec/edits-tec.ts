@@ -68,7 +68,8 @@ export class EditsTecPage {
           {
             text: 'ตกลง',
             handler: () => {
-              console.log('Agree clicked');
+              // this.GetDataProvider.delete_details_tec()
+              console.log(this.details_technician);
             }
           }
         ]

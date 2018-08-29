@@ -11,8 +11,71 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
+
+    <ion-row>
+        <ion-item col-6>
+              <ion-label floating>Username:</ion-label>
+              <ion-input type="tel" [(ngModel)]="detail_guest.username" value="{{detail_guest.username}}"></ion-input>
+        </ion-item>
+        <ion-item col-6>
+              <ion-label floating>Password:</ion-label>
+              <ion-input type="password" [(ngModel)]="detail_guest.password" value="{{detail_guest.password}}"></ion-input>
+          </ion-item>
+    </ion-row>
+    <ion-row>
+        <ion-item col-6>
+            <ion-label floating>ชื่อ:</ion-label>
+        <ion-input type="tel" [(ngModel)]="detail_guest.guest_name" value="{{detail_guest.guest_name}}"></ion-input>
+        </ion-item>
+
+        <ion-item col-6>
+                <ion-label floating>นามสกุล:</ion-label>
+            <ion-input type="text" [(ngModel)]="detail_guest.guest_lastname" value="{{detail_guest.guest_lastname}}"></ion-input> 
+        </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item col-12>
+          <ion-label floating>เบอร์โทรศัพท์ :</ion-label> 
+      <ion-input type="tel" [(ngModel)]="detail_guest.guest_tel" value="{{detail_guest.guest_tel}}"></ion-input>
+    </ion-item>
+  </ion-row>
+  
+<ion-row>             
+  <ion-label style="padding-left:10px; padding-top:20px;"><h6>ที่อยู่:</h6></ion-label>
+      
+          <ion-item col-4>
+              <ion-label floating>บ้านเลขที่</ion-label>
+          <ion-input type="tel" [(ngModel)]="detail_guest.guest_num_house" value="{{detail_guest.guest_num_house}}"></ion-input>
+          </ion-item>
+      
+  <ion-item col-4 >
+          <ion-label floating>ถนน</ion-label>
+      <ion-input type="text" [(ngModel)]="detail_guest.guest_street" value="{{detail_guest.guest_street}}"></ion-input> 
+  </ion-item>
+    </ion-row>
+
+  <ion-row>
+      <ion-label ></ion-label>
+    <ion-item col-4>
+        <ion-label floating>แขวง</ion-label>
+    <ion-input type="text" [(ngModel)]="detail_guest.guest_distric" value="{{detail_guest.guest_distric}}"></ion-input>
+    </ion-item>
+ 
+    <ion-item col-4>
+            <ion-label floating>เขต</ion-label>
+            <ion-select [(ngModel)]="detail_guest.guest_area">
+              <ion-option [value]="item_area.area_name" *ngFor="let item_area of data_area" >{{item_area.area_name}}</ion-option>
+          </ion-select>
+    </ion-item>
+  </ion-row>
+
+  
+    <ion-row style="margin-top:40px;">
+      <ion-col></ion-col>
+      <button ion-button color="secondary" (click)="submit()">ยืนยัน</button>
+      <ion-col></ion-col>
+    </ion-row>
 
 </ion-content>

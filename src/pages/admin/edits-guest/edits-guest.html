@@ -10,7 +10,7 @@
     <ion-title *ngIf="!guest_editing">แก้ไขข้อมูลลูกค้า</ion-title>
         <ion-buttons end>
             <button ion-button (click)="guest_editing=!guest_editing" *ngIf="!guest_editing">
-                <ion-icon name="options">เลือก</ion-icon>
+                <ion-icon  name="trash" md="md-trash">ลบข้อมูล</ion-icon>
             </button>
         </ion-buttons>
         
@@ -27,16 +27,22 @@
 
         <ion-buttons >
             <button ion-button (click)="guest_editing=!guest_editing" *ngIf="guest_editing">
-                <ion-icon name="arrow-back" md="md-arrow-back">ย้อนกลับ</ion-icon>
+                <ion-icon name="arrow-back" md="md-arrow-back"></ion-icon>
             </button>
         </ion-buttons>
 
 
-        <ion-buttons end>
-          <button ion-button (click)="guest_delete()" *ngIf="guest_editing">
-              <ion-icon name="trash" md="md-trash">ลบ</ion-icon>
-          </button>
+        <ion-buttons end *ngIf="guest_editing && !check_all ">
+                    <button ion-button (click)="guest_delete()" >
+                            <ion-icon name="trash" md="md-trash" >ลบ</ion-icon>
+                    </button>
       </ion-buttons>
+
+      <ion-buttons end *ngIf="guest_editing && check_all" >
+        <button ion-button (click)="guest_delete_all()" >
+                <ion-icon name="trash" md="md-trash" >ลบทั้งหมด</ion-icon>
+        </button>
+</ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -44,19 +50,19 @@
 <ion-content nopadding>
     <div *ngIf="!guest_editing">
           <ion-list >
-            <button ion-item *ngFor="let item of details_guset">
+            <button ion-item *ngFor="let item of details_guset"  (click)="submit(item)">
               {{item.guest_name}}
             </button> 
           </ion-list>
     </div>
 
 <div *ngIf="guest_editing">
-    <ion-list> 
-        <ion-item *ngFor="let item of details_guset">
+    <ion-list > 
+        <ion-item *ngFor="let item of details_guset" >
           <ion-label>
               {{item.guest_name}}
           </ion-label>
-          <ion-checkbox item-end *ngIf="!check_all"></ion-checkbox>
+          <ion-checkbox item-end *ngIf="!check_all" (click)="bia(item.id)" value="item.id"></ion-checkbox>
           <ion-checkbox item-end *ngIf="check_all" [checked]="check_all"></ion-checkbox>
         </ion-item>
     </ion-list>
