@@ -10,7 +10,7 @@
     <ion-title *ngIf="!tech_editing">แก้ไขข้อมูลช่าง</ion-title>
         <ion-buttons end>
             <button ion-button (click)="tech_editing=!tech_editing" *ngIf="!tech_editing">
-                <ion-icon name="options">เลือก</ion-icon>
+                <ion-icon name="trash" md="md-trash">ลบข้อมูล</ion-icon>
             </button>
         </ion-buttons>
         
@@ -27,15 +27,21 @@
 
         <ion-buttons >
             <button ion-button (click)="tech_editing=!tech_editing" *ngIf="tech_editing">
-                <ion-icon name="arrow-back" md="md-arrow-back">ย้อนกลับ</ion-icon>
+                <ion-icon name="arrow-back" md="md-arrow-back"></ion-icon>
             </button>
         </ion-buttons>
 
-        <ion-buttons end>
-          <button ion-button (click)="tec_delete()" *ngIf="tech_editing">
+        <ion-buttons end *ngIf="tech_editing && !check_all">
+          <button ion-button (click)="tec_delete()" >
               <ion-icon name="trash" md="md-trash">ลบ</ion-icon>
           </button>
       </ion-buttons>
+
+      <ion-buttons end *ngIf="tech_editing && check_all">
+        <button ion-button (click)="tec_delete_all()" >
+            <ion-icon name="trash" md="md-trash">ลบทั้งหมด</ion-icon>
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -56,7 +62,7 @@
             <ion-label>
                 {{item.name_store}}
             </ion-label>
-            <ion-checkbox item-end *ngIf="!check_all"></ion-checkbox>
+            <ion-checkbox item-end *ngIf="!check_all" (click)="id_value(item.ref_regis_tec)"></ion-checkbox>
             <ion-checkbox item-end *ngIf="check_all" [checked]="check_all"></ion-checkbox>
           </ion-item>
     </ion-list>

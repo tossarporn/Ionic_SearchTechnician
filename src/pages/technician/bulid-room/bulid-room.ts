@@ -106,7 +106,6 @@ res:any;
       this.type_equipment = data_typ; 
       let tech_equipment = this.type_equipment.type_name;
       let tech_equipmentID = this.type_equipment.id;
-      // alert(JSON.stringify(data_typ));
       console.log('data_typ==>',data_typ);
     })
     .catch((err)=>{
@@ -194,22 +193,67 @@ res:any;
     console.log('build_room_page=>',  this.tec_id );
     })
  }//get_data_tech
+
   submit(){
-    this.getdataProvider.creat_store(this.name_store,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
-    this.num_house,this.street,this.distric,this.area,this.account,this.lat,this.lng,this.images,this.tec_id).then((res)=>{
+    // console.log(this.name_store,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
+    //   this.num_house,this.street,this.distric,this.area,this.account,this.lat,this.lng,this.images,this.tec_id);
+    
+    this.getdataProvider.creat_store(
+      this.name_store,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
+      this.num_house,this.street,this.distric,this.area,this.account,this.lat,this.lng,this.images,this.tec_id)
+    .then((res)=>{
+
       this.data_inputjson = res;
       let data_text = this.data_inputjson.message;
       let data_status = this.data_inputjson.status;
+      console.log(this.data_inputjson);
+      
         if(data_status == true){
-            alert(data_text);
-            this.navCtrl.push(TechnicianPage);
-        }
+          const confirm = this.alertCtrl.create({
+            title: 'แจ้งเตือนจากระบบ',
+            message: data_text,
+            buttons: [
+              {
+                text: 'ตกลง',
+                handler: () => {
+                  this.navCtrl.push(TechnicianPage);
+                  // console.log('Agree clicked');
+                }
+              }
+            ]
+          });
+          confirm.present();
+        }//if
         else if(data_status == false){
-          alert(data_text);
-        }
+          const confirm = this.alertCtrl.create({
+            title: 'แจ้งเตือนจากระบบ',
+            message: data_text,
+            buttons: [
+              {
+                text: 'ตกลง',
+                handler: () => {
+                  // console.log('Agree clicked');
+                }
+              }
+            ]
+          });
+          confirm.present();
+        }// else if
         else{
-          alert(JSON.stringify(res))
-        }
+          const confirm = this.alertCtrl.create({
+            title: 'แจ้งเตือนจากระบบ',
+            message: data_text,
+            buttons: [
+              {
+                text: 'ตกลง',
+                handler: () => {
+                  // console.log('Agree clicked');
+                }
+              }
+            ]
+          });
+          confirm.present();
+        }//else
       })
       .catch((err)=>{ 
         alert("กรุณากรอกข้อมูลให้ครบด้วยครับ");

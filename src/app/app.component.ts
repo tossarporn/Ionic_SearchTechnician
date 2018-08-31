@@ -25,7 +25,7 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
   templateUrl: 'app.html'
 })
 export class MyApp { 
-  rootPage:any = EditsGuestPage; 
+  rootPage:any = EditsTecPage; 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,dialog:Dialogs) {
     platform.ready().then(() => {

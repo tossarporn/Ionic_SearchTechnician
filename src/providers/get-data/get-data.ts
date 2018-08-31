@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.8.19/Final_Project/service/";
+  host: string = "http://10.5.27.221/Final_Project/service/";
   get_register: string = "register.php";
   get_login: string = "login.php";
   get_area: string = "Get_Area.php";
@@ -28,11 +28,11 @@ export class GetDataProvider {
   register_guest: string = "guest_register.php";
   update_guest: string = "update_guest.php";
   get_detail_guest: string = "get_edit_guest.php";
-  get_details_tecnician:string ="get_edit_tecnician.php";
-  update_details_guest:string = "admin_update_guest.php";
-  update_details_technician:string = "admin_update_tec.php";
-  delete_details_tec:string="delete_admin_tec.php";
-  delete_details_guest:string="delete_admin.guest.php";
+  get_details_tecnician: string = "get_edit_tecnician.php";
+  update_details_guest: string = "admin_update_guest.php";
+  update_details_technician: string = "admin_update_tec.php";
+  delete_details_tec: string = "delete_admin_tec.php";
+  delete_details_guest: string = "delete_admin.guest.php";
   headers: any =
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -138,9 +138,9 @@ export class GetDataProvider {
         }).subscribe(result => {
           reslov(result)
         },
-      err => {
-        reject(err)
-      })
+        err => {
+          reject(err)
+        })
     })
   }//showDetail_Technician
 
@@ -367,7 +367,7 @@ export class GetDataProvider {
     })
   }//get_loop_detail_guest
 
-  get_loop_details_technician(){
+  get_loop_details_technician() {
     return new Promise((reslov, reject) => {
       this.http.get(this.host + this.get_details_tecnician,
         {
@@ -380,66 +380,64 @@ export class GetDataProvider {
       }
     })
   }
-guest_update_details(
-  id_guest,guest_name,guest_lastname,guest_tel,guest_num_house,
-  guest_street,guest_distric,guest_area,username,password
-)
-{
-  return new Promise((reslov, reject) => {
-    this.http.post(this.host + this.update_details_guest,
-      {
-        guest_id:id_guest,
-        guest_name:guest_name,
-        guest_lastname:guest_lastname,
-        guest_tel:guest_tel,
-        guest_num_house:guest_num_house,
-        guest_street:guest_street,
-        guest_distric:guest_distric,
-        guest_area:guest_area,
-        guest_username:username,
-        guest_password:password
-      },
-      {
-        headers: this.headers
-      }).subscribe(result => {
-        reslov(result)
-      })
-    err => {
-      reject(err)
-    }
-  })
-}//guest_update_details
+  guest_update_details(
+    id_guest, guest_name, guest_lastname, guest_tel, guest_num_house,
+    guest_street, guest_distric, guest_area, username, password
+  ) {
+    return new Promise((reslov, reject) => {
+      this.http.post(this.host + this.update_details_guest,
+        {
+          guest_id: id_guest,
+          guest_name: guest_name,
+          guest_lastname: guest_lastname,
+          guest_tel: guest_tel,
+          guest_num_house: guest_num_house,
+          guest_street: guest_street,
+          guest_distric: guest_distric,
+          guest_area: guest_area,
+          guest_username: username,
+          guest_password: password
+        },
+        {
+          headers: this.headers
+        }).subscribe(result => {
+          reslov(result)
+        })
+      err => {
+        reject(err)
+      }
+    })
+  }//guest_update_details
 
-technicain_update_details(
-  ref_id_tec,
-  ref_area_name,
-  ref_type_equipment,
-  name_store,
-  tel,   
-  account, 
-  time_start,
-  time_end, 
-  num_house, 
-  cost_begin,
-  distric, 
-  street
-)
-  {
+  technicain_update_details(
+    ref_id_tec,
+    ref_area_name,
+    ref_type_equipment,
+    name_store,
+    tel,
+    account,
+    time_start,
+    time_end,
+    num_house,
+    cost_begin,
+    distric,
+    street
+  ) {
     return new Promise((reslov, reject) => {
       this.http.post(this.host + this.update_details_technician,
         {
-          ref_id_tec:ref_id_tec,
-          ref_area_name:ref_area_name,
-          ref_type_equipment:ref_type_equipment,
-          name_store:name_store,
-          tel:tel,   
-          account:account, 
-          time_start:time_start,
-          time_end:time_end, 
-          num_house:num_house, 
-          cost_begin:cost_begin,
-          distric:distric, 
-          street:street
+          ref_id_tec: ref_id_tec,
+          ref_area_name: ref_area_name,
+          ref_type_equipment: ref_type_equipment,
+          name_store: name_store,
+          tel: tel,
+          account: account,
+          time_start: time_start,
+          time_end: time_end,
+          num_house: num_house,
+          cost_begin: cost_begin,
+          distric: distric,
+          street: street
         },
         {
           headers: this.headers
@@ -452,12 +450,11 @@ technicain_update_details(
     })
   }//technicain_update_details
 
-  delete_tec()
-  {
+  delete_tec(ref_tec) {
     return new Promise((reslov, reject) => {
       this.http.post(this.host + this.delete_details_tec,
         {
-          
+          ref_regis_tec: ref_tec
         },
         {
           headers: this.headers
@@ -471,12 +468,11 @@ technicain_update_details(
 
   }//delect_tec
 
-  delete_guest(loop_id_guest)
-  {
+  delete_guest(loop_id_guest) {
     return new Promise((reslov, reject) => {
       this.http.post(this.host + this.delete_details_guest,
         {
-          id_guest:loop_id_guest
+          id_guest: loop_id_guest
         },
         {
           headers: this.headers
