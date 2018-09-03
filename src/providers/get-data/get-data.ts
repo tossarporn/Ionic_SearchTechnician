@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.27.221/Final_Project/service/";
+  host: string = "http://10.5.27.6/Final_Project/service/";
   get_register: string = "register.php";
   get_login: string = "login.php";
   get_area: string = "Get_Area.php";
@@ -33,6 +33,7 @@ export class GetDataProvider {
   update_details_technician: string = "admin_update_tec.php";
   delete_details_tec: string = "delete_admin_tec.php";
   delete_details_guest: string = "delete_admin.guest.php";
+  get_details_admin:string = "get_details_admin.php";
   headers: any =
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -484,5 +485,19 @@ export class GetDataProvider {
       }
     })
   }//delete_guest
+
+details_admin(){
+  return new Promise((reslov, reject) => {
+    this.http.get(this.host + this.get_details_admin,
+      {
+        headers: this.headers
+      }).subscribe(result => {
+        reslov(result)
+      })
+    err => {
+      reject(err)
+    }
+  })
+}
 
 }//GetDataProvider

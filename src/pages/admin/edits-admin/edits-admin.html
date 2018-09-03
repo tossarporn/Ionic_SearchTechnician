@@ -13,6 +13,66 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding  *ngIf="details_tec">
+    <ion-row>
+        <ion-item col-6>
+            <ion-label floating>username :</ion-label> 
+        <ion-input type="tel" [(ngModel)]="details_tec[0].user_admin" value="{{details_tec[0].user_admin}}" clearInput	></ion-input>
+      </ion-item>
+  
+      <ion-item col-6>
+          <ion-label floating>password :</ion-label> 
+      <ion-input type="tel" [(ngModel)]="details_tec[0].password_admin" value="{{details_tec[0].password_admin}}" clearInput	></ion-input>
+    </ion-item>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-item col-6>
+          <ion-label floating>เบอร์โทรศัพท์ :</ion-label> 
+      <ion-input type="tel" [(ngModel)]="details_tec[0].tel_admin" value="{{details_tec[0].tel_admin}}" clearInput	></ion-input>
+    </ion-item>
+
+    <ion-item col-6>
+        <ion-label floating>บัญชีธนคาร :</ion-label> 
+    <ion-input type="tel" [(ngModel)]="details_tec[0].account_bank_admin" value="{{details_tec[0].account_bank_admin}}" clearInput	></ion-input>
+  </ion-item>
+  </ion-row>
+  
+  <ion-label style="padding-left:10px; padding-top:20px;"><h6>ที่อยู่:</h6></ion-label>
+
+<ion-row>             
+  
+          <ion-item col-6>
+              <ion-label floating>บ้านเลขที่</ion-label>
+          <ion-input type="tel" [(ngModel)]=" details_tec[0].number_house_admin" value="{{details_tec[0].number_house_admin}}" clearInput	></ion-input>
+          </ion-item>
+      
+  <ion-item col-6>
+          <ion-label floating>ถนน</ion-label>
+      <ion-input type="text" [(ngModel)]="details_tec[0].street_admin" value="{{details_tec[0].street_admin}}" clearInput	></ion-input> 
+  </ion-item>
+    </ion-row>
+
+  <ion-row>
+      <!-- <ion-label ></ion-label> -->
+    <ion-item col-6>
+        <ion-label floating>แขวง</ion-label>
+    <ion-input type="text" [(ngModel)]="details_tec[0].distric_admin" value="{{ details_tec[0].distric_admin}}" clearInput	></ion-input>
+    </ion-item>
+ 
+    <ion-item col-6>
+            <ion-label floating>เขต</ion-label>
+            <ion-select [(ngModel)]="details_tec[0].area_admin">
+              <ion-option [value]="area.area_name" *ngFor="let area of data_area" >{{area.area_name}}</ion-option>
+          </ion-select>
+    </ion-item>
+  </ion-row>
+
+  <ion-row style="margin-top:40px;">
+      <ion-col></ion-col>
+      <button ion-button color="secondary" (click)="submit(details_tec[0])">ยืนยัน</button>
+      <ion-col></ion-col>
+    </ion-row>
 
 </ion-content>

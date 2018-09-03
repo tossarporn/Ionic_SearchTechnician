@@ -16,6 +16,8 @@ import {CustomerAddressPage} from '../pages/customer-address/customer-address';
 import {DataRentPage} from '../pages/data-rent/data-rent'
 import {EditsGuestPage} from '../pages/admin/edits-guest/edits-guest';
 import {EditsTecPage} from '../pages/admin/edits-tec/edits-tec';
+import {EditsAdminPage} from '../pages/admin/edits-admin/edits-admin';
+
 
 //components
 import {IonRatingComponent} from '../components/ion-rating/ion-rating'
@@ -25,7 +27,7 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
   templateUrl: 'app.html'
 })
 export class MyApp { 
-  rootPage:any = EditsTecPage; 
+  rootPage:any = EditsAdminPage; 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,dialog:Dialogs) {
     platform.ready().then(() => {

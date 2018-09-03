@@ -14,32 +14,34 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-        <b> ที่อยู่: </b> 
-    </ion-card-header>
-    <ion-card-content >
-      <p class="detail">
-          <b>บ้านเลขที่:</b> 123/456 
-          <b>ถนน:</b> 123456789
-          
-      </p>    
-      <p class="detail">
-          <b>แขวง:</b> 123456789 &nbsp;
-          <b>เขต:</b> 123456789
-      </p>
-      <p class="detail">
-      <b>บัญชีธนคาร:</b> 1234567890
-      </p>
-      <p class="detail">
-      <b>เบอร์โทรศัพท์:</b> 0123456789
-      <button  ion-button icon-left clear small style="margin-bottom:10px;" (click)="tel_admin(0123456789)" >
-          <ion-icon ios="ios-call" md="md-call" color="secondary"></ion-icon>
-        โทร
-      </button>
-    </p>
-    </ion-card-content>
-  </ion-card>
+
+      <ion-card *ngIf="details_tec">
+          <ion-card-header>
+              <b> ที่อยู่: </b> 
+          </ion-card-header>
+          <ion-card-content >
+            <p class="detail">
+                <b>บ้านเลขที่:</b>{{details_tec[0].number_house_admin}}
+                <b>ถนน:</b> {{details_tec[0].street_admin}}
+                
+            </p>    
+            <p class="detail">
+                <b>แขวง:</b> {{details_tec[0].distric_admin}} &nbsp;
+                <b>เขต:</b> {{details_tec[0].area_admin}}
+            </p>
+            <p class="detail">
+            <b>บัญชีธนคาร:</b> {{details_tec[0].account_bank_admin}}
+            </p>
+            <p class="detail">
+            <b>เบอร์โทรศัพท์:</b> {{details_tec[0].tel_admin}}
+            <button  ion-button icon-left clear small style="margin-bottom:10px;" (click)="tel_admin(details_tec[0].tel_admin)" >
+                <ion-icon ios="ios-call" md="md-call" color="secondary"></ion-icon>
+              โทร
+            </button>
+          </p>
+          </ion-card-content>
+        </ion-card>
+
   <!-- <b></b> -->
   <!-- <p></p> -->
 </ion-content>
