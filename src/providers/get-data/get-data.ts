@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.27.6/Final_Project/service/";
+  host: string = "http://10.5.6.4/Final_Project/service/";
   get_register: string = "register.php";
   get_login: string = "login.php";
   get_area: string = "Get_Area.php";
@@ -34,6 +34,7 @@ export class GetDataProvider {
   delete_details_tec: string = "delete_admin_tec.php";
   delete_details_guest: string = "delete_admin.guest.php";
   get_details_admin:string = "get_details_admin.php";
+  update_details_admin:string ="admin_update_details.php";
   headers: any =
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -498,6 +499,33 @@ details_admin(){
       reject(err)
     }
   })
+}//details_admin
+
+update_admin(id,user,password,tel_admin,account_admin,num_houst_admin,street_admin,distric_admin,area_admin){
+  return new Promise((reslov, reject) => {
+    this.http.post(this.host + this.update_details_admin,
+      {
+        id_admin:id,
+        username: user,
+        password: password,
+        tel: tel_admin,
+        account:account_admin ,
+        num_houst:num_houst_admin ,
+        street:street_admin ,
+        distric:distric_admin ,
+        area:area_admin
+      },
+      {
+        headers: this.headers
+      }).subscribe(result => {
+        reslov(result)
+      })
+    err => {
+      reject(err)
+    }
+  })
 }
+
+
 
 }//GetDataProvider
