@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController, LoadingController,App  } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { GetDataProvider } from '../../providers/get-data/get-data';
 import { DataRentPage } from '../data-rent/data-rent'
 import { CustomerPage } from '../customer/customer';
 import { Storage } from '@ionic/storage';
+import { Badge } from '@ionic-native/badge';
 
 
 /**
@@ -20,13 +21,19 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'customer-address.html',
 })
 export class CustomerAddressPage {
-guest_name: any
-guest_lastname:any
-guest_area:any
-guest_distric:any 
-guest_num_house:any
-guest_street: any
-guest_tel:any
+  details_customer = 
+  {
+    guest_id:'',
+    guest_name:'',
+    guest_lastname:'',
+    guest_area:'',
+    guest_distric: '',
+    guest_num_house:'',
+    guest_street:'',
+    guest_tel:'',
+  }
+
+
 
 
   editng: boolean
@@ -39,7 +46,8 @@ guest_tel:any
   area: any = "";
   equipment: any = "";
   data_array: any;
-  test_data: any;
+  data_guest: any;
+  show_details:any;
 
   details_guest = {
     name: '',
@@ -51,10 +59,9 @@ guest_tel:any
     myDate: '',
   };
 
-  guest: any;
-  guest_id: any;
 
   tech_id: any;
+  val_guest:any;
 
   todo;
   nav;
@@ -66,11 +73,14 @@ guest_tel:any
     private formBuilder: FormBuilder,
     private GetDataProvider: GetDataProvider,
     private storage: Storage,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
+    public app: App,
+    private badge: Badge
 
   ) {
 
     this.editng = false;
-
     this.detail = this.formBuilder.group({
       name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -82,33 +92,10 @@ guest_tel:any
       myDate: ['', Validators.required],
       tel: ['', Validators.required],
     });
-    this.address = this.navParams.get("address_tec");
-    let technician_id = this.address.id
-    let technician_equipment = this.address.type_name
-    let technician_equipmentID = this.address.ref_type
-    let tecnician_regisID = this.address.ref_regis_tec
-    console.log(this.address.ref_regis_tec);
-    console.log('technician_address=>',  this.address);//SendingForTechnician
-
-
-    this.guest = storage.get('guest').then((val) => {
-      let data_guest = val
-      this.guest_id = data_guest.data_user.id
-      this.guest_name = data_guest.data_user.guest_name
-      this.guest_lastname = data_guest.data_user.guest_lastname
-      this.guest_tel = data_guest.data_user.guest_tel
-      this.guest_num_house = data_guest.data_user.guest_num_house
-      this.guest_street= data_guest.data_user.guest_street
-      this.guest_distric = data_guest.data_user.guest_distric
-      this.guest_area = data_guest.data_user.guest_area
+    
+    
+    
       
-      
-      
-      // console.log('customer_address_page=>',this.guest_id);
-      // console.log('customer_address_val=>', val);
-      console.log('customer_address_val=>', this.guest_name)
-
-    })//get data_user
 
     this.GetDataProvider.show_area()
       .then((data) => {
@@ -120,106 +107,226 @@ guest_tel:any
         console.log('area_error=>', error)
       });//show_area
 
-
-
-  }//constructor
-
-
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad CustomerAddressPage');
-  // }
-  
-
-  submit() {
-  //  console.log(
-  //   // this.guest_id, 
-  //   // this.guest_name,
-  //   // this.guest_lastname, 
-  //   // this.guest_tel, 
-  //   // this.guest_num_house, 
-  //   // this.guest_street,
-  //   // this.guest_distric,
-  //   this.guest_area,
-  // );
-
-  this.GetDataProvider.updates_guest(
-    this.guest_id, 
-    this.guest_name,
-    this.guest_lastname, 
-    this.guest_tel, 
-    this.guest_num_house, 
-    this.guest_street,
-    this.guest_distric,
-    this.guest_area)
-    .then((result)=>{
-      let val = result
-      console.log("val_detials",val);
+      // this.navCtrl.setRoot(this.navCtrl.getActive().component)
+    this.address = this.navParams.get("address_tec");
+    let technician_id = this.address.id
+    let technician_equipment = this.address.type_name
+    let technician_equipmentID = this.address.ref_type
+    let tecnician_regisID = this.address.ref_regis_tec
+    console.log(this.address.ref_regis_tec);
+    console.log('technician_address=>',  this.address);//SendingForTechnician
+      let guest_d = this.navParams.get("details_tes");
+      let dd = guest_d
+      console.log("guest_d",dd);
       
-    })
-    .catch((err)=>{
-      console.log("val_detials_err",err);
-    })
+      
 
-  // console.log(
-  //   this.guest_name,
-  //   this.guest_lastname, 
-  //   this.guest_tel, 
-  //   this.address.type_name,
-  //   this.guest_num_house, 
-  //   this.guest_street,
-  //   this.guest_distric,
-  //   this.guest_area,
-  //   this.details_guest.myDate,
-  //   this.address.id,
-  //   this.guest_id,
-  //   this.address.ref_regis_tec);
-  
+    let tech = this.storage.set('tech',this.address,) .then((succ) => 
+    {
+    let guest_data = this.storage.set('details', this.details_guest)
+    })
+  .catch((err) => {
+    console.log(err);
+  })//tech
+ 
+
+    this.ionViewWillEnter()
+  }//constructor
+  ionViewDidLoad(){
     
-    this.GetDataProvider.builid_guest(
-      this.guest_name,
-      this.guest_lastname, 
-      this.guest_tel, 
-      this.address.type_name,
-      this.guest_num_house, 
-      this.guest_street,
-      this.guest_distric,
-      this.guest_area,
-      this.details_guest.myDate,
-      this.address.id,
-      this.guest_id,
-      this.address.ref_regis_tec
-    ).then((res) => {
-      this.data_array = res;
-      let message = this.data_array.message;
-      let status = this.data_array.status;
-      // this.test
+    console.log('ionViewDidLoad CustomerAddressPage');
+  }
 
 
-      if (status === true) {
-        let tech = this.storage.set('tech', this.address, )
-          .then((succ) => {
-            let guest_data = this.storage.set('details', this.details_guest)
-            this.navCtrl.insert(1, DataRentPage);
-            this.navCtrl.popToRoot();
-          }).catch((err) => {
-            console.log(err);
-          })
-        alert(message);
-        console.log('true=>', message)
-      }
-      else if (status === false) {
-        alert(message);
-        console.log('TechForRent_False=>', status);
-      }
+   ionViewWillEnter(){
+      let guest = this.storage.get('guest').then((val) => {
+      let data_guest = val
+      this.details_customer.guest_id = data_guest.data_user.id
+      this.details_customer.guest_name = data_guest.data_user.guest_name
+      this.details_customer.guest_lastname = data_guest.data_user.guest_lastname
+      this.details_customer.guest_tel = data_guest.data_user.guest_tel
+      this.details_customer.guest_num_house = data_guest.data_user.guest_num_house
+      this.details_customer.guest_street= data_guest.data_user.guest_street
+      this.details_customer.guest_distric = data_guest.data_user.guest_distric
+      this.details_customer.guest_area = data_guest.data_user.guest_area
+      console.log('customer_address_val=>', this.details_customer)
+    console.log(data_guest);
+    
+    })//get data_user
+    // this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
 
-      else {
-        alert('ไม่สามารถติดต่อกลับข้อมูลได้');
-      }
 
-    }).catch((err) => {
-      console.log('not_insert=>', err);
-      alert(JSON.stringify(err))
-    })
+  
+ submit(val_detail) {
+    
+  
+    const confirm = this.alertCtrl.create({
+      title: 'ลูกค้าต้องการที่จะทำการจองหรือไม่ ?',
+      buttons: [
+        {
+          text: 'ไม่',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'จอง',
+          handler: () => {
+              let customer_update= this.GetDataProvider.updates_guest(
+              this.details_customer.guest_id, 
+              this.details_customer.guest_name,
+              this.details_customer.guest_lastname, 
+              this.details_customer.guest_tel, 
+              this.details_customer.guest_num_house, 
+              this.details_customer.guest_street,
+              this.details_customer.guest_distric,
+              this.details_customer.guest_area
+            )
+              .then((result)=>{
+
+                console.log(customer_update);
+                
+                let loading = this.loadingCtrl.create({
+                    content: 'Please wait...'
+                  });
+                
+                  loading.present();
+                
+                  setTimeout(() => {
+                    let val:any = result
+                    let message_val =val.message
+                    const confirm = this.alertCtrl.create({
+                      title: 'แจ้งเตือนจากระบบ',
+                      message: message_val,
+                      buttons: [
+                        {
+                          text: 'ตกลง',
+                          handler: () => {
+                            let guest = this.storage.get('guest').then((val) => {
+                             this.navCtrl.insert(1, DataRentPage);
+                             this.navCtrl.popToRoot();
+                             loading.dismiss(); 
+                           })//get data_user
+                            
+                          console.log('Agree clicked');
+                          }
+                        }
+                      ]
+                    });
+                    confirm.present();
+                    
+                    console.log("val_detials",val);
+                  }, 3000);
+              })
+              .catch((err)=>{
+                console.log("val_detials_err",err);
+              })//updates_guest
+
+
+              this.GetDataProvider.builid_guest(
+                this.details_customer.guest_name,
+                this.details_customer.guest_lastname, 
+                this.details_customer.guest_tel,
+                this.address.type_name,
+                this.details_customer.guest_num_house,
+                this.details_customer.guest_street,
+                this.details_customer.guest_distric,
+                this.details_customer.guest_area,
+                this.details_guest.myDate,
+                this.address.id,
+                this.details_customer.guest_id,
+                this.address.ref_regis_tec,
+              ).then((res) => {
+                this.data_array = res;
+                let message = this.data_array.message;
+                let status = this.data_array.status;
+
+                let loading = this.loadingCtrl.create({
+                  content: 'Please wait...'
+                });
+              
+                loading.present();
+              
+                setTimeout(() => {
+                  if (status === true) {
+                    const confirm = this.alertCtrl.create({
+                      title: 'แจ้งเตือนจากระบบ',
+                      message: message,
+                      buttons: [
+                        {
+                          text: 'ตกลง',
+                          handler: () => {
+                            
+                            console.log('Agree clicked');
+                          }
+                        }
+                      ]
+                    });
+                    confirm.present();
+                  }
+            
+                  else if (status === false) {
+  
+                    const confirm = this.alertCtrl.create({
+                      title: 'แจ้งเตือนจากระบบ',
+                      message: message,
+                      buttons: [
+                        {
+                          text: 'ตกลง',
+                          handler: () => {
+                            console.log('Agree clicked');
+                          }
+                        }
+                      ]
+                    });
+                    confirm.present();
+                    console.log('TechForRent_False=>', status);
+                  }
+            
+                  else {
+                    alert('ไม่สามารถติดต่อกลับข้อมูลได้');
+                  }
+                  loading.dismiss();
+                }, 3000);
+                
+              }).catch((err) => {
+                console.log('not_insert=>', err);
+                const confirm = this.alertCtrl.create({
+                  title: 'แจ้งเตือนจากระบบ',
+                  message: err,
+                  buttons: [
+                    {
+                      text: 'ตกลง',
+                      handler: () => {
+                        console.log('Agree clicked');
+                      }
+                    }
+                  ]
+                });
+                confirm.present();
+              })
+              console.log('Agree clicked');//builid_guest
+          }
+        }
+      ]
+    });
+    confirm.present();
+                // this.details_customer.guest_id, 
+                // this.details_customer.guest_name,
+                // this.details_customer.guest_lastname, 
+                // this.details_customer.guest_tel, 
+                // this.details_customer.guest_num_house, 
+                // this.details_customer.guest_street,
+                // this.details_customer.guest_distric,
+                // this.details_customer.guest_area,
+                // this.details_guest.myDate,
+                // this.address.id,
+                // this.address.type_name,
+                // this.address.ref_regis_tec
+                // // console.log(this.details_customer,this.address.id,this.address.type_name,this.address.ref_regis_tec,this.details_guest.myDate);
+                // console.log(this.address.type_name);
+                
   }
 
 }
