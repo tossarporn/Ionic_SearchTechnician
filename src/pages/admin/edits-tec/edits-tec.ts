@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-ang
 import { AlertController } from 'ionic-angular';
 import { GetDataProvider } from '../../../providers/get-data/get-data';
 import {DetailsEditingTecPage} from '../details-editing-tec/details-editing-tec';
+import {AdminPage} from '../admin';
 /**
  * Generated class for the EditsTecPage page.
  *
@@ -56,6 +57,9 @@ export class EditsTecPage {
       console.log(eve);
       
   }
+  back_technician(){
+    this.navCtrl.push(AdminPage);
+  }
   
     tec_delete(){
       const confirm = this.AlertController.create({
@@ -103,6 +107,7 @@ export class EditsTecPage {
                     loading.dismiss();
                   }, 1000);
                   console.log(success);
+                  
                 }).catch((err) => {
                   console.log(err);
                 })
@@ -113,7 +118,7 @@ export class EditsTecPage {
       });
       confirm.present();
 
-    }
+    }//tec_delete
 
     tec_delete_all(){
       const delete_all = this.AlertController.create({
@@ -174,7 +179,7 @@ export class EditsTecPage {
       });
       delete_all.present();
 
-    }
+    }//tec_delete_all
   
     checks_all(){
       this.check_all = true

@@ -4,6 +4,7 @@ import { GetDataProvider } from '../../../providers/get-data/get-data';
 import { AlertController } from 'ionic-angular';
 import { DetailsEdtingGuestPage } from '../details-edting-guest/details-edting-guest';
 import { Storage } from '@ionic/storage';
+import {AdminPage} from '../admin';
 
 /**
  * Generated class for the EditsGuestPage page.
@@ -186,5 +187,9 @@ export class EditsGuestPage {
   }
   bia(_item) {
     this.get_details = _item
+  }
+
+  back_technician(){
+    this.navCtrl.push(AdminPage);
   }
 }
