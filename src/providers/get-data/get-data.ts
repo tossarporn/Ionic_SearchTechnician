@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.6.4/Final_Project/service/";
+  host: string = "http://10.5.9.233/Final_Project/service/";
   get_register: string = "register.php";
   get_login: string = "login.php";
   get_area: string = "Get_Area.php";
@@ -33,6 +33,7 @@ export class GetDataProvider {
   update_details_technician: string = "admin_update_tec.php";
   delete_details_tec: string = "delete_admin_tec.php";
   delete_details_guest: string = "delete_admin.guest.php";
+  delete_forrent:string="delete_for_rent.php";
   get_details_admin:string = "get_details_admin.php";
   update_details_admin:string ="admin_update_details.php";
   headers: any =
@@ -152,11 +153,11 @@ export class GetDataProvider {
         {
           name_guest: name,
           last_name_guest: last_name,
-          tel: tel,
           equipment: equipment,
           num_house: num_house,
           street: street,
           ditstric: ditstric,
+          tel: tel,
           area: area,
           date: date,
           ref_tec: ref_tec,
@@ -524,7 +525,23 @@ update_admin(id,user,password,tel_admin,account_admin,num_houst_admin,street_adm
       reject(err)
     }
   })
-}
+}//update_admin
+
+delete_details_rent(id_rent){
+  return new Promise((reslov,reject)=>{this.http.post(this.host+this.delete_forrent,{
+    id_rent:id_rent
+  },
+  {
+    headers: this.headers
+  }).subscribe(result=>{
+    reslov(result)
+  })
+  err=>{
+    reject(err)
+    }
+  })
+}//delete_details_rent
+
 
 
 
