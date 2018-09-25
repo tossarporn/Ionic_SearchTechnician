@@ -4,21 +4,143 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header  no-border>
 
-  <ion-navbar>
-    <ion-title>ข้อมูลสำหรับการจอง</ion-title>
-  </ion-navbar>
+        <ion-navbar hideBackButton >
 
+                <ion-buttons  left>
+                        <button ion-button icon-only (click)="back_technician()" *ngIf="!editing">
+                                <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+                            </button>
+                    </ion-buttons>
+                    
+
+                    <ion-title *ngIf="!editing" >ข้อมูลสำหรับการจอง</ion-title>
+
+                    <ion-buttons end>
+                        <button ion-button (click)="editing=!editing" *ngIf="!editing">
+                                <ion-icon ios="ios-build" md="md-build">ลบข้อมูล</ion-icon>
+                        </button>
+                    </ion-buttons>
+
+                    <ion-buttons >
+                            <button ion-button icon-only icon-start *ngIf="editing" (click)="editing=!editing">
+                                    <ion-icon name="return-left"></ion-icon>
+                            </button>
+                        </ion-buttons>
+
+                    <ion-buttons end>
+                        <button ion-button *ngIf="editing" (click)="checks_all()">
+                            <ion-icon name="checkmark">เลือกทั้งหมด</ion-icon>
+                        </button>
+                    </ion-buttons>
+                    
+                    <ion-buttons end>
+                        <button ion-button *ngIf="editing" (click)="check_all=!check_all">
+                            <ion-icon name="close" md="md-close">ยกเลิก</ion-icon>
+                        </button>
+                    </ion-buttons>
+            
+                    
+            
+                    <ion-buttons end *ngIf="editing && !check_all">
+                      <button ion-button (click)="tec_delete()" >
+                          <ion-icon name="trash" md="md-trash">ลบ</ion-icon>
+                      </button>
+                  </ion-buttons>
+            
+                  <ion-buttons end *ngIf="editing && check_all">
+                    <button ion-button (click)="tec_delete_all()" >
+                        <ion-icon name="trash" md="md-trash">ลบทั้งหมด</ion-icon>
+                    </button>
+                </ion-buttons>
+
+              </ion-navbar>
 </ion-header>
 
 
+
+
+
 <ion-content padding> 
-    <ion-list *ngFor="let details of get_result" >
-    <ion-card >
+
+        <ng-template #test >
+                <h1 class="tex-rent">ไม่มีรายการจอง</h1>
+        </ng-template>
+
+        <ion-list  *ngFor="let details of get_result">
+                <ion-card *ngIf="details && editing" >
+                       
+                       
+                    <ion-card-header>
+                            <ion-checkbox *ngIf="!check_all"  style="float:right" (click)="id_value(details.id)"></ion-checkbox>
+                            <ion-checkbox *ngIf="check_all"   style="float:right"  [checked]="check_all"></ion-checkbox>
+                                <b style="margin:auto;"> วันที่รับซ่อม: {{details['date of service']}} </b> 
+                               
+                    </ion-card-header>
+                    <ion-card-content >
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                    <div>
+                                        <div>
+                                            <b>ชื่อ:{{details.name}}</b>
+                                            <b>นามสกุล:{{details.lastname}}</b> 
+                                        </div> 
+                                    </div>
+                            </ion-col>            
+                    </ion-row>
+                    <!--name-->
+                    
+                    <!-- address-->
+                     <ion-row>
+                         <ion-col>
+                              <div >
+                                  <div>
+                                        <b>บ้านเลขที่: {{details.house_number}}</b>
+                                        <b>ถนน:{{details.street}}</b> 
+                                  </div>
+                              </div>
+                                   
+                         </ion-col>
+                     </ion-row>
+                       
+                     <ion-row>
+                         <ion-col>
+                                <div>
+                                    <b>แขวง:{{details.distric}}</b>  &nbsp;
+                                    <b style="margin-right:50px">เขต:{{details.area}}</b> 
+                                    </div>
+                         </ion-col>
+                     </ion-row>
+                        
+            
+                    <!--tell-->
+                    <ion-row>
+                        <ion-col>
+                                <p >
+                                  <b>เบอร์โทรศัพท์:</b> {{details.tel}}
+                                  <button  ion-button icon-left clear small style="margin-bottom:10px;" (click)="tel_guest(details.tel)" > <ion-icon name="call" color="secondary" ></ion-icon>โทร</button>
+                                </p>
+                        </ion-col>
+                    </ion-row>
+                   
+              
+                    </ion-grid>
+                     
+                    </ion-card-content>
+               
+                  </ion-card>
+                </ion-list>
+            
+    <ion-list  *ngFor="let details of get_result">
+            
+    <ion-card *ngIf="details && !editing" >
             <!-- <ion-icon name="close-circle" style="float:right"></ion-icon> -->
             <!-- <ion-radio ></ion-radio> -->
+            
         <ion-card-header>
+                
             <b style="margin:auto;"> วันที่รับซ่อม: {{details['date of service']}} </b> 
         </ion-card-header>
         <ion-card-content >
