@@ -8,13 +8,19 @@
 
 
 <ion-content>
+    <ng-template #test >
+        <h1 class="tex-rent">ไม่มีรายการข้อมูล</h1>
+</ng-template>
+
+
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="กรุณารอสักครู่...">
     
         </ion-refresher-content>
       </ion-refresher>
-  <ion-grid>
-      
+
+  <ion-grid *ngIf="tec_detils != 0;else test" >
+     
     <ion-list *ngFor="let item of Detail_for">
       <ion-card>
         <img src="{{show_imgs}}/Final_Project/service/{{item.image_name}}" />
