@@ -9,6 +9,7 @@ import { Dialogs } from '@ionic-native/dialogs';
 import { HttpClientModule} from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
 
+
 //page controller
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -23,7 +24,7 @@ import{EquipmentMountPage} from'../pages/technician/chart-room/equipment-mount/e
 import {CustomerAmountPage} from '../pages/technician/chart-room/customer-amount/customer-amount';
 import {CustomerPage} from '../pages/customer/customer';
 import {SearchPage} from '../pages/search/search'
-import {DataRentPage} from '../pages/data-rent/data-rent'
+import {DataRentPage,FormatTimePipe} from '../pages/data-rent/data-rent'
 import {SearchEquipmentPage} from '../pages/search-equipment/search-equipment'
 import {ShowTecDetailPage} from '../pages/show-tec-detail/show-tec-detail'
 import {DetailTecPage} from '../pages/detail-tec/detail-tec'
@@ -50,7 +51,6 @@ import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Calendar } from '@ionic-native/calendar';
-
 //components
 import {IonRatingComponent} from '../components/ion-rating/ion-rating'
 
@@ -81,6 +81,7 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
     EditsTecPage,
     DetailsEditingTecPage,
     DetailsEdtingGuestPage,
+    FormatTimePipe
   ],
   imports: [ 
     FormsModule, 

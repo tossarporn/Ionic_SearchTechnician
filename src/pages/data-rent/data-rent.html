@@ -18,67 +18,116 @@
 <ng-template #test >
   <h1 class="tex-rent">กรุณาทำการจอง</h1>
 </ng-template>
+
+<!-- <ion-buttons end *ngIf="!data_rent" (click)=" data_rent =!data_rent ">
+  <button ion-button>
+          <ion-icon name="trash" md="md-trash" >!data_rent</ion-icon>
+  </button>
+</ion-buttons>
+
+<ion-buttons end *ngIf="data_rent" (click)=" status_rent =data_rent">
+  <button ion-button>
+          <ion-icon name="trash" md="md-trash" >data_rent</ion-icon>
+  </button>
+</ion-buttons>
+
+<div *ngIf="!data_rent">
+  !data_rent
+</div>
+
+
+
+<div *ngIf="data_rent">
+  data_rent
+  <ion-item>
+    <ion-label>step=100, snaps, </ion-label>
+    <ion-range min="1" pin="true" snap="true" max="3" step="1"   color="secondary" [(ngModel)]="singleValue4"></ion-range>
+  </ion-item>
+  </div>
+
+  <div *ngIf="status_rent && data_rent">
+    status_rent
+    <button ion-button>
+      <ion-icon name="trash" md="md-trash" >score</ion-icon>
+  </button>
+
   
+ 
+    </div> -->
+
+
+<div *ngIf="!data_rent">
   <ion-card *ngIf="Detail_for||mydata ;else test">
-      <ion-card-header>
-            <table>
-              <tr >
-                <td> <b>ชื่อร้าน:</b>  {{Detail_for.name_store}}</td>
-                <td ><b> วันที่ส่งซ่อม:{{ mydata.myDate }}</b> </td>
-              </tr>
-            </table>
-          
-      </ion-card-header>
-      <ion-card-content >
-        <table>
-          <tr>
-            <td>
-                <b >บ้านเลขที่:</b> {{Detail_for.home_number}} 
-            </td>
-            <td>
-                <b>ถนน:</b> {{Detail_for.street}}
-            </td>
-          </tr>
+    <ion-card-header>
+          <ion-grid>
+            <ion-row justify-content-end>
+              <ion-col col-8>
+                <b>วันที่ส่งซ่อม: {{ mydata }}</b>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        
+    </ion-card-header>
 
-          <tr>
-            <td>
-                <b>แขวง:</b> {{Detail_for.district}}
-            </td>
-            <td>
-                <b>เขต:</b> {{Detail_for.area_name}}
-                <!-- <b>เขต:</b>  ป้อมปราบศัตรูพ่าย -->
+    <ion-card-content >
 
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-                    <b>เบอร์โทรศัพท์:</b> {{Detail_for.tel_technician}}
-                    <!-- <b>เบอร์โทรศัพท์:</b> 012-345-6789 -->
-                   
-            </td>
-            <td>
-                <button  ion-button icon-left clear small  > <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
-            </td>
-          </tr>
-        </table>
-
-       
-      <ion-grid>
-          <ion-row >
-            <div class="rating">
-            <ion-col *ngFor="let star of stars; let i=index" tappable (click)="starClicked(i)" >
-              <ion-icon [name]="star" color="danger" ></ion-icon>
-            </ion-col>
-           {{value}}.0
-          
-          </div>
-          <button ion-button small style="margin-left:5px;"(click)="submit(value)">ยืนยัน</button>
+      <ion-grid >
+        <ion-row justify-content-start>
+          <ion-col col-6>
+            <b>ชื่อร้าน:</b> {{Detail_for.name_store}}
+          </ion-col>
         </ion-row>
 
+        <ion-row justify-content-around>
+          <ion-col col-6>
+            <b >บ้านเลขที่:</b> {{Detail_for.home_number}}  
+          </ion-col>
+
+          <ion-col col-6>
+            <b>ถนน:</b> {{Detail_for.street}}
+          </ion-col>
+        </ion-row>
+      
+        <ion-row justify-content-around>
+          <ion-col col-6>
+            <b>แขวง:</b> {{Detail_for.district}}
+          </ion-col>
+
+          <ion-col col-6>
+            <b>เขต:</b> {{Detail_for.area_name}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row justify-content-around>
+          <ion-col col-6 >
+            <b >เบอร์โทรศัพท์:</b> {{Detail_for.tel_technician}}  
+          </ion-col>
+
+          <ion-col col-6 style="margin-top:-7px">
+            <button  ion-button icon-left clear small (click)="call_tec()" > <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
+          </ion-col>
+        </ion-row>
+        
       </ion-grid>
-      </ion-card-content>
-    </ion-card>
-   {{test.tel_technician}}
+
+    <ion-grid>
+        <ion-row >
+          <div class="rating">
+          <ion-col *ngFor="let star of stars; let i=index" tappable (click)="starClicked(i)" >
+            <ion-icon [name]="star" color="danger" ></ion-icon>
+          </ion-col>
+         {{value}}.0
+        
+        </div>
+        <button ion-button small style="margin-left:5px;"(click)="submit(value)">ยืนยัน</button>
+      </ion-row>
+
+    </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</div>
+  
+<h2>{{countDown| async | formatTime}}</h2>
+<button ion-button small color="danger" [disabled]="counter == 0">ยกเลิกการจอง</button>
 </ion-content>
 

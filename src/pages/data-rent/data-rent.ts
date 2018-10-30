@@ -1,10 +1,17 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter,OnInit} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SearchPage } from '../search/search';
 import { Storage } from '@ionic/storage';
 import { GetDataProvider } from '../../providers/get-data/get-data';
 import { AlertController } from 'ionic-angular';
 import { CustomerPage } from '../customer/customer';
+import { CallNumber } from '@ionic-native/call-number';
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/observable/timer'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/take'
+import {Pipe,PipeTransform} from '@angular/core';
+// import { Pipe, PipeTransform } from '@angular/core';
 // import {HttpClient} from '@angular/common/http';
 
 /**
@@ -19,7 +26,17 @@ import { CustomerPage } from '../customer/customer';
   selector: 'page-data-rent',
   templateUrl: 'data-rent.html',
 })
-export class DataRentPage {
+
+export class DataRentPage implements OnInit {
+  countDown;
+  counter = 300;
+  tick = 1000;
+  ngOnInit() {
+    this.countDown = Observable.timer(0, this.tick)
+      .take(this.counter)
+      .map(() => --this.counter)
+  }
+
 
   details: any;
 
@@ -33,11 +50,14 @@ export class DataRentPage {
 
   test: any = {};
   address: any = {};
+
+  data_rent:boolean;
+  status_rent:boolean;
   // guest_address:string="http://10.5.6.42/Final_Project/service/CustomerForRent.php";
   // id_tec:any;
 
   rating_complacent:any={}
-
+  call_tecnician:any;
   @Input() numStars: number = 5;//full star number
   @Input() value: number = 4;//number begin
   @Input() leitura: boolean = false;
@@ -52,6 +72,7 @@ export class DataRentPage {
     private GetDataProvider: GetDataProvider,
     public alertCtrl: AlertController,
     private storage: Storage,
+    private callNumber: CallNumber
     // private http:HttpClient
 
   ) {
@@ -60,25 +81,27 @@ export class DataRentPage {
     this.guest = this.storage.get('guest').then((val) => {
       let data_guest = val
       this.guest_id = data_guest.data_user.id
-      // console.log('customer_address_page=>',data_guest);
+
+      console.log('customer_address_page=>',data_guest);
       // console.log('id_guest=>',val); 
     }).catch((err) => { 
       console.log('fail=>', err);
     })
-
-    
-
-
+    this.data_rent = false;
+    this.status_rent = false;
   }//constructor
 
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad DataRentPage');
   // }
+
+
+  
   ionViewWillEnter(){
  
     this.details = this.storage.get('details').then((success) => {
       this.mydata = success;
-      // console.log('get_detail=>', success);
+      console.log('get_detail=>', this.mydata);
     }).catch((fail) => {
       console.log('fail=>', fail);
     })//details
@@ -87,9 +110,9 @@ export class DataRentPage {
       this.Detail_for = succ
       let id_tec = this.Detail_for.id;
       let ref_id_tec = this.Detail_for.ref_regis_tec;
+      this.call_tecnician = this.Detail_for.tel_technician
       console.log(this.Detail_for.ref_regis_tec)
       console.log('ID_TEC=>', this.Detail_for);
-
     }).catch((err) => {
       console.log('false_get_tech=>', err);
     })//tech
@@ -163,4 +186,29 @@ export class DataRentPage {
     confirm.present();
   }
 
+  call_tec(){
+
+    this.callNumber.callNumber(this.call_tecnician, true)
+    .then((res)=>{
+        console.log('tel_success=>',res);
+    })
+    .catch((error)=>{
+      console.log('tel_error=>',error);
+    })
+    
+  }
+
+
+
 }//calss
+@Pipe({
+  name: 'formatTime'
+})
+export class FormatTimePipe implements PipeTransform {
+
+  transform(value: number): string {
+    const minutes: number = Math.floor(value / 60);
+    return ('00' + minutes).slice(-2) + ':' + ('00' + Math.floor(value - minutes * 60)).slice(-2);
+  }
+
+}
