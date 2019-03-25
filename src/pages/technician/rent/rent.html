@@ -62,21 +62,20 @@
 
 
 
-<ion-content padding> 
+<ion-content nopadding> 
 
         <ng-template #test >
                 <h1 class="tex-rent">ไม่มีรายการจอง</h1>
         </ng-template>
 
         <ion-list  *ngFor="let details of get_result">
-                <ion-card *ngIf="details && editing" >
+                <ion-card *ngIf="details && editing ;">
                        
                        
                     <ion-card-header>
-                            <ion-checkbox *ngIf="!check_all"  style="float:right" (click)="id_value(details.id)"></ion-checkbox>
+                            <ion-checkbox *ngIf="!check_all"  style="float:right" (click)="id_value(details)"></ion-checkbox>
                             <ion-checkbox *ngIf="check_all"   style="float:right"  [checked]="check_all"></ion-checkbox>
-                                <b style="margin:auto;"> วันที่รับซ่อม: {{details['date of service']}} </b> 
-                               
+                                <b style="margin:auto;"> วันที่รับซ่อม: {{details.date_service}} </b> 
                     </ion-card-header>
                     <ion-card-content >
                     <ion-grid>
@@ -90,9 +89,7 @@
                                     </div>
                             </ion-col>            
                     </ion-row>
-                    <!--name-->
                     
-                    <!-- address-->
                      <ion-row>
                          <ion-col>
                               <div >
@@ -115,7 +112,6 @@
                      </ion-row>
                         
             
-                    <!--tell-->
                     <ion-row>
                         <ion-col>
                                 <p >
@@ -132,70 +128,98 @@
                
                   </ion-card>
                 </ion-list>
-            
-    <ion-list  *ngFor="let details of get_result">
-            
-    <ion-card *ngIf="details && !editing" >
-            <!-- <ion-icon name="close-circle" style="float:right"></ion-icon> -->
-            <!-- <ion-radio ></ion-radio> -->
-            
-        <ion-card-header>
-                
-            <b style="margin:auto;"> วันที่รับซ่อม: {{details['date of service']}} </b> 
-        </ion-card-header>
-        <ion-card-content >
-        <ion-grid>
 
-            <ion-row>
-                <ion-col>
-                        <div>
-                            <div>
-                                <b>ชื่อ:{{details.name}}</b>
-                                <b>นามสกุล:{{details.lastname}}</b> 
-                            </div> 
-                        </div>
-                </ion-col>            
-        </ion-row>
-        <!--name-->
-        
-        <!-- address-->
-         <ion-row>
-             <ion-col>
-                  <div >
-                      <div>
-                            <b>บ้านเลขที่: {{details.house_number}}</b>
-                            <b>ถนน:{{details.street}}</b> 
-                      </div>
-                  </div>
-                       
-             </ion-col>
-         </ion-row>
-           
-         <ion-row>
-             <ion-col>
-                    <div>
-                        <b>แขวง:{{details.distric}}</b>  &nbsp;
-                        <b style="margin-right:50px">เขต:{{details.area}}</b> 
-                        </div>
-             </ion-col>
-         </ion-row>
-            
 
-        <!--tell-->
-        <ion-row>
-            <ion-col>
-                    <p >
-                      <b>เบอร์โทรศัพท์:</b> {{details.tel}}
-                      <button  ion-button icon-left clear small style="margin-bottom:10px;" (click)="tel_guest(details.tel)" > <ion-icon name="call" color="secondary" ></ion-icon>โทร</button>
-                    </p>
-            </ion-col>
-        </ion-row>
+
+
+    <ion-list  *ngFor="let details of get_result">        
+        <ion-card  *ngIf="details && !editing ;">
+            <ion-card-header>
+    
+    
+                    <ion-row>
+                    <ion-col col-6>
+                            <b style="margin:auto;"> วันที่รับซ่อม: {{details.date_service}} </b> 
+                    </ion-col>
+    
+                </ion-row>
+            </ion-card-header>
+            <ion-card-content >
+            <ion-grid>
+                           
+                          <ion-row justify-content-start>
+                            <ion-col col-6>
+                                    <b>ชื่อ:</b>{{details.name}}
+                            </ion-col>
+    
+                            <ion-col col-6>
+                                    <b>นามสกุล:</b> {{details.lastname}}
+                            </ion-col>
+                          </ion-row>
+                  
+                          <ion-row justify-content-around>
+                            <ion-col col-6>
+                              <b >บ้านเลขที่:</b> {{details.house_number}}  
+                            </ion-col>
+                  
+                            <ion-col col-6>
+                              <b>ถนน:</b> {{details.street}}
+                            </ion-col>
+                          </ion-row>
+                        
+                          <ion-row justify-content-around>
+                            <ion-col col-6>
+                              <b>แขวง:</b> {{details.distric}}
+                            </ion-col>
+                  
+                            <ion-col col-6>
+                              <b>เขต:</b> {{details.area}}
+                            </ion-col>
+                          </ion-row>
+    
+                          <ion-row justify-content-around>
+                                <ion-col col-9 >
+                                  <b >เบอร์โทรศัพท์:</b> {{details.tel}}  
+                                </ion-col>
+                      
+                                <ion-col col-3 style="margin-top:-7px">
+                                  <button  ion-button icon-left clear small (click)="tel_guest(details.tel)"> <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
+                                </ion-col>
+                              </ion-row>
+    
+                              <ion-row style="margin:auto">
+                                  <ion-col>
+                                        <ion-buttons>
+                                                <button ion-button  clear (click)="check(details)">ตรวจสอบการโอน</button>
+                                          </ion-buttons>
+                                  </ion-col>
+                              </ion-row>
+    
+                    <ion-row>
+    
+                    <ion-col>
+                            <ion-list>
+                                    <ion-item>
+                                      <ion-label>อัพเดตสถานะ</ion-label>
+                                      <ion-select [(ngModel)]="rents">
+                                        <ion-option value="อยู่ระหว่างการซ่อม">อยู่ระหว่างการซ่อม</ion-option>
+                                        <ion-option value="การซ่อมเสร็จสิ้น">การซ่อมเสร็จสิ้น</ion-option>
+                                      </ion-select>
+                                    </ion-item>
+                                  </ion-list>
+                    </ion-col>
+    
+                    <ion-col>
+                            <ion-buttons >
+                                    <button ion-button  large style="margin-left:50px" color="danger" (click)="select_rents(details)">อัพเดตสถานะ</button>    
+                            </ion-buttons> 
+                    </ion-col>
+            </ion-row>
+      
+            </ion-grid>
+             
+            </ion-card-content>
        
-  
-        </ion-grid>
-         
-        </ion-card-content>
-   
-      </ion-card>
-    </ion-list>
+          </ion-card>
+        </ion-list>
 </ion-content>

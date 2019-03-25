@@ -44,12 +44,12 @@
                 <ion-row>
                     <ion-item col-6 *ngIf="editng">
                         <ion-label floating>ชื่อ:</ion-label>
-                        <ion-input type="text" [(ngModel)]="details_customer.guest_name" value="{{details_customer.guest_name}}" ></ion-input>
+                        <ion-input type="text" [(ngModel)]="ng_details_guest.guest_name" value="{{ng_details_guest.guest_name}}" ></ion-input>
                     </ion-item>
 
                     <ion-item col-6 *ngIf="editng">
                         <ion-label floating>นามสกุล:</ion-label>
-                        <ion-input type="text" [(ngModel)]="details_customer.guest_lastname" value="{{details_customer.guest_lastname}}" ></ion-input>
+                        <ion-input type="text" [(ngModel)]="ng_details_guest.guest_lastname" value="{{ng_details_guest.guest_lastname}}" ></ion-input>
                     </ion-item>
 
                 </ion-row>
@@ -57,7 +57,7 @@
                 <ion-row>
                     <ion-item col-6 *ngIf="editng">
                         <ion-label floating>เบอร์โทรศัพท์ :</ion-label>
-                        <ion-input type="tel" [(ngModel)]="details_customer.guest_tel" value="{{details_customer.guest_tel}}" ></ion-input>
+                        <ion-input type="tel" [(ngModel)]="ng_details_guest.guest_tel" value="{{ng_details_guest.guest_tel}}" ></ion-input>
                     </ion-item>
 
 
@@ -78,12 +78,12 @@
                 <ion-row>
                     <ion-item col-6 *ngIf="editng">
                         <ion-label floating>บ้านเลขที่:</ion-label>
-                        <ion-input type="tel" [(ngModel)]="details_customer.guest_num_house" value="{{details_customer.guest_num_house}}" ></ion-input>
+                        <ion-input type="tel" [(ngModel)]="ng_details_guest.guest_num_house" value="{{ng_details_guest.guest_num_house}}" ></ion-input>
                     </ion-item>
 
                     <ion-item col-6 *ngIf="editng">
                         <ion-label floating>ถนน:</ion-label>
-                        <ion-input type="text" [(ngModel)]="details_customer.guest_street" value="{{details_customer.guest_street}}"></ion-input>
+                        <ion-input type="text" [(ngModel)]="ng_details_guest.guest_street" value="{{ng_details_guest.guest_street}}"></ion-input>
                     </ion-item>
                 </ion-row>
 
@@ -91,16 +91,21 @@
                 <ion-row>
                     <ion-item col-6 *ngIf="editng">
                         <ion-label floating>แขวง</ion-label>
-                        <ion-input type="text" [(ngModel)]="details_customer.guest_distric" value="{{details_customer.guest_distric}}" ></ion-input>
+                        <ion-input type="text" [(ngModel)]="ng_details_guest.guest_distric" value="{{ng_details_guest.guest_distric}}" ></ion-input>
                     </ion-item>
 
                     <ion-item col-6 *ngIf="editng">
                         <ion-label floating>เขต</ion-label>
-                        <ion-select [(ngModel)]="details_customer.guest_area">
+                        <ion-select [(ngModel)]="ng_details_guest.guest_area">
                             <ion-option value="{{item_area.area_name}}" *ngFor="let item_area of data_area">{{item_area.area_name}}</ion-option>
                         </ion-select>
                     </ion-item>
 
+                </ion-row>
+                <ion-row style="margin-top:10px;" *ngIf="editng">
+                    <ion-col></ion-col>
+                    <button ion-button color="secondary" (click)="update_details(ng_details_guest)">ยืนยัน</button>
+                    <ion-col></ion-col>
                 </ion-row>
         </div>
     </ion-row>
@@ -111,19 +116,19 @@
                 <ion-row>
                     <ion-item col-6 *ngIf="!editng">
                         <ion-label floating>ชื่อ:</ion-label>
-                        <ion-input type="text" [(ngModel)]="details_customer.guest_name" value="{{details_customer.guest_name}}" formControlName="name" readonly="true"></ion-input>
+                        <ion-input type="text" [(ngModel)]="ng_details_guest.guest_name" value="{{ng_details_guest.guest_name}}" formControlName="name" readonly="true"></ion-input>
                     </ion-item>
 
                     <ion-item col-6 *ngIf="!editng">
                         <ion-label floating>นามสกุล:</ion-label>
-                        <ion-input type="text" [(ngModel)]="details_customer.guest_lastname" value="{{details_customer.guest_lastname}}" formControlName="last_name" readonly="true"></ion-input>
+                        <ion-input type="text" [(ngModel)]="ng_details_guest.guest_lastname" value="{{ng_details_guest.guest_lastname}}" formControlName="last_name" readonly="true"></ion-input>
                     </ion-item>
                 </ion-row>
                
                 <ion-row>
                     <ion-item col-6 *ngIf="!editng">
                         <ion-label floating>เบอร์โทรศัพท์ :</ion-label>
-                        <ion-input type="tel" [(ngModel)]="details_customer.guest_tel" value="{{details_customer.guest_tel}}" formControlName="tel" readonly="true"></ion-input>
+                        <ion-input type="tel" [(ngModel)]="ng_details_guest.guest_tel" value="{{ng_details_guest.guest_tel}}" formControlName="tel" readonly="true"></ion-input>
                     </ion-item>
 
 
@@ -143,13 +148,13 @@
                 <ion-row>
                     <ion-item col-6 *ngIf="!editng">
                         <ion-label floating>บ้านเลขที่:</ion-label>
-                        <ion-input type="tel" [(ngModel)]="details_customer.guest_num_house" value="{{details_customer.guest_num_house}}" formControlName="num_house" readonly="true"></ion-input>
+                        <ion-input type="tel" [(ngModel)]="ng_details_guest.guest_num_house" value="{{ng_details_guest.guest_num_house}}" formControlName="num_house" readonly="true"></ion-input>
                     </ion-item>
 
 
                     <ion-item col-6 *ngIf="!editng">
                         <ion-label floating>ถนน:</ion-label>
-                        <ion-input type="text" [(ngModel)]="details_customer.guest_street" value="{{details_customer.guest_street}}" formControlName="street" readonly="true"></ion-input>
+                        <ion-input type="text" [(ngModel)]="ng_details_guest.guest_street" value="{{ng_details_guest.guest_street}}" formControlName="street" readonly="true"></ion-input>
                     </ion-item>
                 </ion-row>
 
@@ -158,37 +163,31 @@
 
                     <ion-item col-6 *ngIf="!editng">
                         <ion-label floating>แขวง</ion-label>
-                        <ion-input type="text" [(ngModel)]="details_customer.guest_distric" value="{{details_customer.guest_distric}}" formControlName="ditstric" readonly="true"></ion-input>
+                        <ion-input type="text" [(ngModel)]="ng_details_guest.guest_distric" value="{{ng_details_guest.guest_distric}}" formControlName="ditstric" readonly="true"></ion-input>
                     </ion-item>
 
 
                     <ion-item col-6 *ngIf="!editng">
                         <ion-label floating>เขต</ion-label>
-                        <ion-select [(ngModel)]="details_customer.guest_area" formControlName="area">
+                        <ion-select [(ngModel)]="ng_details_guest.guest_area" formControlName="area">
                             <ion-option value="{{item_area.area_name}}" *ngFor="let item_area of data_area">{{item_area.area_name}}</ion-option>
                         </ion-select>
                     </ion-item>
                 </ion-row>
 
                 <ion-row *ngIf="!editng">
-                    <ion-item>
+                    <ion-item >
                         <ion-label staked>เลือกวันที่ :</ion-label>
-                        <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="details_guest.myDate" monthShortNames='มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม'
-                            doneText="ตกลง" cancelText="ยกเลิก" placeholder="กรุณาเลือกเดือน" formControlName="myDate">
+                        <ion-datetime displayFormat="DD/MMMM/YYYY" pickerFormat="DD/MMMM/YYYY" [(ngModel)]="ng_details_guest.mydate" monthNames='มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม'
+                            doneText="ตกลง" cancelText="ยกเลิก" placeholder="กรุณาเลือกเดือน" formControlName="mydate">
                         </ion-datetime>
                     </ion-item>
+                   
                 </ion-row>
 
                 <ion-row style="margin-top:10px;" *ngIf="!editng">
                     <ion-col></ion-col>
-                    <button ion-button color="secondary" [disabled]="!detail.valid" (click)="submit(details_customer)">ยืนยัน</button>
-                    <ion-col></ion-col>
-                </ion-row>
-
-                <ion-row style="margin-top:10px;" *ngIf="editng">
-                    <ion-col></ion-col>
-                    
-                    <button ion-button color="secondary"  (click)="set_data(details_customer)">ยืนยัน</button>
+                    <button ion-button color="secondary" [disabled]="!detail.valid" (click)="submit(ng_details_guest)">ตกลง</button>
                     <ion-col></ion-col>
                 </ion-row>
             </form>

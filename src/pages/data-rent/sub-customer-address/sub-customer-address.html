@@ -1,0 +1,101 @@
+<!--
+  Generated template for the SubCustomerAddressPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-title>เปลี่ยนแปลงข้อมูล</ion-title>
+    
+  </ion-navbar>
+
+  
+
+
+</ion-header>
+
+
+<ion-content padding>
+        <div> 
+          <form [formGroup]="detail">
+                <ion-row>
+                    <ion-item col-6>
+                        <ion-label floating>ชื่อ:</ion-label>
+                        <ion-input type="text" [(ngModel)]="test_details_gue.guest_name" value="{{test_details_gue.guest_name}}" formControlName="name"></ion-input>
+                    </ion-item>
+
+                    <ion-item col-6>
+                        <ion-label floating>นามสกุล:</ion-label>
+                        <ion-input type="text" [(ngModel)]="test_details_gue.guest_lastname" value="{{test_details_gue.guest_lastname}}" formControlName="last_name"></ion-input>
+                    </ion-item>
+
+                </ion-row>
+               
+                <ion-row>
+                    <ion-item col-6>
+                        <ion-label floating>เบอร์โทรศัพท์ :</ion-label>
+                        <ion-input type="tel" [(ngModel)]="test_details_gue.guest_tel" value="{{test_details_gue.guest_tel}}" formControlName="tel"></ion-input>
+                    </ion-item>
+
+
+                    <ion-item col-6>
+                        <ion-label floating>ประเภทอุปกรณ์:</ion-label>
+                        <ion-input type="text" [(ngModel)]="test_details_tec.type_name" value="{{test_details_tec.type_name}}"  readonly="true" formControlName="equipment"></ion-input>
+                    </ion-item>
+
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-label style="padding-left:10px; padding-top:10px;">
+                        <h6>ที่อยู่:</h6>
+                    </ion-label>
+                </ion-row>
+
+                <ion-row>
+                    <ion-item col-6>
+                        <ion-label floating>บ้านเลขที่:</ion-label>
+                        <ion-input type="tel" [(ngModel)]="test_details_gue.guest_num_house" value="{{test_details_gue.guest_num_house}}" formControlName="num_house"></ion-input>
+                    </ion-item>
+
+                    <ion-item col-6>
+                        <ion-label floating>ถนน:</ion-label>
+                        <ion-input type="text" [(ngModel)]="test_details_gue.guest_street" value="{{test_details_gue.guest_street}}" formControlName="street"></ion-input>
+                    </ion-item>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-item col-6>
+                        <ion-label floating>แขวง</ion-label>
+                        <ion-input type="text" [(ngModel)]="test_details_gue.guest_distric" value="{{test_details_gue.guest_distric}}" formControlName="ditstric"></ion-input>
+                    </ion-item>
+
+                    <ion-item col-6>
+                            <ion-label floating>เขต</ion-label>
+                            <ion-select [(ngModel)]="test_details_gue.guest_area" formControlName="area">
+                                <ion-option value="{{item_area.area_name}}" *ngFor="let item_area of data_area">{{item_area.area_name}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                </ion-row>
+                
+                <ion-row>
+                    <ion-item>
+                        <ion-label staked>เลือกวันที่ :</ion-label>
+                        <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="test_details_gue.myDate" monthShortNames='มกราคม,กุมภาพันธ์,มีนาคม,เมษายน,พฤษภาคม,มิถุนายน,กรกฎาคม,สิงหาคม,กันยายน,ตุลาคม,พฤศจิกายน,ธันวาคม'
+                            doneText="ตกลง" cancelText="ยกเลิก" placeholder="กรุณาเลือกเดือน" formControlName="myDate">
+                        </ion-datetime>
+                    </ion-item>
+                </ion-row>
+
+                <ion-row style="margin-top:10px;">
+                        <ion-col></ion-col>
+                        <button ion-button color="secondary" [disabled]="!detail.valid" (click)="details_click(test_details_gue)">ยืนยัน</button>
+                        <ion-col></ion-col>
+                    </ion-row>
+              </form>
+        </div>
+
+</ion-content>

@@ -20,7 +20,7 @@ import { CallNumber } from '@ionic-native/call-number';
 })
 export class DetailTecPage {
   technician_store:any={};
-  show_imgs = "http://10.5.20.202";
+  show_imgs = "http://10.5.14.151";
   guest:any;
   constructor(
     public navCtrl: NavController, 
@@ -45,14 +45,22 @@ export class DetailTecPage {
   //   data_guest:this.guest
 
   // });
-  this.storage.get('guest').then((val)=>{
-    let data_guest = val;
-    this.navCtrl.push(CustomerAddressPage,{
-      address_tec:this.technician_store
-    })
-    
-    console.log('detail_tec_page=>',data_guest);
+
+  this.navCtrl.push(CustomerAddressPage,{
+    address_tec:this.technician_store
+   
   })
+  // this.storage.get('guest').then((val)=>{
+  //   let data_guest = val;
+  //   let data_guest_id = data_guest.data_user.guest_name
+  //   console.log("data_guest_id",data_guest_id);
+  //   this.navCtrl.push(CustomerAddressPage,{
+  //     address_tec:this.technician_store,
+  //     details_tes:data_guest_id
+  //   })
+    
+  //   console.log('detail_tec_page=>',data_guest);
+  // })
   
   }
   call_tec(){

@@ -45,12 +45,16 @@ export class CustomerPage {
 
     // let data_user= this.NavParams.get('detail_user');
     // console.log('user=>',data_user);
-    storage.get('guest').then((val) => {
-      let data_guest = val
-      console.log('customer_page=>', data_guest);
-    })
+    // storage.get('guest').then((val) => {
+    //   let data_guest = val
+    //   console.log('customer_page=>', data_guest);
+    // })
 
-
+    // let guest = storage.get('guest_name').then((val)=>{
+    //   let guest_about = val
+    //   console.log(guest_about);
+      
+    // })
   }//constructor
 
 

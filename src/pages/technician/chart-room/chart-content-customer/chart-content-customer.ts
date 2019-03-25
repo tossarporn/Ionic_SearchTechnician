@@ -67,15 +67,15 @@ chart=[];
     get_rating_star(start){
       this.getDataProvider.get_rating(start).then((val)=>{
         this.all_stars = val
-        let loop_rating = this.all_stars.map(star=>{
-          return star.rating
-        })
-        console.log('loop_rating=>',loop_rating);
+        // let loop_rating = this.all_stars.map(star=>{
+        //   return star.rating
+        // })
+        // console.log('loop_rating=>',loop_rating);
         
-        let loop_count = this.all_stars.map(item=>{
-          return item.count_star  
-        })
-        console.log('loop_count=>',loop_count);
+        // let loop_count = this.all_stars.map(item=>{
+        //   return item.count_star  
+        // })
+        // console.log('loop_count=>',loop_count);
         this.chart = new Chart('canvas',{
           type:'horizontalBar',
           data:{
@@ -83,7 +83,7 @@ chart=[];
             datasets:[
               {
                 label:["จำนวนคะแนน"],
-                data:loop_count,
+                data:this.all_stars,
                 backgroundColor: [
                     'rgb(128, 255, 0)',
                     'rgb(0, 255, 191)',

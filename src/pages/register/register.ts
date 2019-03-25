@@ -88,10 +88,9 @@ export class RegisterPage {
   }
 
   submit() {
-    console.log("details=>", this.details_guest);
-    console.log("area=>", this.area);
-    console.log("status=>", this.status_guest);
-    this.navCtrl.push(HomePage,{status_guest:this.status_guest})
+    // console.log("details=>", this.details_guest);
+    // console.log("area=>", this.area);
+    // console.log("status=>", this.status_guest);
     
 
       this.getprovi.guest_register(

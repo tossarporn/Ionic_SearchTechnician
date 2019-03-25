@@ -54,7 +54,7 @@ export class HomePage {
     status:['', Validators.required]
     });
     
-
+    
   }//constructor
   register_guest(_item) {
     this.navCtrl.push(RegisterPage, { item: _item });
@@ -66,11 +66,8 @@ export class HomePage {
         this.res = data;
         this.status = this.res.data_user.status;
         let message_user = this.res.message;
-        // console.log('data_guest=>',  this.res);
 
         if (this.status == 1) {
-          console.log(this.status);
-          alert(11111)
           console.log(this.status);
           const confirm = this.AlertController.create({
             title: 'ยินดีต้อนรับลูกค้าทุกท่าน',
@@ -79,7 +76,7 @@ export class HomePage {
               {
                 text: 'ยืนยัน',
                 handler: () => {
-                  this.storage.set('guest', this.res).then((succ) => {
+                  this.storage.set('guest',this.res).then((succ) => {
                     this.navCtrl.push(CustomerPage)
                   }).catch((err) => {
                     console.log('error_home=>', err)

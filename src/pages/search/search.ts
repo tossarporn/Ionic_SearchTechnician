@@ -49,10 +49,10 @@ constructor(
 
 
 
-storage.get('guest').then((val)=>{
-    let data_guest = val
-      console.log('search_page=>',data_guest);
-  })
+// storage.get('guest').then((val)=>{
+//     let data_guest = val
+//       console.log('search_page=>',data_guest);
+//   })
  
 }//constructor
 

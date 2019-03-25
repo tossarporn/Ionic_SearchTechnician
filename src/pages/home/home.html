@@ -24,18 +24,18 @@
                       </ion-item>
                   </ion-col>
                 </ion-row> -->
-                <ion-row>
-                  <ion-item col-6>
-                        <ion-label floating>Username:</ion-label>
-                        <ion-input type="tel" [(ngModel)]="username" formControlName="username" placeholder="Username" clearInput></ion-input>
+                <ion-row col-12>
+                  <ion-item >
+                        <ion-label >ชื่อผู้ใช้:</ion-label>
+                        <ion-input type="text" [(ngModel)]="username" formControlName="username"  clearInput></ion-input>
                   </ion-item>
-                  <ion-item col-6>
-                        <ion-label floating>Password:</ion-label>
-                        <ion-input type="password" [(ngModel)]="password" formControlName="password" placeholder="Password" clearInput></ion-input>
-                    </ion-item>
+                  <ion-item>
+                    <ion-label >รหัสผ่าน:</ion-label>
+                    <ion-input type="password" [(ngModel)]="password" formControlName="password"   clearInput></ion-input>
+                  </ion-item>
               </ion-row>
-
-              <div>
+              
+                <div style="margin-top:15px;">
                   <ion-list>
                       <ion-item>
                           <ion-label>สถานะเข้าสู่ระบบ</ion-label>
@@ -51,11 +51,11 @@
                         </ion-select>
                       </ion-item>
                     </ion-list>
-
               </div>
+              
 
 
-              <ion-row style="margin-top:15px;">
+              <ion-row style="margin-top:25px;">
                   <ion-col></ion-col>
                   <button ion-button color="secondary" [disabled]="!check_login.valid" (click)="login()">ยืนยัน</button>
                   <ion-col></ion-col>

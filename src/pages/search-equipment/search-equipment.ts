@@ -44,10 +44,10 @@ export class SearchEquipmentPage {
   }//constuctor
 
   guest_details(){
-    this.storage.get('guest').then((val)=>{
-      let data_guest = val
-        console.log('searchEquipment_page=>',data_guest);
-    })//guest
+    // this.storage.get('guest').then((val)=>{
+    //   let data_guest = val
+    //     console.log('searchEquipment_page=>',data_guest);
+    // })//guest
   }
 
   get_area(){

@@ -87,7 +87,7 @@ res:any;
   this.lng;
   this.images = 'assets/imgs/photo-camera.png';
   this.get_data_tech(); 
-}
+}//constructor
   ionViewCanEnter(){
     this.getdataProvider.show_area()
     .then((data)=>{
@@ -193,7 +193,7 @@ res:any;
     console.log('build_room_page=>',  this.tec_id );
     })
  }//get_data_tech
-
+ 
   submit(){
     // console.log(this.name_store,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
     //   this.num_house,this.street,this.distric,this.area,this.account,this.lat,this.lng,this.images,this.tec_id);

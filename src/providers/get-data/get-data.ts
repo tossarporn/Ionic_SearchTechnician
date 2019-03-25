@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.9.233/Final_Project/service/";
+  host: string = "http://10.5.30.112/Final_Project/service/";
   get_register: string = "register.php";
   get_login: string = "login.php";
   get_area: string = "Get_Area.php";
@@ -36,6 +36,13 @@ export class GetDataProvider {
   delete_forrent:string="delete_for_rent.php";
   get_details_admin:string = "get_details_admin.php";
   update_details_admin:string ="admin_update_details.php";
+  get_data_for_rent:string = "get_customerFor_rent.php";
+  insert_for_rent:string = "insert_for_rent.php";
+  tec_update_status_rents = "tec_update_status_rents.php";
+  insert_img_tax_invoice = "insert_img_tax.php";
+  get_img_tax:string = "get_img_tax.php";
+  delete_confirm_rent:string = "delect_confirm_lend.php";
+  delete_picture_banking:string = "delete_picture_banking.php";
   headers: any =
     {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -147,7 +154,7 @@ export class GetDataProvider {
     })
   }//showDetail_Technician
 
-  builid_guest(name, last_name, tel, equipment, num_house, street, ditstric, area, date, ref_tec, ref_regis, ref_id_tec) {
+  builid_guest(name, last_name, tel, equipment, num_house, street, ditstric, area, date, ref_tec, ref_regis, ref_id_tec,status_seg,check_tus) {
     return new Promise((reslov, reject) => {
       this.http.post(this.host + this.guest_insert,
         {
@@ -162,7 +169,9 @@ export class GetDataProvider {
           date: date,
           ref_tec: ref_tec,
           ref_regis: ref_regis,
-          ref_id_tec: ref_id_tec
+          ref_id_tec: ref_id_tec,
+          status_seg:status_seg,
+          check_tus:check_tus
         },
         {
           headers: this.headers
@@ -229,11 +238,11 @@ export class GetDataProvider {
     });
   }//get_rating
 
-  get_data_rent(id_tec) {
+  get_data_rent(id_tec,) {
     return new Promise((reslov, reject) => {
       this.http.post(this.host + this.get_guest_rent,
         {
-          tec_id: id_tec
+          tec_id: id_tec,
         },
         {
           headers: this.headers
@@ -542,6 +551,131 @@ delete_details_rent(id_rent){
   })
 }//delete_details_rent
 
+show_data_rent(rent)
+{
+  return new Promise((reslov,reject)=>{this.http.post(this.host+this.get_data_for_rent,{
+    ref_regis:rent
+  },
+  {
+    headers: this.headers
+  }).subscribe(result=>{
+    reslov(result)
+  })
+  err=>{
+    reject(err)
+    }
+  })
+}
+insert_rent(ref_tec,ref_regis,ref_id_tec,status_seg){
+  return new Promise((reslov,reject)=>{this.http.post(this.host+this.insert_for_rent,{
+    ref_tec:ref_tec,
+    ref_regis:ref_regis,
+    ref_id_tec:ref_id_tec,
+    status_seg:status_seg
+  },
+  {
+    headers: this.headers
+  }).subscribe(result=>{
+    reslov(result)
+  })
+  err=>{
+    reject(err)
+    }
+  })
+}
+
+technician_update_rents(ref_tec,ref_regis,ref_id_tec,check_tus){
+  return new Promise((reslov,reject)=>{this.http.post(this.host+this.tec_update_status_rents,{
+    ref_tec:ref_tec,
+    ref_regis:ref_regis,
+    ref_id_tec:ref_id_tec,
+    check_tus:check_tus
+  },
+  {
+    headers: this.headers
+  }).subscribe(result=>{
+    reslov(result)
+  })
+  err=>{
+    reject(err)
+    }
+  })
+}
+
+insert_img_taxinvoice(ref_tech_store,ref_id_tec,ref_cus,img_tax,date_img){
+  return new Promise((reslov, reject) => {
+    this.http.post(this.host + this.insert_img_tax_invoice, {
+      ref_tech_store: ref_tech_store,
+      ref_id_tec: ref_id_tec,
+      ref_cus: ref_cus,
+      img_tax:img_tax,
+      date_img:date_img
+    },
+      {
+        headers: this.headers
+      }).subscribe(result => {
+        reslov(result)
+      })
+    err => {
+      reject(err)
+    }
+  })
+
+}
+
+get_picture_tax(ref_tech_store,ref_id_tec,ref_cus){
+  return new Promise((reslov, reject) => {
+    this.http.post(this.host + this.get_img_tax, {
+      ref_tech_store: ref_tech_store,
+      ref_id_tec: ref_id_tec,
+      ref_cus: ref_cus,
+    },
+      {
+        headers: this.headers
+      }).subscribe(result => {
+        reslov(result)
+      })
+    err => {
+      reject(err)
+    }
+  })
+}
+
+cut_confirm_rent(ref_tec,ref_regis,ref_id_tec){
+  return new Promise((reslov, reject) => {
+    this.http.post(this.host + this.delete_confirm_rent, {
+      ref_tec: ref_tec,
+      ref_regis: ref_regis,
+      ref_id_tec: ref_id_tec,
+    },
+      {
+        headers: this.headers
+      }).subscribe(result => {
+        reslov(result)
+      })
+    err => {
+      reject(err)
+    }
+  })
+}
+
+delete_imgs_banking(ref_tech_store,ref_id_tec,ref_cus){
+  return new Promise((reslov, reject) => {
+    this.http.post(this.host + this.delete_picture_banking, {
+      ref_tech_store: ref_tech_store,
+      ref_id_tec: ref_id_tec,
+      ref_cus: ref_cus,
+    },
+      {
+        headers: this.headers
+      }).subscribe(result => {
+        reslov(result)
+      })
+    err => {
+      reject(err)
+    }
+  })
+}
 
 
 

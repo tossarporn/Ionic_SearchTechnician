@@ -20,7 +20,7 @@ import { Refresher } from 'ionic-angular/components/refresher/refresher';
   templateUrl: 'show-tec-detail.html',
 })
 export class ShowTecDetailPage {
-  show_imgs = "http://10.5.6.4/";
+  show_imgs = "http://10.5.14.151/";
   Detail_for:any;
   ratings_for:any;
   Detail_area:string;
@@ -69,12 +69,6 @@ equip_id:any;
       this.tec_detils = this.Detail_for.length
       console.log("Detail_for =>",this.Detail_for);   
       console.log(this.tec_detils);
-      // if(this.tec_detils == 0){
-      //   alert("ไม่มีข้อมูล")
-      // }
-      // else{
-      //   alert("มีข้อมูล")
-      // }
     }).catch((err)=>{ 
       console.log("error==>",err)
     })//Provider

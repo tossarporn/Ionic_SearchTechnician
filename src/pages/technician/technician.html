@@ -24,8 +24,9 @@
       <div>สร้างร้านค้า</div>
     </ion-col> 
     <ion-col (click)="for_rent()"> 
-      <img src="assets/imgs/maps-and-flags.png">
-      <div>ข้อมูลการจอง</div>
+          <ion-badge>{{noit}}</ion-badge>
+          <img src="assets/imgs/maps-and-flags.png">
+          <div>ข้อมูลการจอง</div>
     </ion-col>
       </ion-row>
 
@@ -44,7 +45,8 @@
           <ion-col class="menu"  (click)="logout()">
               <img  src="assets/imgs/exit.png">
                 <div>ออกจากระบบ</div>
-        </ion-col> 
+        </ion-col>
+        
       </ion-row>
 
       </ion-grid>
