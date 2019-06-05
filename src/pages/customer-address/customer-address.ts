@@ -6,7 +6,6 @@ import { DataRentPage } from '../data-rent/data-rent'
 import { CustomerPage } from '../customer/customer';
 import { Storage } from '@ionic/storage';
 import { Badge } from '@ionic-native/badge';
-
 /**
  * Generated class for the CustomerAddressPage page.
  *
@@ -44,10 +43,11 @@ export class CustomerAddressPage {
     guest_street:'',
     guest_tel:'',
     mydate: '',
-    // retn_store:"for_rents"
+    // time:''
   };
 
   retn_store = "for_rents"
+  check_tus ="อยู่ระหว่างการซ่อม"
   // tech_id: any;
   // val_guest:any;
 
@@ -64,7 +64,8 @@ export class CustomerAddressPage {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public app: App,
-    private badge: Badge
+    private badge: Badge,
+    public appCtrl: App
 
   ) {
 
@@ -80,6 +81,7 @@ export class CustomerAddressPage {
       area: ['', Validators.required],
       mydate: ['', Validators.required],
       tel: ['', Validators.required],
+      // time: ['', Validators.required],
       // retn_store:['for_rents', Validators.required],
     });
     
@@ -160,7 +162,7 @@ export class CustomerAddressPage {
         {
           text: 'ตกลง',
           handler: () => {
-              this.storage.set('details_gue',this.data_guest).then(
+              this.storage.set('guest',this.data_guest).then(
                 (success)=>{
                   this.GetDataProvider.updates_guest(
                     val_update.guest_id,
@@ -218,34 +220,26 @@ export class CustomerAddressPage {
 
   
  submit(val_detail) {
-  //  console.log(this.ng_details_guest.mydate);
+  //  console.log("this.address.id=>",this.address.id);
+  //  console.log("this.retn_store=>",this.retn_store);
+  //  console.log("this.check_tus=>",this.check_tus);
+  //  console.log("this.address.type_name=>",this.address.type_name)
+  //  console.log("this.address.ref_regis_tec=>",this.address.ref_regis_tec);
    
-  //  console.log(val_detail.mydate);
-  //  console.log(val_detail);
-  //  console.log(this.retn_store);
+  //  console.log("val_detail.guest_id=>",val_detail.guest_id);
+  //  console.log("val_detail.guest_name=>",val_detail.guest_name);
+  //  console.log("val_detail.guest_lastname=>",val_detail.guest_lastname);
+  //  console.log("val_detail.guest_num_house=>",val_detail.guest_num_house);
+  //  console.log("val_detail.guest_street=>",val_detail.guest_street);
+  //  console.log("val_detail.guest_distric=>",val_detail.guest_distric);
+  //  console.log("val_detail.guest_area=>",val_detail.guest_area);
+  //  console.log("val_detail.guest_tel=>",val_detail.guest_tel);
+  //  console.log("val_detail.mydate=>",val_detail.mydate);
    
-  // val_detail.myDate = new Date();
-
-  // var month = val_detail.myDate.toString();
-  // var ArrayMonth = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"]
-  // console.log(ArrayMonth[month]);
-  // console.log(month);
-  
-  
    
-// console.log("submi_guest_id=>",val_detail.guest_id);
-// console.log("details_tec_id_store=>",this.address.id)
-// console.log("details_tec_id_ref_regis_tec=>",this.address.ref_regis_tec)
-// console.log("retn_store=>",this.retn_store);
-
-
-// console.log("submit=>",val_detail.myDate);
-// console.log("submit=>",val_detail);
-// console.log("submit=>",val_detail);
-
-// console.log("details_tec=>",this.address)
-// console.log("details_tec=>",this.address)
-
+  //  this.navCtrl.popToRoot();
+  //  this.navCtrl.parent.select(1);
+   
   let loading = this.loadingCtrl.create({
     content: 'กรุณารอสักครู่.....'
   });
@@ -254,27 +248,27 @@ export class CustomerAddressPage {
 
   setTimeout(() => {
 this.GetDataProvider.insert_rent
-(
+(  
+  val_detail.guest_name,
+  val_detail.guest_lastname,
+  this.address.type_name,
+  val_detail.guest_num_house, 
+  val_detail.guest_street,
+  val_detail.guest_distric,
+  val_detail.guest_area,
+  val_detail.guest_tel,
+  val_detail.mydate, 
   this.address.id,
   val_detail.guest_id,
   this.address.ref_regis_tec,
-  this.retn_store,
-).then((rent_succ)=>{
-  // this.navCtrl.push(DataRentPage,{guest_details:val_detail,details_tec:this.address})
-  this.navCtrl.insert(0,DataRentPage)
-    .then((success)=>{
-      this.navCtrl.popToRoot();
-      this.storage.set('details_tec',this.address)
-      this.storage.set('details_gue',val_detail)
-      console.log(success);
-    })
-    .catch((fail)=>{
-      console.log(fail);
-    })
+  this.check_tus,
+)
+.then((rent_succ)=>{
+  this.navCtrl.popToRoot();
+   this.navCtrl.parent.select(1);
   console.log("rent_succ=>",rent_succ);
-  
-
-}).catch((rent_err)=>{
+})
+.catch((rent_err)=>{
   console.log("rent_err=>",rent_err);
   
 })
@@ -282,181 +276,11 @@ this.GetDataProvider.insert_rent
     
     loading.dismiss();
   }, 1000);
-    
-    // const confirm = this.alertCtrl.create({
-    //   title: 'ลูกค้าต้องการที่จะทำการจองหรือไม่ ?',
-    //   buttons: [
-    //     {
-    //       text: 'ไม่',
-    //       handler: () => {
-    //         console.log('Disagree clicked');
-    //       }
-    //     },
-    //     {
-    //       text: 'จอง',
-    //       handler: () => {
-    //           let customer_update= this.GetDataProvider.updates_guest(
-    //           this.details_customer.guest_id, 
-    //           this.details_customer.guest_name,
-    //           this.details_customer.guest_lastname, 
-    //           this.details_customer.guest_tel, 
-    //           this.details_customer.guest_num_house, 
-    //           this.details_customer.guest_street,
-    //           this.details_customer.guest_distric,
-    //           this.details_customer.guest_area
-    //         )
-    //           .then((result)=>{
+                
+  }
 
-    //             console.log(customer_update);
-                
-    //             let loading = this.loadingCtrl.create({
-    //                 content: 'Please wait...'
-    //               });
-                
-    //               loading.present();
-                
-    //               setTimeout(() => {
-    //                 let val:any = result
-    //                 let message_val =val.message
-    //                 const confirm = this.alertCtrl.create({
-    //                   title: 'แจ้งเตือนจากระบบ',
-    //                   message: message_val,
-    //                   buttons: [
-    //                     {
-    //                       text: 'ตกลง',
-    //                       handler: () => {
-    //                         let guest = this.storage.get('guest').then((val) => {
-    //                          this.navCtrl.insert(1, DataRentPage);
-    //                          this.navCtrl.popToRoot();
-    //                          loading.dismiss(); 
-    //                        })//get data_user
-                            
-    //                       console.log('Agree clicked');
-    //                       }
-    //                     }
-    //                   ]
-    //                 });
-    //                 confirm.present();
-                    
-    //                 console.log("val_detials",val);
-    //               }, 3000);
-    //           })
-    //           .catch((err)=>{
-    //             console.log("val_detials_err",err);
-    //           })//updates_guest
-
-
-    //           this.GetDataProvider.builid_guest(
-    //             this.details_customer.guest_name,
-    //             this.details_customer.guest_lastname, 
-    //             this.details_customer.guest_tel,
-    //             this.address.type_name,
-    //             this.details_customer.guest_num_house,
-    //             this.details_customer.guest_street,
-    //             this.details_customer.guest_distric,
-    //             this.details_customer.guest_area,
-    //             this.details_guest.myDate,
-    //             this.address.id,
-    //             this.details_customer.guest_id,
-    //             this.address.ref_regis_tec,
-    //           ).then((res) => {
-    //             this.data_array = res;
-    //             let message = this.data_array.message;
-    //             let status = this.data_array.status;
-                
-    //             let guest_data = this.storage.set('details',this.details_guest.myDate).then((val)=>{
-    //               let date = val
-    //               console.log(date);
-    //             }).catch((val_err)=>{
-    //               console.log(val_err);
-    //             })//guest_data
-
-    //             let loading = this.loadingCtrl.create({
-    //               content: 'Please wait...'
-    //             });
-              
-    //             loading.present();
-              
-    //             setTimeout(() => {
-    //               if (status === true) {
-    //                 const confirm = this.alertCtrl.create({
-    //                   title: 'แจ้งเตือนจากระบบ',
-    //                   message: message,
-    //                   buttons: [
-    //                     {
-    //                       text: 'ตกลง',
-    //                       handler: () => {
-                            
-    //                         console.log('Agree clicked');
-    //                       }
-    //                     }
-    //                   ]
-    //                 });
-    //                 confirm.present();
-    //               }
-            
-    //               else if (status === false) {
-  
-    //                 const confirm = this.alertCtrl.create({
-    //                   title: 'แจ้งเตือนจากระบบ',
-    //                   message: message,
-    //                   buttons: [
-    //                     {
-    //                       text: 'ตกลง',
-    //                       handler: () => {
-    //                         console.log('Agree clicked');
-    //                       }
-    //                     }
-    //                   ]
-    //                 });
-    //                 confirm.present();
-    //                 console.log('TechForRent_False=>', status);
-    //               }
-            
-    //               else {
-    //                 alert('ไม่สามารถติดต่อกลับข้อมูลได้');
-    //               }
-    //               loading.dismiss();
-    //             }, 3000);
-                
-    //           }).catch((err) => {
-    //             console.log('not_insert=>', err);
-    //             const confirm = this.alertCtrl.create({
-    //               title: 'แจ้งเตือนจากระบบ',
-    //               message: err,
-    //               buttons: [
-    //                 {
-    //                   text: 'ตกลง',
-    //                   handler: () => {
-    //                     console.log('Agree clicked');
-    //                   }
-    //                 }
-    //               ]
-    //             });
-    //             confirm.present();
-    //           })
-    //           console.log('Agree clicked');//builid_guest
-    //       }
-    //     }
-    //   ]
-    // });
-    // confirm.present();
-    //             this.details_customer.guest_id, 
-    //             this.details_customer.guest_name,
-    //             this.details_customer.guest_lastname, 
-    //             this.details_customer.guest_tel, 
-    //             this.details_customer.guest_num_house, 
-    //             this.details_customer.guest_street,
-    //             this.details_customer.guest_distric,
-    //             this.details_customer.guest_area,
-    //             this.details_guest.myDate,
-    //             this.address.id,
-    //             this.address.type_name,
-    //             this.address.ref_regis_tec
-    //             // // console.log(this.details_customer,this.address.id,this.address.type_name,this.address.ref_regis_tec,this.details_guest.myDate);
-    //             // console.log(this.address.type_name);
-    //           //  console.log(this.details_guest.myDate);
-                
+  cancel_rent(){
+    this.navCtrl.popToRoot();
   }
 
 }

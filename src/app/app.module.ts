@@ -39,6 +39,7 @@ import {DetailsEditingTecPage} from '../pages/admin/details-editing-tec/details-
 import {DetailsEdtingGuestPage} from '../pages/admin/details-edting-guest/details-edting-guest';
 import {SubCustomerAddressPage} from '../pages/data-rent/sub-customer-address/sub-customer-address';
 import {CheckImgTaxPage} from '../pages/technician/rent/check-img-tax/check-img-tax'
+
 //send internet
 import { GetDataProvider } from '../providers/get-data/get-data';
 import {ChartsModule} from 'ng2-charts';
@@ -86,7 +87,8 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
     DetailsEdtingGuestPage,
     FormatTimePipe,
     SubCustomerAddressPage,
-    CheckImgTaxPage
+    CheckImgTaxPage,
+    
   ],
   imports: [ 
     FormsModule, 
@@ -127,7 +129,8 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
     DetailsEditingTecPage,
     DetailsEdtingGuestPage,
     SubCustomerAddressPage,
-    CheckImgTaxPage
+    CheckImgTaxPage,
+    
   ],
   providers: [
     StatusBar,

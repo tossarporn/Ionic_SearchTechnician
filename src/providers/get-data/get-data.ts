@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://10.5.30.112/Final_Project/service/";
+  host: string = "http://192.168.1.51/Final_Project/service/";
   get_register: string = "register.php";
   get_login: string = "login.php";
   get_area: string = "Get_Area.php";
@@ -107,7 +107,7 @@ export class GetDataProvider {
         })
     });
   }
-  creat_store(name_store, equipment, tel, time_start, time_end, cost_begin, num_house, street, distric, area, account, lat, lng, images, tec_id) {
+  creat_store(name_store, equipment, tel, time_start, time_end, cost_begin, num_house, street, distric, area,name_account ,account, lat, lng, images, tec_id) {
     return new Promise((reslov, reject) => {
       this.http.post(this.host + this.insert_build_store, {
         name_store: name_store,
@@ -120,6 +120,7 @@ export class GetDataProvider {
         street: street,
         distric: distric,
         area: area,
+        name_account:name_account,
         account: account,
         lat: lat,
         lng: lng,
@@ -566,12 +567,24 @@ show_data_rent(rent)
     }
   })
 }
-insert_rent(ref_tec,ref_regis,ref_id_tec,status_seg){
+insert_rent(
+  guest_name,guest_lastname,type_name,home_number,street,district,area_name,tel,
+  mydate,id_store,ref_regis,ref_tec,check_tus
+){
   return new Promise((reslov,reject)=>{this.http.post(this.host+this.insert_for_rent,{
+    guest_name: guest_name,
+    guest_lastname: guest_lastname,
+    type_name: type_name,
+    home_number: home_number,
+    street: street,
+    district: district,
+    area_name: area_name,
+    tel: tel,
+    mydate: mydate,
+    id_store: id_store,
+    ref_regis: ref_regis,
     ref_tec:ref_tec,
-    ref_regis:ref_regis,
-    ref_id_tec:ref_id_tec,
-    status_seg:status_seg
+    check_tus:check_tus
   },
   {
     headers: this.headers
@@ -584,11 +597,10 @@ insert_rent(ref_tec,ref_regis,ref_id_tec,status_seg){
   })
 }
 
-technician_update_rents(ref_tec,ref_regis,ref_id_tec,check_tus){
+technician_update_rents(ref_tec,ref_regis,check_tus){
   return new Promise((reslov,reject)=>{this.http.post(this.host+this.tec_update_status_rents,{
     ref_tec:ref_tec,
     ref_regis:ref_regis,
-    ref_id_tec:ref_id_tec,
     check_tus:check_tus
   },
   {

@@ -26,47 +26,49 @@
         <img src="{{show_imgs}}/Final_Project/service/{{item.image_name}}" />
         <ion-card-content>
           <ion-card-title>
-
-            <ion-row>
-              <div>
-                ชื่อร้านค้า:{{item.name_store}}
-              </div>
-
-            </ion-row>
-
-            <ion-row >
-              <div>
-                ({{item.star}}
-                <ion-icon name="star" color="danger"></ion-icon>) 
-              </div>
-            </ion-row>
+            <ion-grid>
+                <ion-row>
+                  <ion-col col-1>
+                      <div>
+                          <ion-icon name="home" md="md-home"></ion-icon>
+                        </div>
+                  </ion-col>
+                  <ion-col col-11>
+                      <div style="margin-top:7px;margin-left:5px"><h2><b>ชื่อร้านค้า:</b>{{item.name_store}}({{item.star}}
+                          <ion-icon name="star" color="danger"></ion-icon>)</h2></div>
+                  </ion-col>
+                  </ion-row>
+            </ion-grid>
+            
+            <ion-grid>
+                <ion-row>
+                  <ion-col col-1>
+                      <div ><ion-icon name="alarm" md="md-alarm"></ion-icon></div>
+                  </ion-col>
+                  <ion-col col-11><div style="margin-top:7px;margin-left:5px"><h2><b>เวลาทำการ:</b>{{item.time_start}} - {{item.time_end}}</h2></div></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-1>
+                        <div ><ion-icon name="pricetag" md="md-pricetag"></ion-icon></div>
+                    </ion-col>
+                    <ion-col col-11><div style="margin-top:7px;margin-left:5px"><h2><b>ราคาเริ่มต้น:</b>{{item.cost_begin}}</h2></div></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-1>
+                        <div ><ion-icon name="list-box" md="md-list-box"></ion-icon></div>
+                    </ion-col>
+                    <ion-col col-11><div style="margin-top:7px;margin-left:5px"><h2><b>ประเภทอุปกรณ์:</b>{{item.type_name}}</h2></div></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-1>
+                        <div ><ion-icon name="locate" md="md-locate"></ion-icon></div>
+                    </ion-col>
+                    <ion-col col-11><div style="margin-top:7px;margin-left:7px"><h2><b>เขต:</b>{{item.area_name}}</h2></div></ion-col>
+                </ion-row>
+              </ion-grid>
+            
           </ion-card-title>
         </ion-card-content>
-
-        <ion-row>
-
-          <table>
-            <tr>
-              <td class="type_marrgin">
-                ราคา:{{item.cost_begin}}
-              </td>
-              <td class="area_marrgin">
-                ประเภท:{{item.type_name}}
-              </td>
-            </tr>
-
-            <tr>
-              <td class="type_marrgin">
-
-                เวลาทำการ:{{item.time_start}} - {{item.time_end}}
-              </td>
-              <td class="area_marrgin">
-                เขต:{{item.area_name}}
-
-              </td>
-            </tr>
-          </table>
-        </ion-row>
 
         <ion-row style="float:right">
           <div>

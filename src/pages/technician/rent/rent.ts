@@ -142,78 +142,78 @@ back_technician(){
 
 tec_delete(){
 
-  console.log(this.rent_val);
-  console.log(this.ref_val_ref_tec);
-  console.log(this.ref_val_id_tec);
-  console.log(this.ref_val_ref_regis);
-  // const confirm = this.AlertController.create({
-  //   title: 'แจ้งเตือนจากระบบ',
-  //   message: 'คุณต้องการลบข้อมูลหรือไม่?',
-  //   buttons: [
-  //     {
-  //       text: 'ไม่',
-  //       handler: () => {
-  //         console.log('Disagree clicked');
-  //       }
-  //     },
-  //     {
-  //       text: 'ตกลง',
-  //       handler: () => {
-  //         this.getDataProvider.delete_details_rent(
-  //           this.ref_val_id
-  //         )
-  //           .then((success) => {
-  //             let loading = this.loadingCtrl.create({
-  //               content: 'กรุณารอสักครู่...',
-  //               spinner: 'bubbles'
-  //             });
+  // console.log(this.rent_val);
+  // console.log(this.ref_val_ref_tec);
+  // console.log(this.ref_val_id_tec);
+  // console.log(this.ref_val_ref_regis);
+  const confirm = this.AlertController.create({
+    title: 'แจ้งเตือนจากระบบ',
+    message: 'คุณต้องการลบข้อมูลหรือไม่?',
+    buttons: [
+      {
+        text: 'ไม่',
+        handler: () => {
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'ตกลง',
+        handler: () => {
+          this.getDataProvider.delete_details_rent(
+            this.ref_val_id
+          )
+            .then((success) => {
+              let loading = this.loadingCtrl.create({
+                content: 'กรุณารอสักครู่...',
+                spinner: 'bubbles'
+              });
 
-  //             loading.present();
+              loading.present();
 
-  //             setTimeout(() => {
-  //               let details_message: any = success
-  //               let message_success = details_message.message
-  //               const confirm = this.AlertController.create({
-  //                 title: 'แจ้งเตือนจากระบบ?',
-  //                 message: message_success,
-  //                 buttons: [
-  //                   {
-  //                     text: 'ตกลง',
-  //                     handler: () => {
-  //               this.storage.remove('details_gue')
-  //               this.storage.remove('details_tec');
-  //               this.getDataProvider.delete_imgs_banking(
-  //               this. ref_val_ref_tec,
-  //               this. ref_val_id_tec,
-  //               this. ref_val_ref_regis
-  //             )
-  //             .then((delete_imgs_banking)=>{
-  //               this.navCtrl.setRoot(this.navCtrl.getActive().component);//refresh page
-  //               console.log("delete_imgs_banking=>",delete_imgs_banking);
-  //             })
-  //             .catch((delete_imgs_banking_fail)=>{
-  //               console.log("delete_imgs_banking_fail=>",delete_imgs_banking_fail);
-  //             })
-  //                       console.log('Agree clicked');
-  //                     }
-  //                   }
-  //                 ]
-  //               });
-  //               confirm.present();
+              setTimeout(() => {
+                let details_message: any = success
+                let message_success = details_message.message
+                const confirm = this.AlertController.create({
+                  title: 'แจ้งเตือนจากระบบ?',
+                  message: message_success,
+                  buttons: [
+                    {
+                      text: 'ตกลง',
+                      handler: () => {
+                // this.storage.remove('details_gue')
+                // this.storage.remove('details_tec');
+                this.getDataProvider.delete_imgs_banking(
+                this. ref_val_ref_tec,
+                this. ref_val_id_tec,
+                this. ref_val_ref_regis
+              )
+              .then((delete_imgs_banking)=>{
+                this.navCtrl.setRoot(this.navCtrl.getActive().component);//refresh page
+                console.log("delete_imgs_banking=>",delete_imgs_banking);
+              })
+              .catch((delete_imgs_banking_fail)=>{
+                console.log("delete_imgs_banking_fail=>",delete_imgs_banking_fail);
+              })
+                        console.log('Agree clicked');
+                      }
+                    }
+                  ]
+                });
+                confirm.present();
 
-  //               loading.dismiss();
-  //             }, 1000);
-  //             console.log(success);
+                loading.dismiss();
+              }, 1000);
+              console.log(success);
               
-  //           }).catch((err) => {
-  //             console.log(err);
-  //           })
-  //         console.log(this.rent_val);
-  //       }
-  //     }
-  //   ]
-  // });
-  // confirm.present();
+            }).catch((err) => {
+              console.log(err);
+            })
+          console.log(this.rent_val);
+        }
+      }
+    ]
+  });
+  confirm.present();
 
 }//tec_delete
 
@@ -310,8 +310,10 @@ tec_delete_all(){
 }//tec_delete_all
 
 select_rents(get_result){
-
-
+// console.log("get_result.ref_id_tec=>",get_result.ref_id_tec);
+console.log("get_result.ref_regis=>",get_result.ref_regis);
+console.log("get_result.ref_tec=>",get_result.ref_tec);
+console.log("this.rents=>",this.rents);
   let loading = this.loadingCtrl.create({
     content: 'กรุณารอสักครู่...'
   });
@@ -320,9 +322,8 @@ select_rents(get_result){
 
   setTimeout(() => {
 this.getDataProvider.technician_update_rents(
-    get_result.ref_id_tec,
-    get_result.ref_regis,
     get_result.ref_tec,
+    get_result.ref_regis,
     this.rents
   ).then((update_sucess)=>{
     let status_message:any = update_sucess
@@ -348,7 +349,6 @@ this.getDataProvider.technician_update_rents(
 })//tec_update_status_rents
     loading.dismiss();
   }, 3000);
-  // 
 }//select_rents
 
 check(details_tecnician){

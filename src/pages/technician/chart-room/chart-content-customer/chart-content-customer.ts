@@ -52,6 +52,8 @@ chart=[];
     { 
        this.get_star = val.data_user.id
       console.log("get_star=>",this.get_star);
+      console.log("get_star=>",val);
+      
       this.get_rating_star(this.get_star)
     }).catch((err)=>
     { 
@@ -67,22 +69,13 @@ chart=[];
     get_rating_star(start){
       this.getDataProvider.get_rating(start).then((val)=>{
         this.all_stars = val
-        // let loop_rating = this.all_stars.map(star=>{
-        //   return star.rating
-        // })
-        // console.log('loop_rating=>',loop_rating);
-        
-        // let loop_count = this.all_stars.map(item=>{
-        //   return item.count_star  
-        // })
-        // console.log('loop_count=>',loop_count);
         this.chart = new Chart('canvas',{
           type:'horizontalBar',
           data:{
             labels:["เรตติ้ง1","เรตติ้ง2","เรตติ้ง3","เรตติ้ง4","เรตติ้ง5"], 
             datasets:[
               {
-                label:["จำนวนคะแนน"],
+                label:["จำนวนลูกค้า"],
                 data:this.all_stars,
                 backgroundColor: [
                     'rgb(128, 255, 0)',

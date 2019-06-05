@@ -10,7 +10,7 @@
     <ion-title>การจอง</ion-title>
   </ion-navbar>
 
-  <ion-toolbar no-border-top>
+  <!-- <ion-toolbar no-border-top>
       <ion-segment [(ngModel)]="section" (ionChange)="onSegmentChanged">
         
         <ion-segment-button value="for_rents" [disabled]="Disabled_data_rent">
@@ -21,35 +21,60 @@
           เช็คสถานะ
         </ion-segment-button>
       </ion-segment>
-    </ion-toolbar>
-
-    
- 
+    </ion-toolbar> -->
 </ion-header>
 
 
 <ion-content nopadding>
 
-  
-    
-  
-
-
-  <!-- <ng-template #test >
+   <!-- <ng-template #test >
     <h1 class="tex-rent">กรุณาทำการจอง</h1>
   </ng-template> -->
 
+  <div *ngIf="!display_rent">
+    <div>
+        <h1 class="tex-rent">กรุณาทำการจอง</h1>
+    </div>
+</div>
 
-  <!-- <ion-card *ngIf="test_details_gue;else test">
+<div *ngIf="display_rent">
+  <div *ngIf="display_wait && wait_rents">
+      <h1>{{wait_rents}}</h1>
+  </div>
+</div>
+
+  <div *ngIf="display_rent">
+    <div *ngIf="!display_wait && wait_rents">
+        <h1>{{wait_rents}}</h1>
+        <div>
+          <ion-col>
+            <img src="{{images}}" style="height:180px;width:160px;margin:10px auto 10px 30%" (click)="image()">
+            
+          </ion-col> 
+        </div>
+
+          <div class="rating">
+              คะแนน
+          <ion-col *ngFor="let star of stars; let i=index" tappable (click)="starClicked(i)" >
+            <ion-icon [name]="star" color="danger" ></ion-icon>
+          </ion-col>
+         {{value}}.0
+        </div>
+        <button ion-button  style="margin:23px 0px 0px 45%"(click)="submit(value)">ยืนยัน</button>
+      </div>
+    </div>
 
 
-        
-    {{test_details_gue.guest_area}}
-    <button ion-button small style="margin-left:5px;"(click)="submit(value)">ยืนยัน</button>
-  </ion-card> -->
+  
+   
+  
+    
+ 
+
+
   
   
-  <div [ngSwitch]="section">
+  <!-- <div [ngSwitch]="section">
 
     <ion-list *ngSwitchCase="'for_rents'">
        
@@ -63,7 +88,7 @@
 
 
                 <div *ngIf="!display_rent">
-                    <div *ngIf="test_details_tec && all;">
+                    <div *ngIf="test_details_tec || all;">
                         <ion-card >
                           <ion-card-content >
                             <ion-grid >
@@ -111,8 +136,8 @@
                                   <b >เบอร์โทรศัพท์:</b> {{test_details_tec.tel_technician}}  
                                 </ion-col>
                       
-                                <ion-col col-3 style="margin-top:-7px">
-                                  <button  ion-button icon-left clear small (click)="call_tec()"> <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
+                                <ion-col col-3 class="tel_tech">
+                                  <button  ion-button icon-left clear small (click)="call_tec()"> <ion-icon name="call" color="secondary"></ion-icon></button>
                                 </ion-col>
                               </ion-row>
                               
@@ -159,7 +184,7 @@
             <div>
               <ion-col>
                 <img src="{{images}}" style="height:180px;width:160px;margin:10px auto 10px 30%" (click)="image()">
-                <!-- <div>สร้างร้านค้า</div> -->
+                
               </ion-col> 
             </div>
 
@@ -175,7 +200,7 @@
       </ion-row>
       </ion-item>
     </ion-list>
-  </div>
+  </div> -->
   
 
 

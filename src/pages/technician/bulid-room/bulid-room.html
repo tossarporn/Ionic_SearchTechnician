@@ -23,10 +23,17 @@
              <ion-col></ion-col>
           </ion-row>
 
+          <ion-row>
+            <ion-item >
+              <ion-label stacked>ชื่อร้านค้า</ion-label>
+            <ion-input type="text" formControlName="name_stroe" [(ngModel)]="name_store"></ion-input>
+          </ion-item>
+          </ion-row>
+
         <ion-row>
           <ion-item col-6>
-          <ion-label stacked><h6>ชื่อร้านค้า</h6></ion-label>
-        <ion-input type="text" formControlName="name_stroe" [(ngModel)]="name_store"></ion-input>
+          <ion-label stacked>ชื่อบัญชีธนาคาร</ion-label>
+        <ion-input type="text" formControlName="name_account" [(ngModel)]="name_account"></ion-input>
       </ion-item>
       
       <ion-item col-6>

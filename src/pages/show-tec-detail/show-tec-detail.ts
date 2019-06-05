@@ -20,7 +20,7 @@ import { Refresher } from 'ionic-angular/components/refresher/refresher';
   templateUrl: 'show-tec-detail.html',
 })
 export class ShowTecDetailPage {
-  show_imgs = "http://10.5.14.151/";
+  show_imgs = "http://10.5.8.74";
   Detail_for:any;
   ratings_for:any;
   Detail_area:string;
@@ -68,7 +68,6 @@ equip_id:any;
       this.show_imgs;
       this.tec_detils = this.Detail_for.length
       console.log("Detail_for =>",this.Detail_for);   
-      console.log(this.tec_detils);
     }).catch((err)=>{ 
       console.log("error==>",err)
     })//Provider
@@ -86,7 +85,7 @@ equip_id:any;
       data_guest:this.guest
     });  
     console.log("sending=>",details_tec);
-    
+    console.log("sending=>",this.guest);
   }//detail_tec
 
   doRefresh(refresher) {

@@ -4,9 +4,9 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header hidden>
 
-    <ion-navbar>
+    <ion-navbar >
         <ion-title>ข้อมูลลูกค้า</ion-title>
         <ion-buttons end>
             <button ion-button icon-only (click)="editng=!editng" *ngIf="!editng">แก้ไข
@@ -35,7 +35,7 @@
 
     <ion-row>
         <div>
-            <h3>ข้อมูลการจองลูกค้า</h3>
+            <h3>ข้อมูลการจองของลูกค้า</h3>
         </div>
     </ion-row>
 
@@ -104,7 +104,7 @@
                 </ion-row>
                 <ion-row style="margin-top:10px;" *ngIf="editng">
                     <ion-col></ion-col>
-                    <button ion-button color="secondary" (click)="update_details(ng_details_guest)">ยืนยัน</button>
+                    <button ion-button color="secondary" (click)="update_details(ng_details_guest)">อัพเดต</button>
                     <ion-col></ion-col>
                 </ion-row>
         </div>
@@ -183,11 +183,21 @@
                         </ion-datetime>
                     </ion-item>
                    
+                    <!-- <ion-item >
+                        <ion-label staked>เลือกเวลา :</ion-label>
+                        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="ng_details_guest.time"
+                            doneText="ตกลง" cancelText="ยกเลิก" placeholder="กรุณาเลือกเวลา" formControlName="time">
+                        </ion-datetime>
+                    </ion-item> -->
                 </ion-row>
 
                 <ion-row style="margin-top:10px;" *ngIf="!editng">
                     <ion-col></ion-col>
-                    <button ion-button color="secondary" [disabled]="!detail.valid" (click)="submit(ng_details_guest)">ตกลง</button>
+                    <button ion-button color="danger"  (click)="cancel_rent()">ยกเลิกการจอง</button>
+                    <ion-col></ion-col>
+
+                    <ion-col></ion-col>
+                    <button ion-button color="secondary" [disabled]="!detail.valid" (click)="submit(ng_details_guest)">ยืนยันการจอง</button>
                     <ion-col></ion-col>
                 </ion-row>
             </form>

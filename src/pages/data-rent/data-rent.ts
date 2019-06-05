@@ -60,7 +60,7 @@ export class DataRentPage implements OnInit {
  
 
   test_details_gue:any = {}
-  test_details_tec :any = {}
+  test_details_tec:any
   all:string
   
   //segment disable
@@ -72,8 +72,8 @@ export class DataRentPage implements OnInit {
   display_status:boolean;
 
   //segment_status
-    seg_status:string="rent";
-    check_tus:string = "อยู่ระหว่างการซ่อม";
+    // seg_status:string="rent";
+    check_tus:string="";
     wait_rents:any;
     success_rents:any
     display_wait:boolean
@@ -107,7 +107,9 @@ export class DataRentPage implements OnInit {
   ) 
   {
     this.images = 'assets/imgs/photo.png';
-    this. ionViewWillEnter();
+    // this.ionViewWillEnter();
+    // this.test_details_gue = this.navParams.get('guest_details');
+    // console.log("get_details=>", this.test_details_gue);
   }//constructor
 
   // ionViewDidLoad() {
@@ -123,74 +125,303 @@ export class DataRentPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.storage.get('details_tec')
-    .then((details_tec_succ)=>{
-      this.test_details_tec = details_tec_succ
-     
-      if(this.test_details_tec == null){
-        this.display_rent = true
-        this.Disabled_status = true
-        this.section = "for_rents"
-      }
-      else{
+    // this.GetDataProvider.show_data_rent
+    //                     (
+    //                       this.test_details_gue.guest_id
+    //                     )
+    //                     .then((success_rent)=>{
+    //                       console.log(this.test_details_gue.guest_id);
+                          
+    //                       // let rent_data = success_rent["0"].status_seg
+    //                       // this.wait_rents = success_rent["0"].check_tus
+    //                       // this.success_rents = success_rent["0"].check_tus
+    //                       // if(rent_data == "rent"){
+    //                       //   this.Disabled_data_rent = true
+    //                       //    this.Disabled_status = false
+    //                       //    this.section = "for_status"
+    //                       // if(this.wait_rents == "อยู่ระหว่างการซ่อม" )
+    //                       //    {
+    //                       //        this.display_wait = true
+    //                       //    }
+    //                       // else if(this.wait_rents == "การซ่อมเสร็จสิ้น" )
+    //                       //    {
+    //                       //      this.display_wait = false
+    //                       //    }
+    //                       // }
 
-      this.storage.get('details_gue')
-      .then((details_gue_succ)=>{
-      this.test_details_gue = details_gue_succ;
+    //                       // else{
+    //                       //   this.display_rent = false
+    //                       //   this.Disabled_status = true
+    //                       //   this.section = "for_rents"
+    //                       //   console.log(this.test_details_gue.guest_id);
+    //                       // }
+    //                       console.log("success_rent=>",success_rent);
+                          
+    //                     })
+    //                     .catch((fail_rent)=>{
+    //                       console.log("fail_rent=>",fail_rent);
+    //                     })
+    
 
-      let month = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
-      let date = this.test_details_gue.mydate.split("-")
 
-      let year = date[0]
-      let month_parse = month[parseInt(date[1])-1];
-      let day = date[2];
-
-      this.all = day+"-"+month_parse+"-"+year
-      this.GetDataProvider.show_data_rent
-                (
-                  this.test_details_gue.guest_id
-                ).then((success_rent)=>{
-                  let rent_data = success_rent["0"].status_seg
-                  this.wait_rents = success_rent["0"].check_tus
-                  this.success_rents = success_rent["0"].check_tus
-                  if( rent_data == "rent"){
-                      this.Disabled_data_rent = true
-                      this.Disabled_status = false
-                      this.section = "for_status"
-                      if(this.wait_rents == "อยู่ระหว่างการซ่อม" )
-                      {
-                          this.display_wait = true
-                      }
-                     else if(this.wait_rents == "การซ่อมเสร็จสิ้น" )
-                      {
-                        this.display_wait = false
-                      }
-                    }
-                    
-                    else{
-                      this.display_rent = false
-                      this.Disabled_status = true
-                      this.section = "for_rents"
-                    }
-                }
-                ).catch((fail_rent)=>{
-                  console.log("fail_rent=>",fail_rent);
-                  
-                })
+    this.storage.get('tec')
+    .then((tec_success)=>{
+      this.test_details_tec = tec_success
+      // this.all = this.test_details_gue.data_user.guest_area
+      console.log("tec_success=>",this.test_details_tec);
+    })
+    .catch((tec_fail)=>{
+      console.log("tec_fail=>",tec_fail);
       
     })
-    .catch((details_gue_err)=>{
-      console.log('details_gue_err=>',details_gue_err);
-    })//details_gue
-
-      }
-      // console.log('details_tec_succ=>',details_tec_succ);
-    })
-    .catch((details_tec_err)=>{
-      console.log('details_tec_err=>',details_tec_err);
-    })//details_tec
     
-  }//ionViewWillEnter
+    this.storage.get('guest')
+    .then((details_gue_succ)=>{
+      this.test_details_gue = details_gue_succ
+      console.log("details_gue_succ=>",this.test_details_gue.data_user.id);
+      console.log("details_gue_succ=>",this.test_details_gue.data_user.guest_area);
+      this.GetDataProvider.show_data_rent
+                        (
+                          this.test_details_gue.data_user.id
+                        )
+                        .then((success_rent)=>{
+                          // let rent_data = success_rent["0"].status_seg
+                          this.wait_rents = success_rent["0"].check_tus
+                          // this.success_rents = success_rent["0"].check_tus
+                          // console.log("rent_data=>",rent_data);
+
+                          if(this.wait_rents == ""){
+                            this.display_rent = false
+                            console.log("space");
+                          }
+                          else if( this.wait_rents == "อยู่ระหว่างการซ่อม"){
+                            this.display_rent = true
+                            this.display_wait = true
+                            console.log("for_rents");
+                          }
+                          else if(this.wait_rents == "การซ่อมเสร็จสิ้น"){
+                            this.display_rent = true
+                            this.display_wait = false
+                            console.log("rent");
+                            
+                          }
+                          
+                          // this.wait_rents = success_rent["0"].check_tus
+                          // this.success_rents = success_rent["0"].check_tus
+                          // if(rent_data == "rent"){
+                          //   this.Disabled_data_rent = true
+                          //    this.Disabled_status = false
+                          //    this.section = "for_status"
+                          // if(this.wait_rents == "อยู่ระหว่างการซ่อม" )
+                          //    {
+                          //        this.display_wait = true
+                          //    }
+                          // else if(this.wait_rents == "การซ่อมเสร็จสิ้น" )
+                          //    {
+                          //      this.display_wait = false
+                          //    }
+                          // }
+
+                          // else{
+                          //   this.display_rent = false
+                          //   this.Disabled_status = true
+                          //   this.section = "for_rents"
+                          //   console.log(this.test_details_gue.guest_id);
+                          // }
+                          console.log("success_rent=>",success_rent);
+                          
+                        })
+                        .catch((fail_rent)=>{
+                          console.log("fail_rent=>",fail_rent);
+                        })
+    })
+    .catch((details_gue_fail)=>{
+      console.log("details_gue_fail=>",details_gue_fail);
+      
+    })
+    
+    // this.storage.get('tec')
+    // .then((details_tec_succ)=>{
+    //   this.test_details_tec = details_tec_succ
+    //   console.log(this.test_details_tec);
+    //   console.log('details_tec_succ=>',details_tec_succ);
+      // if(this.test_details_tec == null){
+      //         this.display_rent = true
+      //         this.Disabled_status = true
+      //         this.section = "for_rents"
+      //       }
+      //       else{
+                      
+      //         this.storage.get('guest').then((details_gue_succ)=>{
+      //           this.test_details_gue = details_gue_succ;
+      //                   console.log(this.test_details_gue);
+      //                   let month = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+      //                   let date = this.test_details_gue.mydate.split("-")
+                  
+      //                   let year = date[0]
+      //                   let month_parse = month[parseInt(date[1])-1];
+      //                   let day = date[2];
+                  
+      //                   this.all = day+"-"+month_parse+"-"+year
+
+      //                   this.GetDataProvider.show_data_rent
+      //                   (
+      //                     this.test_details_gue.id
+      //                   )
+      //                   .then((success_rent)=>{
+      //                     let rent_data = success_rent["0"].status_seg
+      //                     this.wait_rents = success_rent["0"].check_tus
+      //                     this.success_rents = success_rent["0"].check_tus
+      //                     if(rent_data == "rent"){
+      //                       this.Disabled_data_rent = true
+      //                        this.Disabled_status = false
+      //                        this.section = "for_status"
+      //                     if(this.wait_rents == "อยู่ระหว่างการซ่อม" )
+      //                        {
+      //                            this.display_wait = true
+      //                        }
+      //                     else if(this.wait_rents == "การซ่อมเสร็จสิ้น" )
+      //                        {
+      //                          this.display_wait = false
+      //                        }
+      //                     }
+
+      //                     else{
+      //                       this.display_rent = false
+      //                       this.Disabled_status = true
+      //                       this.section = "for_rents"
+      //                       console.log(this.test_details_gue.guest_id);
+      //                     }
+      //                     console.log("success_rent=>",success_rent);
+                          
+      //                   })
+      //                   .catch((fail_rent)=>{
+      //                     console.log("fail_rent=>",fail_rent);
+      //                   })
+
+                       
+                        
+      //         }).catch((details_gue_fail)=>{
+      //           console.log(details_gue_fail);
+                
+      //         })
+  
+      //       }
+      
+    // })
+    // .catch((details_tec_err)=>{
+    //   console.log('details_tec_err=>',details_tec_err);
+    // })//details_tec
+  }
+
+
+  // ionViewWillEnter(){
+    
+  //   this.storage.get('details_tec')
+  //   .then((details_tec_succ)=>{
+  //     this.test_details_tec = details_tec_succ
+     
+  //    console.log(this.test_details_tec);
+  //   //  this.storage.get('details_gue')
+  //   //  .then((details_gue_succ)=>{
+     
+  //   //  })
+  //   //  .catch((details_gue_err)=>{
+  //   //   console.log('details_gue_err=>',details_gue_err);
+  //   //  })
+     
+     
+  //     // if(this.test_details_tec == null){
+  //     //   this.display_rent = true
+  //     //   this.Disabled_status = true
+  //     //   this.section = "for_rents"
+  //     // }
+  //     // else{
+  //     //   this.storage.get('details_gue')
+  //     //     .then((details_gue_succ)=>{
+  //     //     this.test_details_gue = details_gue_succ;
+  //     //     console.log(this.test_details_gue);
+  //     //     let month = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+  //     //     let date = this.test_details_gue.mydate.split("-")
+    
+  //     //     let year = date[0]
+  //     //     let month_parse = month[parseInt(date[1])-1];
+  //     //     let day = date[2];
+    
+  //     //     this.all = day+"-"+month_parse+"-"+year
+  //     // }
+  //   //   else{
+
+  //   //   this.storage.get('details_gue')
+  //   //   .then((details_gue_succ)=>{
+  //   //   this.test_details_gue = details_gue_succ;
+  //   //   console.log(this.test_details_gue);
+  //   //   let month = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+  //   //   let date = this.test_details_gue.mydate.split("-")
+
+  //   //   let year = date[0]
+  //   //   let month_parse = month[parseInt(date[1])-1];
+  //   //   let day = date[2];
+
+  //   //   this.all = day+"-"+month_parse+"-"+year
+
+  //   //   // this.GetDataProvider.show_data_rent
+  //   //   //           (
+  //   //   //             this.test_details_gue.guest_id
+  //   //   //           ).then((success_rent)=>{
+  //   //   //             let rent_data = success_rent["0"].status_seg
+  //   //   //             this.wait_rents = success_rent["0"].check_tus
+  //   //   //             this.success_rents = success_rent["0"].check_tus
+  //   //   //             if( rent_data == "rent"){
+  //   //   //                 this.Disabled_data_rent = true
+  //   //   //                 this.Disabled_status = false
+  //   //   //                 this.section = "for_status"
+  //   //   //                 if(this.wait_rents == "อยู่ระหว่างการซ่อม" )
+  //   //   //                 {
+  //   //   //                     this.display_wait = true
+  //   //   //                 }
+  //   //   //                else if(this.wait_rents == "การซ่อมเสร็จสิ้น" )
+  //   //   //                 {
+  //   //   //                   this.display_wait = false
+  //   //   //                 }
+  //   //   //               }
+                    
+  //   //   //               else{
+  //   //   //                 this.display_rent = false
+  //   //   //                 this.Disabled_status = true
+  //   //   //                 this.section = "for_rents"
+  //   //   //               }
+  //   //   //           }
+  //   //   //           )
+  //   //   //           .catch((fail_rent)=>{
+  //   //   //             console.log("fail_rent=>",fail_rent);
+                  
+  //   //   //           })//GetDataProvider
+      
+  //   // })
+  //   // .catch((details_gue_err)=>{
+  //   //   console.log('details_gue_err=>',details_gue_err);
+  //   // })//details_gue
+
+  //   //   }
+
+  //     console.log('details_tec_succ=>',details_tec_succ);
+
+  //   })
+  //   .catch((details_tec_err)=>{
+  //     console.log('details_tec_err=>',details_tec_err);
+  //   })//details_tec
+
+  //   this.storage.get('guest').then((val) => {
+      
+  //   console.log(val);
+  //   }).catch((val_fail)=>{
+  //     console.log(val_fail);
+  //   })
+  //   //get data_user
+    
+    
+  // }//ionViewWillEnter
 
 
   modify_details(){
@@ -283,144 +514,148 @@ export class DataRentPage implements OnInit {
   }//image
 
 
-  submit_rent(){
+  // submit_rent(){
     
-    let alert = this.alertCtrl.create({
-      title: 'ยืนยันการจอง',
-      message: 'คุณต้องการยืนยันการจองใช่ ?',
-      buttons: [
-        {
-          text: 'ยกเลิก',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'ยืนยัน',
-          handler: () => {
+  //   let alert = this.alertCtrl.create({
+  //     title: 'ยืนยันการจอง',
+  //     message: 'คุณต้องการยืนยันการจองใช่ ?',
+  //     buttons: [
+  //       {
+  //         text: 'ยกเลิก',
+  //         handler: () => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'ยืนยัน',
+  //         handler: () => {
 
-            this.GetDataProvider.builid_guest(
-              this.test_details_gue.guest_name,
-              this.test_details_gue.guest_lastname, 
-              this.test_details_gue.guest_tel,
-              this.test_details_tec.type_name,
-              this.test_details_gue.guest_num_house,
-              this.test_details_gue.guest_street,
-              this.test_details_gue.guest_distric,
-              this.test_details_gue.guest_area,
-              this.test_details_gue.mydate,
-              this.test_details_tec.id,
-              this.test_details_gue.guest_id,
-              this.test_details_tec.ref_regis_tec,
-              this.seg_status,
-              this.check_tus
-            ).then((res) => {
+  //           this.GetDataProvider.builid_guest(
+  //             this.test_details_gue.guest_name,
+  //             this.test_details_gue.guest_lastname, 
+  //             this.test_details_gue.guest_tel,
+  //             this.test_details_tec.type_name,
+  //             this.test_details_gue.guest_num_house,
+  //             this.test_details_gue.guest_street,
+  //             this.test_details_gue.guest_distric,
+  //             this.test_details_gue.guest_area,
+  //             this.test_details_gue.mydate,
+  //             this.test_details_tec.id,
+  //             this.test_details_gue.guest_id,
+  //             this.test_details_tec.ref_regis_tec,
+  //             this.seg_status,
+  //             this.check_tus
+  //           ).then((res) => {
               
-              let loading = this.loadingCtrl.create({
-                content: 'กรุณารอสักครู่ ...'
-              });
+  //             let loading = this.loadingCtrl.create({
+  //               content: 'กรุณารอสักครู่ ...'
+  //             });
             
-              loading.present();
+  //             loading.present();
             
-              setTimeout(() => {
-                this.data_array = res;
-                let message = this.data_array.message;
-                let status = this.data_array.status;
+  //             setTimeout(() => {
+  //               this.data_array = res;
+  //               let message = this.data_array.message;
+  //               let status = this.data_array.status;
                
-                console.log("this.data_array=>",this.data_array);
+  //               console.log("this.data_array=>",this.data_array);
                 
-                console.log("message=>",message);
-                console.log("status=>",status);
+  //               console.log("message=>",message);
+  //               console.log("status=>",status);
 
-                const confirm = this.alertCtrl.create({
-                  title: 'แจ้งเตือนจากระบบ',
-                  message: message,
-                  buttons: [
-                    {
-                      text: 'ตกลง',
-                      handler: () => {
-                        this.navCtrl.setRoot(this.navCtrl.getActive().component);
-                      }
-                    }
-                  ]
-                });
-                loading.dismiss();
-                confirm.present();
-              }, 3000);
+  //               const confirm = this.alertCtrl.create({
+  //                 title: 'แจ้งเตือนจากระบบ',
+  //                 message: message,
+  //                 buttons: [
+  //                   {
+  //                     text: 'ตกลง',
+  //                     handler: () => {
+  //                       this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  //                     }
+  //                   }
+  //                 ]
+  //               });
+  //               loading.dismiss();
+  //               confirm.present();
+  //             }, 3000);
 
-              }).catch((val_err)=>{
-                console.log(val_err);
-              })//guest_data
+  //             }).catch((val_err)=>{
+  //               console.log(val_err);
+  //             })//guest_data
 
-            console.log('yes clicked');
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
+  //           console.log('yes clicked');
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   alert.present();
+  // }
 
   cancle_submit(){
+    this.storage.remove('guest')
+    this.storage.remove('tec');
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
 
-
-    const cancel = this.alertCtrl.create({
-      title: 'ยืนยันยกเลิกการจองหรือไม่?',
-      buttons: [
-        {
-          text: 'ยกเลิก',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'ยืนยัน',
-          handler: () => {
-            let loading = this.loadingCtrl.create({
-              content: 'กรุณารอสักครู่.....'
-            });
+    // const cancel = this.alertCtrl.create({
+    //   title: 'ยืนยันยกเลิกการจองหรือไม่?',
+    //   buttons: [
+    //     {
+    //       text: 'ยกเลิก',
+    //       handler: () => {
+    //         console.log('Disagree clicked');
+    //       }
+    //     },
+    //     {
+    //       text: 'ยืนยัน',
+    //       handler: () => {
+    //         let loading = this.loadingCtrl.create({
+    //           content: 'กรุณารอสักครู่.....'
+    //         });
           
-            loading.present();
+    //         loading.present();
 
-            setTimeout(() => {
-              this.GetDataProvider.cut_confirm_rent(
-                this.test_details_tec.id,
-                this.test_details_gue.guest_id,
-                this.test_details_tec.ref_regis_tec
-              )
-              .then((cut_success)=>{
-                let message_success:any = cut_success
+    //         setTimeout(() => {
+    //           this.GetDataProvider.cut_confirm_rent(
+    //             this.test_details_tec.id,
+    //             this.test_details_gue.guest_id,
+    //             this.test_details_tec.ref_regis_tec
+    //           )
+    //           .then((cut_success)=>{
+    //             let message_success:any = cut_success
 
-                const confirm = this.alertCtrl.create({
-                  title: message_success.message,
-                  buttons: [
-                    {
-                      text: 'ตกลง',
-                      handler: () => {
-                         this.navCtrl.setRoot(this.navCtrl.getActive().component);
-                         this.storage.remove('details_gue')
-                         this.storage.remove('details_tec');
-                      }
-                    }
-                  ]
-                });
-                confirm.present();
-              }).catch((cut_err)=>{
-                console.log("cut_err=>",cut_err);
-              })
+    //             const confirm = this.alertCtrl.create({
+    //               title: message_success.message,
+    //               buttons: [
+    //                 {
+    //                   text: 'ตกลง',
+    //                   handler: () => {
+    //                      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    //                      this.storage.remove('details_gue')
+    //                      this.storage.remove('details_tec');
+    //                   }
+    //                 }
+    //               ]
+    //             });
+    //             confirm.present();
+    //           }).catch((cut_err)=>{
+    //             console.log("cut_err=>",cut_err);
+    //           })
 
-              loading.dismiss();
-            }, 3000);
-          }
-        }
-      ]
-    });
-    cancel.present();
+    //           loading.dismiss();
+    //         }, 3000);
+    //       }
+    //     }
+    //   ]
+    // });
+    // cancel.present();
 
     
   }
 
   submit(rating) {
-    
+        // console.log("this.test_details_tec.id=>",this.test_details_tec.data_user.id);
+        // console.log("this.test_details_gue.guest_id=>",this.test_details_gue.data_user.id);
+        // console.log("this.test_details_tec.ref_regis_tec=>",this.test_details_gue.data_user.ref_store);
       let new_date = new Date()
       let new_year = new_date.getFullYear ().toString()
       let new_month = new_date.getMonth().toString()
@@ -428,6 +663,8 @@ export class DataRentPage implements OnInit {
       let new_days = new_date.getDate().toString()
 
       let date_img = new_days+"-"+array_month[new_month]+"-"+new_year;
+      console.log("date_img=>",date_img);
+      
     
             const cancel = this.alertCtrl.create({
               title: 'ยืนยันการส่งข้อมูลหรือไม่?',
@@ -449,14 +686,11 @@ export class DataRentPage implements OnInit {
 
                     setTimeout(() => {
                       this.navCtrl.setRoot(this.navCtrl.getActive().component);
-                      this.storage.remove('details_gue')
-                      this.storage.remove('details_tec');
-                      
                       this.GetDataProvider.rating(
-                                  rating,
-                                  this.test_details_tec.id,
-                                  this.test_details_gue.guest_id,
-                                  this.test_details_tec.ref_regis_tec
+                              rating,
+                              this.test_details_tec.data_user.id, 
+                              this.test_details_gue.data_user.id,
+                              this.test_details_gue.data_user.ref_store,
                                 ).then((result) => {
                                   console.log('result=>', result)
                                   this.rating_complacent = result;
@@ -470,13 +704,23 @@ export class DataRentPage implements OnInit {
                                 }).catch((err) => {
                                   console.log('fail', err)
                                 })
+                        this.GetDataProvider.technician_update_rents
+                        (
+                          this.test_details_gue.data_user.ref_store,
+                          this.test_details_gue.data_user.id,
+                          this.check_tus
+                        ).then((update_success)=>{
+                          console.log("update_success=>",update_success);
+                        }).catch((update_fail)=>{
+                          console.log("update_fail=>",update_fail);
+                        })
 
                         this.GetDataProvider.insert_img_taxinvoice(
-                        this.test_details_tec.id,
-                        this.test_details_tec.ref_regis_tec,
-                        this.test_details_gue.guest_id,
-                        this.images,
-                        date_img
+                          this.test_details_gue.data_user.ref_store,
+                          this.test_details_tec.data_user.id,
+                          this.test_details_gue.data_user.id,
+                          this.images,
+                          date_img
                       ).then((insert_img_Tax_success)=>{
                         console.log("insert_img_Tax_success=>",insert_img_Tax_success);
                         
