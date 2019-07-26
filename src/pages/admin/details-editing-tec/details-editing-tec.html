@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>แก้ไขข้อมูลช่าง</ion-title>
   </ion-navbar>
 
@@ -24,6 +24,17 @@
 <ion-input  type="tel"  [(ngModel)]="details_tec.account" value="{{details_tec.account}}"></ion-input>
 </ion-item>
 </ion-row>
+
+<ion-row>
+        <ion-item col-6>
+            <ion-label stacked><h6>ชื่อบัญชีธนาคาร</h6></ion-label>
+          <ion-input type="text" [(ngModel)]="details_tec.name_account" value="{{details_tec.name_account}}"></ion-input>
+        </ion-item>
+    <ion-item col-6>
+    <ion-label stacked>นามสกุลบัญชีธนาคาร</ion-label>
+    <ion-input  type="tel"  [(ngModel)]="details_tec.lastname_account" value="{{details_tec.lastname_account}}"></ion-input>
+    </ion-item>
+    </ion-row>
 
 <ion-row>
   <ion-item  col-6>
@@ -87,6 +98,6 @@
             </ion-select>
     </ion-item>
 </ion-row>
-        <button ion-button type="submit" (click)="submit()" style="margin-top:20px;" block round>ยืนยันแก้ไขข้อมูล</button>
+        <button ion-button type="submit" (click)="submit()" style="margin-top:20px;" block round color="secondary" >ยืนยันแก้ไขข้อมูล</button>
 
 </ion-content>

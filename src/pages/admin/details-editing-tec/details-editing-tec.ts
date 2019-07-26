@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { GetDataProvider } from '../../../providers/get-data/get-data';
 import { AlertController } from 'ionic-angular';
+import { EditsTecPage } from '../edits-tec/edits-tec';
 /**
  * Generated class for the DetailsEditingTecPage page.
  *
@@ -32,6 +33,8 @@ export class DetailsEditingTecPage {
     street: '',
     distric: '',
     ref_id_tec: '',
+    name_account:'',
+    lastname_account:'',
   }
 
 
@@ -41,7 +44,8 @@ export class DetailsEditingTecPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private GetDataProvider: GetDataProvider,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController
     ) {
 
     this.show_details();
@@ -69,6 +73,8 @@ export class DetailsEditingTecPage {
     this.details_tec.cost_begin = this.get_details_tec.cost_begin;
     this.details_tec.distric = this.get_details_tec.district;
     this.details_tec.street = this.get_details_tec.street;
+    this.details_tec.name_account = this.get_details_tec.name_account;
+    this.details_tec.lastname_account = this.get_details_tec.lastname_account;
     // console.log("get_details_tec=>", this.get_details_tec);
     // console.log("this.id=>", this.details_tec);
 
@@ -96,37 +102,67 @@ export class DetailsEditingTecPage {
       });//show_area
   }
   submit() {
-    this.GetDataProvider.technicain_update_details(
-      this.details_tec.ref_id_tec,
-      this.details_tec.ref_area_name,
-      this.details_tec.ref_type_equipment,
-      this.details_tec.name_store,
-      this.details_tec.tel,
-      this.details_tec.account,
-      this.details_tec.time_start,
-      this.details_tec.time_end,
-      this.details_tec.num_house,
-      this.details_tec.cost_begin,
-      this.details_tec.distric,
-      this.details_tec.street
-    ).then((success) => {
-      let success_update: any = success;
-      let message_update_success = success_update.message
-        const message_success = this.alertCtrl.create({
-          title: 'แจ้งเตือนจากระบบ',
-          subTitle: message_update_success,
-          buttons: ['OK']
-        });
-        message_success.present();
-
-      // console.log("message_update_success=>",message_update_success);
-      // console.log("success_submit=>",success_update);
-      // console.log("this.details_tec=>",this.details_tec);
-    }).catch((error) => {
-      console.log("error=>", error);
-    })
-    console.log("this.details_tec=>",this.get_details_tec);
-    
+    let alert = this.alertCtrl.create({
+      title: 'ต้องการที่จะทำการอัปเดตข้อมูลหรือไม่',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'ยืนยัน',
+          handler: () => {
+            this.GetDataProvider.technicain_update_details(
+                  this.details_tec.ref_id_tec,
+                  this.details_tec.ref_area_name,
+                  this.details_tec.ref_type_equipment,
+                  this.details_tec.name_store,
+                  this.details_tec.tel,
+                  this.details_tec.account,
+                  this.details_tec.time_start,
+                  this.details_tec.time_end,
+                  this.details_tec.num_house,
+                  this.details_tec.cost_begin,
+                  this.details_tec.distric,
+                  this.details_tec.street
+                ).then((success) => {
+                  let success_update: any = success;
+                  let message_update_success = success_update.message
+                  console.log("message_update_success=>",message_update_success);
+                  console.log("success_submit=>",success_update);
+                  console.log("this.details_tec=>",this.details_tec);
+                  setTimeout(() => {
+                    const confirm = this.alertCtrl.create({
+                      title: message_update_success,
+                      buttons: [
+                        {
+                          text: 'ตกลง',
+                          handler: () => {
+                            this.navCtrl.push(EditsTecPage);
+                            // this.navCtrl.insert(0,DataRentPage)
+                            // this.navCtrl.popToRoot();
+                          }
+                        }
+                      ]
+                    });
+                    confirm.present();
+                    loading.dismiss();
+                  }, 3000);
+                }).catch((error) => {
+                  console.log("error=>", error);
+                })
+              let loading = this.loadingCtrl.create({
+                content: 'กรุณารอสักครู่'
+              });
+            
+              loading.present();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
-
 }

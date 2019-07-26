@@ -6,7 +6,7 @@
 -->
 <ion-header >
 
-  <ion-navbar >
+  <ion-navbar color="primary">
     <ion-title>สร้างร้านค้า</ion-title>
   </ion-navbar>
 
@@ -30,6 +30,18 @@
           </ion-item>
           </ion-row>
 
+          <ion-row>
+              <ion-item col-6>
+              <ion-label stacked>ชื่อ</ion-label>
+            <ion-input type="text" formControlName="name_tech" [(ngModel)]="name_tech"></ion-input>
+          </ion-item>
+          
+          <ion-item col-6>
+            <ion-label stacked>นามสกุล</ion-label>
+            <ion-input  type="tel" formControlName="lastname_tech" [(ngModel)]="lastname_tech"></ion-input>
+          </ion-item>
+        </ion-row>
+
         <ion-row>
           <ion-item col-6>
           <ion-label stacked>ชื่อบัญชีธนาคาร</ion-label>
@@ -37,7 +49,14 @@
       </ion-item>
       
       <ion-item col-6>
-        <ion-label stacked>บัญชีธนาคาร</ion-label>
+        <ion-label stacked>นามสกุลบัญชีธนาคาร</ion-label>
+        <ion-input  type="tel" formControlName="lastname_account" [(ngModel)]="lastname_account"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-label stacked>เลขบัญชีธนาคาร</ion-label>
         <ion-input  type="tel" formControlName="account" [(ngModel)]="account"></ion-input>
       </ion-item>
     </ion-row>

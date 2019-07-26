@@ -20,15 +20,15 @@ import { Refresher } from 'ionic-angular/components/refresher/refresher';
   templateUrl: 'show-tec-detail.html',
 })
 export class ShowTecDetailPage {
-  show_imgs = "http://10.5.8.74";
+  show_imgs = "http://128.199.132.30";
   Detail_for:any;
   ratings_for:any;
   Detail_area:string;
   detail_equipment:string;   
   detail_items_name:string;
   detail_technicain:any;
-  showDetail:string=this.show_imgs+"Final_Project/service/get_detailTech.php";
-  rating:string=this.show_imgs+"Final_Project/service/get_rating.php";
+  showDetail:string=this.show_imgs+"/service/get_detailTech.php";
+  rating:string=this.show_imgs+"/service/get_rating.php";
   guest:any;
   count = 1;
   get_tec:any; 

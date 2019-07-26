@@ -34,6 +34,8 @@ export class BulidRoomPage {
 lat : number= 0 ;
 lng : number= 0;
 name_store:string='' ;
+name_tech:string='' ;
+lastname_tech:string='' ;
 name_account:string='' ;
 tel: string='';
 time_start:string='' ;
@@ -45,6 +47,7 @@ images: any="";
 area : any="";
 area_for : any="";
 account:string='';
+lastname_account:string=""
 distric : string='';
 type_equipment:any="";
 equipment:any='';
@@ -70,7 +73,10 @@ res:any;
   
   this.myform = this.formBuilder.group({
     name_stroe: ['', Validators.required],
+    name_tech:['', Validators.required],
+    lastname_tech:['', Validators.required],
     name_account: ['', Validators.required],
+    lastname_account: ['', Validators.required],
     account: ['',Validators.required],
     equipment:['',Validators.required],
     tel:['',Validators.required],
@@ -200,12 +206,12 @@ res:any;
  }//get_data_tech
  
   submit(){
-    // console.log(this.name_store,this.name_account,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
+    // console.log(this.name_store,this.name_tech,this.lastname_tech,this.name_account,this.lastname_account,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
     //   this.num_house,this.street,this.distric,this.area,this.account,this.lat,this.lng,this.images,this.tec_id);
     
     this.getdataProvider.creat_store(
-      this.name_store,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
-      this.num_house,this.street,this.distric,this.area,this.name_account,this.account,this.lat,this.lng,this.images,this.tec_id)
+      this.name_store,this.name_tech,this.lastname_tech,this.equipment,this.tel,this.time_start,this.time_end,this.cost_begin,
+      this.num_house,this.street,this.distric,this.area,this.name_account,this.lastname_account,this.account,this.lat,this.lng,this.images,this.tec_id)
     .then((res)=>{
 
       this.data_inputjson = res;

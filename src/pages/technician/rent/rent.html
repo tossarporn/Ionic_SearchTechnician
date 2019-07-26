@@ -6,7 +6,7 @@
 -->
 <ion-header  no-border>
 
-        <ion-navbar hideBackButton >
+        <ion-navbar hideBackButton color="primary">
 
                 <ion-buttons  left>
                         <button ion-button icon-only (click)="back_technician()" *ngIf="!editing">
@@ -178,13 +178,13 @@
                           </ion-row>
     
                           <ion-row justify-content-around>
-                                <ion-col col-9 >
+                                <ion-col col-10 >
                                   <b >เบอร์โทรศัพท์:</b> {{details.tel}}  
                                 </ion-col>
                       
-                                <ion-col col-3 style="margin-top:-7px">
-                                  <button  ion-button icon-left clear small (click)="tel_guest(details.tel)"> <ion-icon name="call" color="secondary"></ion-icon>โทร</button>
-                                </ion-col>
+                                <ion-col col-2 style="margin-top:-7px">
+                                        <button  ion-button small clear  (click)="tel_guest(details.tel)"> <ion-icon name="call" color="secondary"></ion-icon></button>
+                                      </ion-col>
                               </ion-row>
     
                               <ion-row style="margin:auto">

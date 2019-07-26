@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'check-img-tax.html',
 })
 export class CheckImgTaxPage {
-  show_imgs = "http://10.5.8.74"
+  show_imgs = "http://128.199.132.30"
   details:any
   img:any
   day_picture:string

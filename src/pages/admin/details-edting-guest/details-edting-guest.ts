@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,AlertController } from 'ionic-angular';
 import { GetDataProvider } from '../../../providers/get-data/get-data';
+import { EditsGuestPage } from '../edits-guest/edits-guest';
 /**
  * Generated class for the DetailsEdtingGuestPage page.
  *
@@ -34,6 +35,8 @@ export class DetailsEdtingGuestPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private GetDataProvider: GetDataProvider,
+    public  loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
   ) 
   {
     this.details_guest();
@@ -70,25 +73,72 @@ export class DetailsEdtingGuestPage {
       });//show_area
   }
   submit(){
-    this.GetDataProvider.guest_update_details(
-      this.detail_guest.id_guest, 
-      this.detail_guest.guest_name, 
-      this.detail_guest.guest_lastname,
-      this.detail_guest.guest_tel, 
-      this.detail_guest.guest_num_house ,
-      this.detail_guest.guest_street, 
-      this.detail_guest.guest_distric, 
-      this.detail_guest.guest_area,  
-      this.detail_guest.username,  
-      this.detail_guest.password,
-    ).then((success)=>{
-      let details_success:any = success;
-      let message_success = details_success.message
-      console.log("message_success=>",message_success);
-      console.log("success=>",success);
-    }).catch((err)=>{
-      console.log("err=>",err);
-    })
-      console.log("submit=>", this.detail_guest);
+    
+      let alert = this.alertCtrl.create({
+        title: 'ต้องการที่จะทำการอัปเดตข้อมูลหรือไม่',
+        buttons: [
+          {
+            text: 'ยกเลิก',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'ยืนยัน',
+            handler: () => {
+              this.GetDataProvider.guest_update_details(
+                this.detail_guest.id_guest, 
+                this.detail_guest.guest_name, 
+                this.detail_guest.guest_lastname,
+                this.detail_guest.guest_tel, 
+                this.detail_guest.guest_num_house ,
+                this.detail_guest.guest_street, 
+                this.detail_guest.guest_distric, 
+                this.detail_guest.guest_area,  
+                this.detail_guest.username,  
+                this.detail_guest.password,
+              ).then((success)=>{
+                let details_success:any = success;
+                let message_success = details_success.message
+                // console.log("message_success=>",message_success);
+                // console.log("success=>",success);
+                setTimeout(() => {
+                  const confirm = this.alertCtrl.create({
+                    title: message_success,
+                    buttons: [
+                      {
+                        text: 'ตกลง',
+                        handler: () => {
+                          this.navCtrl.push(EditsGuestPage);
+                          // this.navCtrl.insert(0,DataRentPage)
+                          // this.navCtrl.popToRoot();
+                        }
+                      }
+                    ]
+                  });
+                  confirm.present();
+                  loading.dismiss();
+                }, 3000);
+              }).catch((err)=>{
+                console.log("err=>",err);
+              })
+                console.log("submit=>", this.detail_guest);
+              let loading = this.loadingCtrl.create({
+                content: 'กรุณารอสักครู่'
+              });
+            
+              loading.present();
+            
+              
+            }
+          }
+        ]
+      });
+      alert.present();
+    
+
+    
+    
   }
 }

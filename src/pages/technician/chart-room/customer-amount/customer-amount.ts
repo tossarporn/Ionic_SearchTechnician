@@ -44,14 +44,25 @@ export class CustomerAmountPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomerAmountPage');
   }
-//   public ChartsLables:string[] = ['มกราคม','กุมภาพันธ','มีนาคม','เมษายน','พฤษภาคม']
-// public ChartsData:number[] = [10,20,100,50,10]
-// public ChartsType:string = "horizontalBar"
+
 submit(show){
 
-
+console.log("ref_id_tec=>",show);
+console.log("date_service=>",this.get_customer);
+// this.GetDataProvider.get_data_equipment(this.get_customer,show)
+// .then((result)=>{
+//   console.log(result);
+// })
+// .catch((not_result)=>{
+//   console.log(not_result);
+  
+// })
   this.GetDataProvider.get_data_equipment(this.get_customer,show)
   .then((result)=>{
+    console.log(result);
+    
+    console.log(this.get_customer);
+    console.log(show);
     let success = result
     this.chart = new Chart('canvas',{
       type:'horizontalBar',
@@ -115,6 +126,5 @@ submit(show){
     console.log(error)
   })
 
-  console.log(show)
 }
 }

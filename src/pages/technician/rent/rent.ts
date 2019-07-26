@@ -60,7 +60,7 @@ export class RentPage {
   }//constructor
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad RentPage');
+    console.log('ionViewDidLoad RentPage');
   }
  get_detais_tec(){
     this.storage.get('tec').then((val) => {
@@ -194,7 +194,8 @@ tec_delete(){
               .catch((delete_imgs_banking_fail)=>{
                 console.log("delete_imgs_banking_fail=>",delete_imgs_banking_fail);
               })
-                        console.log('Agree clicked');
+
+
                       }
                     }
                   ]
@@ -273,9 +274,6 @@ tec_delete_all(){
             let looping_ref_id = this.get_result[i].ref_id_tec;
             let looping_ref_regis = this.get_result[i].ref_regis;
             let looping_ref_tec= this.get_result[i].ref_tec;
-            // console.log(looping_ref_id);
-            //   console.log(looping_ref_regis);
-            //   console.log(looping_ref_tec);
             this.getDataProvider.delete_details_rent(
               this.loop_id
             )

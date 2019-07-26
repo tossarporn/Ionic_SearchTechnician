@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>การจอง</ion-title>
   </ion-navbar>
 
@@ -38,27 +38,177 @@
 </div>
 
 <div *ngIf="display_rent">
-  <div *ngIf="display_wait && wait_rents">
-      <h1>{{wait_rents}}</h1>
+  <div *ngIf="display_wait">
+    
+    <ion-row style="margin-top:5px;">
+      <ion-col></ion-col>
+        <img src="{{show_img}}/service/{{details_tech.details_img}}" />
+        <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1>
+          <div > 
+              <img src="assets/imgs/store.png">
+            </div>
+      </ion-col>
+    <ion-col col-11>
+      <div class="size"><b>ชื่อร้าน:</b>{{details_tech.details_name_store}}</div>
+    </ion-col>
+    
+  </ion-row>
+    <ion-row>
+        <ion-col col-1>
+            <div> 
+                <img src="assets/imgs/idea.png">
+              </div>
+        </ion-col>
+      <ion-col col-10>
+          <div class="size"><b>การจอง:</b><span style="color:#EEEE57">{{wait_rents}}</span></div>
+      </ion-col>
+    </ion-row>
+      
+      
+
+      <ion-row>
+          <ion-col col-1>
+              <div>
+                  <ion-icon name="home" md="md-home"></ion-icon>
+                </div>
+          </ion-col>
+        <ion-col col-11>
+          <div class="size"><b>บ้านเลขที่:</b>{{details_tech.details_home}}</div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col col-1>
+              <div>
+                  <img src="assets/imgs/road-with-broken-line.png">
+                </div>
+          </ion-col>
+        <ion-col col-11>
+          <div class="size"><b>ถนน:</b>{{details_tech.details_street}}</div>
+        </ion-col>
+        
+      </ion-row>
+
+      <ion-row>
+          <ion-col col-1>
+              <div>
+                  <img src="assets/imgs/way.png">
+                </div>
+          </ion-col>
+        <ion-col col-11>
+          <div class="size"><b>แขวง:</b>{{details_tech.details_distric}}</div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col col-1>
+              <div>
+                  <ion-icon name="home" md="md-locate"></ion-icon>
+                </div>
+          </ion-col>
+        <ion-col col-11>
+          <div class="size"><b>เขต:</b>{{details_tech.details_area}}</div>
+        </ion-col>
+        
+      </ion-row>
+
+      <ion-row>
+          <ion-col col-1>
+              <div class="space_icon">
+                  <ion-icon name="md-call" ></ion-icon>
+                </div>
+          </ion-col>
+        <ion-col col-11>
+          <div class="size"><b>โทรหาช่าง:</b>{{details_tech.details_tel}}
+            <button  ion-button icon-left clear  style="margin-bottom:10px;" color="dark" (click)="call_tec()"> 
+                <ion-icon name="call" color="secondary" ></ion-icon></button>
+          </div>
+        </ion-col>
+      </ion-row>
   </div>
 </div>
 
   <div *ngIf="display_rent">
-    <div *ngIf="!display_wait && wait_rents">
-        <h1>{{wait_rents}}</h1>
+    <div *ngIf="!display_wait && wait_rents">  
         <div>
-          <ion-col>
+          <ion-col >
             <img src="{{images}}" style="height:180px;width:160px;margin:10px auto 10px 30%" (click)="image()">
-            
           </ion-col> 
         </div>
 
-          <div class="rating">
-              คะแนน
-          <ion-col *ngFor="let star of stars; let i=index" tappable (click)="starClicked(i)" >
-            <ion-icon [name]="star" color="danger" ></ion-icon>
+        <ion-row>
+          <ion-col col-1>
+              <div> 
+                  <img src="assets/imgs/idea.png">
+                </div>
           </ion-col>
-         {{value}}.0
+          <ion-col col-10>
+              <div class="size"><b>การจอง:</b><span style="color:green">{{wait_rents}}</span></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row >
+          <ion-col col-1>
+              <img src="assets/imgs/bank.png">
+          </ion-col>
+
+          <ion-col col-11>
+            <div class="size"><b>บัญชีธนาคาร:</b><span>{{details_tech.details_account}}</span></div>
+          </ion-col>
+          
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-1>
+              <img src="assets/imgs/name.png">
+          </ion-col>
+
+          <ion-col col-11>
+            <div class="size"><b>ชื่อบัญชีธนาคาร:</b><span>{{details_tech.details_name_account}}</span></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-1>
+              <img src="assets/imgs/name.png">
+          </ion-col>
+
+          <ion-col col-11>
+            <div class="size"><b>นามสกุลบัญชีธนาคาร:</b><span >{{details_tech.details_lastname_account}}</span></div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-1>
+            <div class="space_icon">
+                <ion-icon name="md-call" ></ion-icon>
+            </div>
+          </ion-col>
+
+          <ion-col col-11>
+            <div class="size"><b>เบอร์โทรศัพท์:</b><span >{{details_tech.details_tel}}</span>
+              <button  ion-button icon-left clear  style="margin-bottom:10px;" color="dark" (click)="call_tec()"> 
+                  <ion-icon name="call" color="secondary" ></ion-icon></button>
+            </div>
+          </ion-col>
+        </ion-row>
+
+
+          <div class="rating">
+            <ion-row>
+              <ion-col>
+                 <b>คะแนน:</b> 
+              </ion-col>
+              <ion-col *ngFor="let star of stars; let i=index" tappable (click)="starClicked(i)" >
+                  <ion-icon [name]="star" color="danger" ></ion-icon>
+                </ion-col>
+                <div style="margin-top:9px;">{{value}}.0</div>
+            </ion-row>
+              
+          
+         
         </div>
         <button ion-button  style="margin:23px 0px 0px 45%"(click)="submit(value)">ยืนยัน</button>
       </div>

@@ -27,8 +27,8 @@ export class SearchEquipmentPage {
   details_tecnician:any=[];
   // ratings_for:any;
   // show_imgs = "http://10.5.8.74/";
-  // rating:string=this.show_imgs+"Final_Project/service/get_rating.php";
-  // get_details:string=this.show_imgs+"Final_Project/service/get_detailTech.php";
+  // rating:string=this.show_imgs+"/service/get_rating.php";
+  // get_details:string=this.show_imgs+"/service/get_detailTech.php";
   constructor(public navCtrl: NavController, 
     public navParams: NavParams , 
     private GetDataProvider:GetDataProvider,

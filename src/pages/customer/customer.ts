@@ -25,7 +25,7 @@ export class CustomerPage {
   searchRoot = SearchPage;
   dataRentRoot = DataRentPage;
   ip_address = "http://10.5.18.56/";
-  get_details:string=this.ip_address+"Final_Project/service/get_detailTech.php";
+  get_details:string=this.ip_address+"service/get_detailTech.php";
   // mapTabEnabled = false;
   // DatarentEnabled = false;//tabEnable
   // details_guest:any={};

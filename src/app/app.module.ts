@@ -12,6 +12,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 
 
+
+
 //page controller
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -88,7 +90,6 @@ import {IonRatingComponent} from '../components/ion-rating/ion-rating'
     FormatTimePipe,
     SubCustomerAddressPage,
     CheckImgTaxPage,
-    
   ],
   imports: [ 
     FormsModule, 

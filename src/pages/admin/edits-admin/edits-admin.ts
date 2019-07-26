@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,LoadingController  } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { GetDataProvider } from '../../../providers/get-data/get-data';
 import {AdminPage} from '../admin'
@@ -23,7 +23,8 @@ export class EditsAdminPage {
     public navParams: NavParams,
     private Storage:Storage,
     private GetDataProvider:GetDataProvider,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController
   ) 
   {
     
@@ -56,40 +57,65 @@ export class EditsAdminPage {
   }
 
   submit(num){
-    this.GetDataProvider.update_admin(
-      num.id,
-      num.user_admin,
-      num.password_admin,
-      num.tel_admin,
-      num.account_bank_admin,
-      num.number_house_admin,
-      num.street_admin,
-      num.distric_admin,
-      num.area_admin,
-    )
-    .then((val)=>{
-      let data_val:any = val
-      let message_val = data_val.message
-      const confirm = this.alertCtrl.create({
-        title: 'แจ้งเตือนจากระบบ',
-        message:message_val,
-        buttons: [
-          {
-            text: 'ตกลง',
-            handler: () => {
-              this.navCtrl.push(AdminPage);
-              console.log('Agree clicked');
-            }
-          }
-        ]
-      });
-      confirm.present();
 
-      console.log(message_val);
-      console.log(val);
-    }).catch((err)=>{
-      console.log(err);
-    })
+    let alert = this.alertCtrl.create({
+      title: 'ต้องการที่จะทำการอัปเดตข้อมูลหรือไม่',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          handler: () => {
+            
+          }
+        },
+        {
+          text: 'ยืนยัน',
+          handler: () => {
+            this.GetDataProvider.update_admin(
+              num.id,
+              num.user_admin,
+              num.password_admin,
+              num.tel_admin,
+              num.account_bank_admin,
+              num.number_house_admin,
+              num.street_admin,
+              num.distric_admin,
+              num.area_admin,
+            )
+            .then((val)=>{
+              let data_val:any = val
+              let message_val = data_val.message
+              console.log("message_val=>",message_val);
+              
+              setTimeout(() => {
+                const confirm = this.alertCtrl.create({
+                  title: message_val,
+                  buttons: [
+                    {
+                      text: 'ตกลง',
+                      handler: () => {
+                        this.navCtrl.push(AdminPage);
+                      }
+                    }
+                  ]
+                });
+                confirm.present();
+                loading.dismiss();
+              }, 3000);
+            }).catch((err)=>{
+              console.log(err);
+            })
+            let loading = this.loadingCtrl.create({
+              content: 'กรุณารอสักครู่'
+            });
+          
+            loading.present();
+          }
+        }
+      ]
+    });
+    alert.present();
+    
     // let id_admin = num.id
     // let username = num.user_admin
     // let password = num.password_admin

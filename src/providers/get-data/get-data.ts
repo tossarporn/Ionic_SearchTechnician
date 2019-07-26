@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class GetDataProvider {
-  host: string = "http://192.168.1.51/Final_Project/service/";
+  host: string = "http://128.199.132.30/service/";
   get_register: string = "register.php";
   get_login: string = "login.php";
   get_area: string = "Get_Area.php";
@@ -107,10 +107,12 @@ export class GetDataProvider {
         })
     });
   }
-  creat_store(name_store, equipment, tel, time_start, time_end, cost_begin, num_house, street, distric, area,name_account ,account, lat, lng, images, tec_id) {
+  creat_store(name_store,name_tech,lastname_tech,equipment, tel, time_start, time_end, cost_begin, num_house, street, distric, area,name_account,lastname_account ,account, lat, lng, images, tec_id) {
     return new Promise((reslov, reject) => {
       this.http.post(this.host + this.insert_build_store, {
         name_store: name_store,
+        name_tech:name_tech,
+        lastname_tech:lastname_tech,
         equipment: equipment,
         tel: tel,
         time_start: time_start,
@@ -121,6 +123,7 @@ export class GetDataProvider {
         distric: distric,
         area: area,
         name_account:name_account,
+        lastname_account:lastname_account,
         account: account,
         lat: lat,
         lng: lng,
@@ -256,11 +259,11 @@ export class GetDataProvider {
     });
   }//get_data_rent
 
-  get_data_equipment(Equipment, show_myDate) {
+  get_data_equipment(ref_id_tec, show_myDate) {
     return new Promise((reslov, reject) => {
       this.http.post(this.host + this.showall_customer,
         {
-          ref_id_tec: Equipment,
+          ref_id_tec: ref_id_tec,
           date_service: show_myDate
         },
         {

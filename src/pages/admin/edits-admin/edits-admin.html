@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>แก้ไขข้อมูลผู้ดูแลระบบ</ion-title>
   </ion-navbar>
 
@@ -14,10 +14,10 @@
 
 
 <ion-content padding  *ngIf="details_tec">
-    <ion-row>
+    <ion-row style="margin-top:40px;">
         <ion-item col-6>
-            <ion-label floating>username :</ion-label> 
-        <ion-input type="tel" [(ngModel)]="details_tec[0].user_admin" value="{{details_tec[0].user_admin}}" clearInput	></ion-input>
+                    <ion-label floating>username :</ion-label> 
+                    <ion-input type="tel" [(ngModel)]="details_tec[0].user_admin" value="{{details_tec[0].user_admin}}" clearInput	></ion-input>
       </ion-item>
   
       <ion-item col-6>
